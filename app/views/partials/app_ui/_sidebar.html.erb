@@ -1,0 +1,172 @@
+<nav id="primary" class="main-nav collapsible-nav">
+  <!-- Brand -->
+  <a id="sidebar-brand" href="../pages/dashboard.html">
+     Gerenciamento de CRM
+  </a>
+  <button type="button" class="btn btn-navbar btn-inverse" data-toggle="collapse" data-target=".nav-collapse">
+    <i class="icon-reorder"></i>
+  </button>
+
+  <ul class="nav-collapse collapse">
+
+  <!-- Profile -->
+    <li class="profile">
+      <a href="#profile-opts" class="accordion-toggle" data-toggle="collapse">
+         <img class="avatar user3">
+          <span class="text" id="profile-text">
+            <%= cookies[:username] %> <b class="caret"></b>
+          </span>
+      </a>
+
+      <ul id="profile-opts" class="collapse secondary">
+        <li class="<%= nav_active(secondary: "profile-settings") %>">
+          <a href="#">
+            Configurações
+          </a>
+        </li>
+        <li class="<%= nav_active(secondary: "change-pass") %>">
+          <a href="#">
+            Alterar Senha
+          </a>
+        </li>
+        <li class="<%= nav_active(secondary: "logout") %>">
+          <a href="/home/logout">
+            Sair
+          </a>
+        </li>
+      </ul>
+    </li>
+
+
+
+    <!-- Components -->
+    <li class="<%= nav_active(primary: "components") %>">
+      <a href="#components-list" class="accordion-toggle" data-toggle="collapse">
+          <span class="icon">
+            <i class="icon-microformats"></i>
+          </span>
+          <span class="text">
+            Components <b class="caret"></b>
+          </span>
+      </a>
+
+      <ul id="components-list" class="collapse secondary">
+        <li class="<%= nav_active(secondary: "buttons") %>">
+          <% link_to "/pages/components/buttons.html", relative: true do %>
+              Botões
+          <% end %>
+        </li>
+        <li class="<%= nav_active(secondary: "forms") %>">
+          <% link_to "/pages/components/forms.html", relative: true do %>
+              Formulários
+          <% end %>
+        </li>
+        <li class="<%= nav_active(secondary: "elements") %>">
+          <% link_to "/pages/components/elements.html", relative: true do %>
+              Elementos
+          <% end %>
+        </li>
+        <li class="<%= nav_active(secondary: "widgets") %>">
+          <% link_to "/pages/components/widgets.html", relative: true do %>
+              Widgets
+          <% end %>
+        </li>
+        <li class="<%= nav_active(secondary: "charts") %>">
+          <% link_to "/pages/components/charts.html", relative: true do %>
+              Gráficos
+          <% end %>
+        </li>
+        <li class="<%= nav_active(secondary: "tables") %>">
+          <% link_to "/pages/components/tables.html", relative: true do %>
+              Tabelas
+          <% end %>
+        </li>
+        <li class="<%= nav_active(secondary: "grid") %>">
+          <% link_to "/pages/components/grid.html", relative: true do %>
+              Grid
+          <% end %>
+        </li>
+      </ul>
+    </li>
+
+    <!-- Sample pages -->
+    <li class="<%= nav_active(primary: "samples") %>">
+      <a href="#sample-pages" class="accordion-toggle" data-toggle="collapse">
+          <span class="icon">
+            <i class="icon-pushpin"></i>
+          </span>
+          <span class="text">
+            Pages <b class="caret"></b>
+          </span>
+      </a>
+
+      <ul id="sample-pages" class="collapse secondary">
+        <li class="<%= nav_active(secondary: "gallery") %>">
+          <% link_to "/pages/samples/gallery.html", relative: true do %>
+              Gallery
+          <% end %>
+        </li>
+        <li class="<%= nav_active(secondary: "faq") %>">
+          <% link_to "/pages/samples/faq.html", relative: true do %>
+              FAQ
+          <% end %>
+        </li>
+        <li class="<%= nav_active(secondary: "pricing_plans") %>">
+          <% link_to "/pages/samples/pricing_plans.html", relative: true do %>
+              Pricing Plans
+          <% end %>
+        </li>
+        <li class="<%= nav_active(secondary: "login") %>">
+          <% link_to "/pages/samples/login.html", relative: true do %>
+              Login
+          <% end %>
+        </li>
+        <li class="<%= nav_active(secondary: "register") %>">
+          <% link_to "/pages/samples/register.html", relative: true do %>
+              Register
+          <% end %>
+        </li>
+        <li class="<%= nav_active(secondary: "reports") %>">
+          <% link_to "/pages/samples/reports.html", relative: true do %>
+              Reports
+          <% end %>
+        </li>
+        <li class="<%= nav_active(secondary: "error") %>">
+          <% link_to "/pages/samples/error.html", relative: true do %>
+              Error 404
+          <% end %>
+        </li>
+      </ul>
+    </li>
+
+    <!-- Extras dropdown -->
+    <li class="<%= nav_active(primary: "extras") %>">
+      <a href="#extras" class="accordion-toggle" data-toggle="collapse">
+          <span class="icon">
+            <i class="icon-gift"></i>
+          </span>
+          <span class="text">
+            Extras <b class="caret"></b>
+          </span>
+      </a>
+
+      <ul id="extras" class="collapse secondary">
+        <li class="<%= nav_active(secondary: "fullcalendar") %>">
+          <% link_to "/pages/extras/fullcalendar.html", relative: true do %>
+              Fullcalendar
+          <% end %>
+        </li>
+        <li class="<%= nav_active(secondary: "icons") %>">
+          <% link_to "/pages/extras/icons.html", relative: true do %>
+              Icons
+          <% end %>
+        </li>
+        <li class="<%= nav_active(secondary: "world-map") %>">
+          <% link_to "/pages/extras/world-map.html", relative: true do %>
+              World map
+          <% end %>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>

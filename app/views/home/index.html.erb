@@ -1,0 +1,11 @@
+<% if !is_logged? %>
+	<%= form_tag(:controller => "home", :action => "login", :method => "get") do %>
+		<%= label_tag(:username, "Nome de Usuário") %>
+		<%= text_field_tag(:username) %>
+		<%= label_tag(:password, "Senha") %>
+		<%= password_field_tag(:password) %>
+		<%= submit_tag("Entrar") %>
+	<% end %>
+<% else %>
+	Seja bem vindo, <%= cookies[:username] %>!
+<% end %>
