@@ -11,4 +11,8 @@ class HomeController < ApplicationController
 		cookies[:username] = nil
 		render :index
 	end
+
+	def blank
+		render 'public/blank.html'
+	end
 end
