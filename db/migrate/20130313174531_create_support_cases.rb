@@ -3,7 +3,7 @@ class CreateSupportCases < ActiveRecord::Migration
     create_table :support_cases do |t|
       t.string :caseCode
       t.string :description
-      t.string :type
+      t.string :caseType
       t.string :status
 
       

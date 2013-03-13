@@ -10,6 +10,17 @@ class SupportCasesController < ApplicationController
     end
   end
 
+<<<<<<< HEAD
+=======
+  def filter
+	typeVar = params[:type]
+	@support_cases = SupportCase.where("type = :filterType", {:filterType => "#{typeVar}"})
+	
+	render :index
+  end
+
+
+>>>>>>> Filter for contacts
   # GET /support_cases/1
   # GET /support_cases/1.json
   def show
@@ -26,10 +37,13 @@ class SupportCasesController < ApplicationController
   def new
     @support_case = SupportCase.new
 <<<<<<< HEAD
+<<<<<<< HEAD
     
     @contacts = Contact.all
 =======
 >>>>>>> CRUD Employee SupoprtCase
+=======
+>>>>>>> Filter for contacts
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,10 +55,13 @@ class SupportCasesController < ApplicationController
   def edit
     @support_case = SupportCase.find(params[:id])
 <<<<<<< HEAD
+<<<<<<< HEAD
     
     @contacts = Contact.all
 =======
 >>>>>>> CRUD Employee SupoprtCase
+=======
+>>>>>>> Filter for contacts
   end
 
   # POST /support_cases

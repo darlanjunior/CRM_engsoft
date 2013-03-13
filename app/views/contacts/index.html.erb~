@@ -2,6 +2,17 @@
 
 <table>
   <tr>
+    <th>Filtro por nome</th>
+  </tr>
+  <tr>
+    <td>
+	<%= form_tag("/filter", :method => "get") do %>
+	<%= search_field_tag :name, params[:name] %>
+	<%= submit_tag "Name", :name => nil, :id => "submit"%>
+	<% end %>
+    </td>
+  </tr>
+  <tr>
     <th>Clientid</th>
     <th>Name</th>
     <th>Email</th>

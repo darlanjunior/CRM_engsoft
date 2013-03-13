@@ -10,6 +10,14 @@ class SupportCasesController < ApplicationController
     end
   end
 
+  def filter
+	typeVar = params[:type]
+	@support_cases = SupportCase.where("type = :filterType", {:filterType => "#{typeVar}"})
+	
+	render :index
+  end
+
+
   # GET /support_cases/1
   # GET /support_cases/1.json
   def show

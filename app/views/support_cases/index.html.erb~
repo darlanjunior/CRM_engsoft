@@ -6,8 +6,8 @@
   </tr>
   <tr>
     <td>
-	  <%= form_tag :controller => 'support_cases', :action => 'filter', :method => 'get' do %>
-	  <%= text_field_tag :type, params[:type], :id => 'search_field' %>
+	  <%= form_tag :controller => 'contacts', :action => 'filter', :method => 'get' do %>
+	  <%= text_field_tag :name, params[:name], :id => 'search_field' %>
 	  <%= submit_tag "Search", :name => nil %> 
 	  <%= link_to_function "Clear", "$('search_field').clear()" %>
 	  <% end %> 

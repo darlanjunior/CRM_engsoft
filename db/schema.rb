@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20130320165508) do
   create_table "support_cases", :force => true do |t|
     t.string   "caseCode"
     t.string   "description"
-    t.string   "type"
+    t.string   "caseType"
     t.string   "status"
     t.integer  "contact_id"
     t.datetime "created_at",  :null => false

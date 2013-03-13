@@ -2,9 +2,13 @@ class CreateSupportCases < ActiveRecord::Migration
   def change
     create_table :support_cases do |t|
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       t.Date :creationDate
 >>>>>>> CRUD Employee SupoprtCase
+=======
+      t.date :creationDate
+>>>>>>> Filter for contacts
       t.string :caseCode
       t.string :description
       t.string :type
