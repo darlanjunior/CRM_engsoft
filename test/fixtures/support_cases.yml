@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  creationDate: 
+  caseCode: MyString
+  description: MyString
+  type: 
+  status: MyString
+
+two:
+  creationDate: 
+  caseCode: MyString
+  description: MyString
+  type: 
+  status: MyString
