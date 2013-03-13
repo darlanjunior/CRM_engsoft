@@ -27,6 +27,12 @@ class SupportCasesController < ApplicationController
     @support_case = SupportCase.new
     
     @contacts = Contact.all
+    
+    puts '*************************'
+    @contacts.each do |contact|
+    	puts contact.name
+    end
+    puts '*************************'
 
     respond_to do |format|
       format.html # new.html.erb

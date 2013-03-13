@@ -21,8 +21,6 @@
   <br/>
   <br/>
   <br/>
-  
-  <h3>Chamado</h3>
 
   <div class="field">
     <%= f.label :creationDate %><br />
