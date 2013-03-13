@@ -2,6 +2,18 @@
 
 <table>
   <tr>
+    <th>Filtro por nome</th>
+  </tr>
+  <tr>
+    <td>
+	  <%= form_tag :controller => 'contacts', :action => 'filter', :method => 'get' do %>
+	  <%= text_field_tag :name, params[:name], :id => 'search_field' %>
+	  <%= submit_tag "Search", :name => nil %> 
+	  <%= link_to_function "Clear", "$('search_field').clear()" %>
+	  <% end %> 
+    </td>
+  </tr>
+  <tr>
     <th>Clientid</th>
     <th>Name</th>
     <th>Email</th>

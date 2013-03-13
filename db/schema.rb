@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20130313184237) do
     t.date     "creationDate"
     t.string   "caseCode"
     t.string   "description"
-    t.string   "type"
+    t.string   "caseType"
     t.string   "status"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false

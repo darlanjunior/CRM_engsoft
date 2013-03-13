@@ -4,7 +4,7 @@ class CreateSupportCases < ActiveRecord::Migration
       t.date :creationDate
       t.string :caseCode
       t.string :description
-      t.string :type
+      t.string :caseType
       t.string :status
 
       t.timestamps
