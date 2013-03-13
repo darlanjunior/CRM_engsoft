@@ -1,4 +1,7 @@
 CRMEngsoft::Application.routes.draw do
+  resources :contacts
+
+
   resources :employees
 
 
