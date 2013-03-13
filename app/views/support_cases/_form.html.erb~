@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-
+<<<<<<< HEAD
   
   <h3>Clientes</h3>
   
@@ -62,6 +62,8 @@
   <br/>
   
   <h3>Chamado</h3>
+=======
+>>>>>>> CRUD Employee SupoprtCase
 
   <div class="field">
     <%= f.label :creationDate %><br />

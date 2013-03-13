@@ -1,7 +1,11 @@
 CRMEngsoft::Application.routes.draw do
-
+<<<<<<< HEAD
   resources :newsletters
 
+
+  resources :contacts
+=======
+>>>>>>> CRUD Employee SupoprtCase
 
   resources :contacts
 

@@ -1,0 +1,9 @@
+class SupportCase < ActiveRecord::Base
+<<<<<<< HEAD
+  attr_accessible :caseCode, :description, :status, :type
+
+belongs_to :contact
+=======
+  attr_accessible :caseCode, :creationDate, :description, :status, :type
+>>>>>>> CRUD Employee SupoprtCase
+end

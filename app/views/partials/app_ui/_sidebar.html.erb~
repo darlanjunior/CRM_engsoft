@@ -76,8 +76,11 @@
           <%= link_to "Relatório de Chamados", :controller => "home", :action => "blank" %>
         </li>
         <li>
-
+<<<<<<< HEAD
           <%= link_to "Gestão de FAQ", :controller => "questions", :action => "index" %>
+=======
+          <%= link_to "Gestão de FAQ", :controller => "home", :action => "blank" %>
+>>>>>>> CRUD Employee SupoprtCase
         </li>
       </ul>
     </li>
@@ -114,8 +117,11 @@
            <%= link_to "Registro de problemas/dúvidas no sistema", :controller => "home", :action => "blank" %>
         </li>
         <li>
-
+<<<<<<< HEAD
            <%= link_to "FAQ", :controller => "questions", :action => "index" %>
+=======
+           <%= link_to "FAQ", :controller => "home", :action => "blank" %>
+>>>>>>> CRUD Employee SupoprtCase
         </li>
         <li>
            <%= link_to "Meus Chamados", :controller => "home", :action => "blank" %>

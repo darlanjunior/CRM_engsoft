@@ -25,7 +25,12 @@ class SupportCasesController < ApplicationController
   # GET /support_cases/new.json
   def new
     @support_case = SupportCase.new
+<<<<<<< HEAD
+    
     @contacts = Contact.all
+=======
+>>>>>>> CRUD Employee SupoprtCase
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @support_case }
@@ -35,7 +40,11 @@ class SupportCasesController < ApplicationController
   # GET /support_cases/1/edit
   def edit
     @support_case = SupportCase.find(params[:id])
+<<<<<<< HEAD
+    
     @contacts = Contact.all
+=======
+>>>>>>> CRUD Employee SupoprtCase
   end
 
   # POST /support_cases
