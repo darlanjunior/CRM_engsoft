@@ -1,4 +1,10 @@
 CRMEngsoft::Application.routes.draw do
+  resources :employees
+
+
+  resources :support_cases
+
+
   resources :questions
 
 

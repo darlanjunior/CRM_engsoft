@@ -42,131 +42,98 @@
     <!-- Components -->
     <li class="<%= nav_active(primary: "components") %>">
       <a href="#components-list" class="accordion-toggle" data-toggle="collapse">
-          <span class="icon">
-            <i class="icon-microformats"></i>
-          </span>
           <span class="text">
-            Components <b class="caret"></b>
+            Marketing <b class="caret"></b>
+          </span>
+      
+
+      <ul>
+        <li>
+          <%= link_to "Banner", :controller => "home", :action => "blank" %>
+        </li>
+        <li>
+          <%= link_to "Gestão de Campanha", :controller => "home", :action => "blank" %>
+        </li>
+        <li>
+          <%= link_to "Relatório de Campanhas", :controller => "home", :action => "blank" %>
+        </li>
+      </ul>
+      </a>
+    </li>
+
+    <li class="<%= nav_active(primary: "components") %>">
+      <a href="#components-list" class="accordion-toggle" data-toggle="collapse">
+          <span class="text">
+            Suporte <b class="caret"></b>
           </span>
       </a>
 
-      <ul id="components-list" class="collapse secondary">
-        <li class="<%= nav_active(secondary: "buttons") %>">
-          <% link_to "/pages/components/buttons.html", relative: true do %>
-              Botões
-          <% end %>
+      <ul>
+        <li>
+          <%= link_to "Gestão de Chamados", :controller => "home", :action => "blank" %>
         </li>
-        <li class="<%= nav_active(secondary: "forms") %>">
-          <% link_to "/pages/components/forms.html", relative: true do %>
-              Formulários
-          <% end %>
+        <li>
+          <%= link_to "Relatório de Chamados", :controller => "home", :action => "blank" %>
         </li>
-        <li class="<%= nav_active(secondary: "elements") %>">
-          <% link_to "/pages/components/elements.html", relative: true do %>
-              Elementos
-          <% end %>
-        </li>
-        <li class="<%= nav_active(secondary: "widgets") %>">
-          <% link_to "/pages/components/widgets.html", relative: true do %>
-              Widgets
-          <% end %>
-        </li>
-        <li class="<%= nav_active(secondary: "charts") %>">
-          <% link_to "/pages/components/charts.html", relative: true do %>
-              Gráficos
-          <% end %>
-        </li>
-        <li class="<%= nav_active(secondary: "tables") %>">
-          <% link_to "/pages/components/tables.html", relative: true do %>
-              Tabelas
-          <% end %>
-        </li>
-        <li class="<%= nav_active(secondary: "grid") %>">
-          <% link_to "/pages/components/grid.html", relative: true do %>
-              Grid
-          <% end %>
+        <li>
+          <%= link_to "Gestão de FAQ", :controller => "home", :action => "blank" %>
         </li>
       </ul>
     </li>
 
-    <!-- Sample pages -->
-    <li class="<%= nav_active(primary: "samples") %>">
-      <a href="#sample-pages" class="accordion-toggle" data-toggle="collapse">
-          <span class="icon">
-            <i class="icon-pushpin"></i>
-          </span>
+    <li class="<%= nav_active(primary: "components") %>">
+      <a href="#components-list" class="accordion-toggle" data-toggle="collapse">
           <span class="text">
-            Pages <b class="caret"></b>
+            Análise de Relacionamentos <b class="caret"></b>
           </span>
       </a>
 
-      <ul id="sample-pages" class="collapse secondary">
-        <li class="<%= nav_active(secondary: "gallery") %>">
-          <% link_to "/pages/samples/gallery.html", relative: true do %>
-              Gallery
-          <% end %>
+      <ul>
+        <li>
+          <%= link_to "Relatório de Atividade de Clientes", :controller => "home", :action => "blank" %>
         </li>
-        <li class="<%= nav_active(secondary: "faq") %>">
-          <% link_to "/pages/samples/faq.html", relative: true do %>
-              FAQ
-          <% end %>
+        <li>
+           <%= link_to "Gestão de Contatos pendentes", :controller => "home", :action => "blank" %>
         </li>
-        <li class="<%= nav_active(secondary: "pricing_plans") %>">
-          <% link_to "/pages/samples/pricing_plans.html", relative: true do %>
-              Pricing Plans
-          <% end %>
-        </li>
-        <li class="<%= nav_active(secondary: "login") %>">
-          <% link_to "/pages/samples/login.html", relative: true do %>
-              Login
-          <% end %>
-        </li>
-        <li class="<%= nav_active(secondary: "register") %>">
-          <% link_to "/pages/samples/register.html", relative: true do %>
-              Register
-          <% end %>
-        </li>
-        <li class="<%= nav_active(secondary: "reports") %>">
-          <% link_to "/pages/samples/reports.html", relative: true do %>
-              Reports
-          <% end %>
-        </li>
-        <li class="<%= nav_active(secondary: "error") %>">
-          <% link_to "/pages/samples/error.html", relative: true do %>
-              Error 404
-          <% end %>
+        <li>
+           <%= link_to "Pesquisar Cliente", :controller => "home", :action => "blank" %>
         </li>
       </ul>
     </li>
 
-    <!-- Extras dropdown -->
-    <li class="<%= nav_active(primary: "extras") %>">
-      <a href="#extras" class="accordion-toggle" data-toggle="collapse">
-          <span class="icon">
-            <i class="icon-gift"></i>
-          </span>
+    <li class="<%= nav_active(primary: "components") %>">
+      <a href="#components-list" class="accordion-toggle" data-toggle="collapse">
           <span class="text">
-            Extras <b class="caret"></b>
+            Área do Cliente <b class="caret"></b>
           </span>
       </a>
 
-      <ul id="extras" class="collapse secondary">
-        <li class="<%= nav_active(secondary: "fullcalendar") %>">
-          <% link_to "/pages/extras/fullcalendar.html", relative: true do %>
-              Fullcalendar
-          <% end %>
+      <ul>
+        <li>
+           <%= link_to "Registro de problemas/dúvidas no sistema", :controller => "home", :action => "blank" %>
         </li>
-        <li class="<%= nav_active(secondary: "icons") %>">
-          <% link_to "/pages/extras/icons.html", relative: true do %>
-              Icons
-          <% end %>
+        <li>
+           <%= link_to "FAQ", :controller => "home", :action => "blank" %>
         </li>
-        <li class="<%= nav_active(secondary: "world-map") %>">
-          <% link_to "/pages/extras/world-map.html", relative: true do %>
-              World map
-          <% end %>
+        <li>
+           <%= link_to "Meus Chamados", :controller => "home", :action => "blank" %>
         </li>
       </ul>
     </li>
+
+    <li>
+      <a href="#components-list" class="accordion-toggle" data-toggle="collapse">
+          <span class="text">
+            Telemarketing <b class="caret"></b>
+          </span>
+      </a>
+
+      <ul>
+        <li>
+           <%= link_to "Contatos Pendentes", :controller => "home", :action => "blank" %>
+        </li>
+      </ul>
+    </li> 
+
   </ul>
 </nav>

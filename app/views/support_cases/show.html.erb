@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Creationdate:</b>
+  <%= @support_case.creationDate %>
+</p>
+
+<p>
+  <b>Casecode:</b>
+  <%= @support_case.caseCode %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @support_case.description %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @support_case.type %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @support_case.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_support_case_path(@support_case) %> |
+<%= link_to 'Back', support_cases_path %>

@@ -1,0 +1,31 @@
+<h1>Listing support_cases</h1>
+
+<table>
+  <tr>
+    <th>Creationdate</th>
+    <th>Casecode</th>
+    <th>Description</th>
+    <th>Type</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @support_cases.each do |support_case| %>
+  <tr>
+    <td><%= support_case.creationDate %></td>
+    <td><%= support_case.caseCode %></td>
+    <td><%= support_case.description %></td>
+    <td><%= support_case.type %></td>
+    <td><%= support_case.status %></td>
+    <td><%= link_to 'Show', support_case %></td>
+    <td><%= link_to 'Edit', edit_support_case_path(support_case) %></td>
+    <td><%= link_to 'Destroy', support_case, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Support case', new_support_case_path %>
