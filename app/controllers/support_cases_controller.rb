@@ -37,6 +37,8 @@ class SupportCasesController < ApplicationController
   # GET /support_cases/1/edit
   def edit
     @support_case = SupportCase.find(params[:id])
+    
+    @contacts = Contact.all
   end
 
   # POST /support_cases

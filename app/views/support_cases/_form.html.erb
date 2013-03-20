@@ -12,11 +12,49 @@
   <% end %>
   
   <h3>Clientes</h3>
-    
-  <% @contacts.each do |row| %>
-  	<br><%= radio_button_tag 'field_name', row.name %>
-  	<%= row.name.humanize %>
-  <% end %>
+  
+	<style>
+	.ui-autocomplete {
+		max-height: 100px;
+		overflow-y: auto;
+		/* prevent horizontal scrollbar */
+		overflow-x: hidden;
+	}
+	
+	/* IE 6 doesn't support max-height
+	* we use height instead, but this forces the menu to always be this tall
+	*/
+	* html .ui-autocomplete {
+		height: 100px;
+	}
+	</style>
+  
+	<script>
+		$(function() {
+			var availableTags = [
+				<% @contacts.each do |contact| %>
+  				{
+  					caseCode: "<%= contact.id %>",
+  					name: "<%= contact.name.humanize %>",
+  					email: "<%= contact.email.humanize %>",
+  					phone: "<%= contact.phone.humanize %>",
+  					label: "<%= contact.name.humanize %>",
+  				},
+  			<% end %>
+			];
+			
+			$( "#contacts" ).autocomplete({
+				source: availableTags,
+				minLength: 3,
+				
+			});
+		});
+	</script>
+	
+	<div class="ui-widget">
+		<label for="contacts">Contatos: </label>
+		<input id="contacts" />
+	</div>
   
   <br/>
   <br/>
