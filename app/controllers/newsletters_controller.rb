@@ -41,6 +41,8 @@ class NewslettersController < ApplicationController
   # POST /newsletters.json
   def create
     @newsletter = Newsletter.new(params[:newsletter])
+    
+    puts("xxxxxxxxxxxxx" + params[:newsletter][:x].to_s + "xxxxxxxxxxxxxxx")
 
     respond_to do |format|
       if @newsletter.save

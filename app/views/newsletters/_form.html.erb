@@ -10,6 +10,8 @@
       </ul>
     </div>
   <% end %>
+  
+  <% f.hidden_field :x, :value => "blablablablablabla" %>
 
   <div class="field">
     <%= f.label :title %><br />
@@ -18,10 +20,6 @@
   <div class="field">
     <%= f.label :message_body %><br />
     <%= f.text_area :message_body %>
-  </div>
-  <div class="field">
-    <%= f.label :send_date %><br />
-    <%= f.datetime_select :send_date %>
   </div>
   <div class="actions">
     <%= f.submit %>

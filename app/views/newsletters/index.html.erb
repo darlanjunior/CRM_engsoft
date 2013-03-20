@@ -1,25 +1,24 @@
 <h1>Listing newsletters</h1>
 
-<table>
+<table class="table table-striped">
+  <thead>
   <tr>
-    <th>Title</th>
-    <th>Message body</th>
-    <th>Send date</th>
-    <th></th>
+    <th>T&iacute;tulo</th>
+    <th>Mensage a ser enviada</th>
     <th></th>
     <th></th>
   </tr>
+  </thead>
 
-<% @newsletters.each do |newsletter| %>
+  <tbody>
+  <% @newsletters.each do |newsletter| %>
   <tr>
     <td><%= newsletter.title %></td>
     <td><%= newsletter.message_body %></td>
-    <td><%= newsletter.send_date %></td>
-    <td><%= link_to 'Show', newsletter %></td>
-    <td><%= link_to 'Edit', edit_newsletter_path(newsletter) %></td>
-    <td><%= link_to 'Destroy', newsletter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= button_to 'Show', newsletter %></td>
   </tr>
-<% end %>
+	<% end %>
+  </tbody>
 </table>
 
 <br />
