@@ -1,0 +1,28 @@
+<h1>Lista de FAQs</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>Dúvida</th>
+    <th>Resposta</th>
+    <th>Assunto</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @faqs.each do |faq| %>
+  <tr>
+    <td><%= faq.question %></td>
+    <td><%= faq.answer %></td>
+    <td><%= faq.subject.subject %>
+	    (Desc: <%= faq.subject.description %>)</td>
+    <td><%= link_to 'Visualizar', faq, :class => "btn btn-small dark-blue" %></td>
+    <td><%= link_to 'Editar', edit_faq_path(faq), :class => "btn btn-small dark-blue" %></td>
+    <td><%= button_to 'Remover', faq, :method => :delete, :class => "btn btn-small dark-blue" %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nova pergunta', new_faq_path, :class => "btn btn-small light-blue inverse" %>

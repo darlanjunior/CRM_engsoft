@@ -45,11 +45,21 @@ ActiveRecord::Schema.define(:version => 20130320183753) do
     t.datetime "updated_at",   :null => false
   end
 
-  create_table "questions", :force => true do |t|
-    t.string   "title"
+  create_table "faqs", :force => true do |t|
+    t.string   "question"
     t.string   "answer"
+    t.integer  "subject_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  add_index "faqs", ["subject_id"], :name => "index_faqs_on_subject_id"
+
+  create_table "subjects", :force => true do |t|
+    t.string   "subject"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "support_cases", :force => true do |t|

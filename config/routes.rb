@@ -1,12 +1,18 @@
 CRMEngsoft::Application.routes.draw do
+  resources :subjects
+
+
+  resources :faqs
+
+
+  resources :contacts
+
 
   resources :contact_groups
 
 
   resources :newsletters
 
-
-  resources :contacts
 
   resources :employees
 

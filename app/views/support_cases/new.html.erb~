@@ -1,9 +1,0 @@
-<<<<<<< HEAD
-<h1>Registro de chamados</h1>
-=======
-<h1>New support_case</h1>
->>>>>>> CRUD Employee SupoprtCase
-
-<%= render 'form' %>
-
-<%= link_to 'Back', support_cases_path %>

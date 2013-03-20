@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Dúvida:</b>
+  <%= @faq.question %>
+</p>
+
+<p>
+  <b>Resposta:</b>
+  <%= @faq.answer %>
+</p>
+
+<p>
+  <b>Assunto:</b>
+  <%= @faq.subject.subject %>
+  (<b>Descrição</b>: <%= @faq.subject.description %>)
+</p>
+
+
+<%= link_to 'Editar', edit_faq_path(@faq) %> |
+<%= link_to 'Voltar', faqs_path %>
