@@ -1,11 +1,12 @@
 CRMEngsoft::Application.routes.draw do
 <<<<<<< HEAD
+=======
+  resources :contact_groups
+
+>>>>>>> Adicao de grupos de contatos #1
+
   resources :newsletters
 
-
-  resources :contacts
-=======
->>>>>>> CRUD Employee SupoprtCase
 
   resources :contacts
 

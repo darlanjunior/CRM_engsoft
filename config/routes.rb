@@ -1,5 +1,8 @@
 CRMEngsoft::Application.routes.draw do
 
+  resources :contact_groups
+
+
   resources :newsletters
 
 
