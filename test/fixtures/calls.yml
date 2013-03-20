@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  reason: MyString
+  comments: MyText
+  status: MyString
+  call_date: 2013-03-20 15:41:18
+
+two:
+  reason: MyString
+  comments: MyText
+  status: MyString
+  call_date: 2013-03-20 15:41:18
