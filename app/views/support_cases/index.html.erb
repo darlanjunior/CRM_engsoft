@@ -17,7 +17,7 @@
   </tr>
 	  <% end %> 
   <tr>
-    <th>Creationdate</th>
+
     <th>Casecode</th>
     <th>Description</th>
     <th>CaseType</th>
@@ -29,7 +29,6 @@
 
 <% @support_cases.each do |support_case| %>
   <tr>
-    <td><%= support_case.creationDate %></td>
     <td><%= support_case.caseCode %></td>
     <td><%= support_case.description %></td>
     <td><%= support_case.caseType %></td>

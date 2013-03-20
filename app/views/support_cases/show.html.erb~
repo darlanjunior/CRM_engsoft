@@ -17,7 +17,7 @@
 
 <p>
   <b>Type:</b>
-  <%= @support_case.type %>
+  <%= @support_case.caseType %>
 </p>
 
 <p>

@@ -62,11 +62,6 @@
   <br/>
   
   <h3>Chamado</h3>
-
-  <div class="field">
-    <%= f.label :creationDate %><br />
-    <%= f.text_field :creationDate %>
-  </div>
   <div class="field">
     <%= f.label :caseCode %><br />
     <%= f.text_field :caseCode %>
@@ -76,17 +71,17 @@
     <%= f.text_field :description %>
   </div>
   <div class="field">
-    <%= f.label :type %><br />
+    <%= f.label :caseType %><br />
     <%= f.text_field :caseType %>
   </div>
   <div class="field">
     <%= f.label :status %><br />
     <%= f.text_field :status %>
   </div>
-  <% employeeArray = Employee.all.map{ |employee| employee.name}%>
+
   <div class="field">
     <%=f.label :employee %><br/>
-    <%=f.select(:employee,employeeArray)%><br/>
+    <%=collection_select(:employee,:employee_id,@all_employees,:id,:name)%><br/>
   </div>
   <div class="actions">
     <%= f.submit %>

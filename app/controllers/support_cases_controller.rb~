@@ -10,8 +10,6 @@ class SupportCasesController < ApplicationController
     end
   end
 
-<<<<<<< HEAD
-=======
   def filter
 	typeVar = params[:type]
 	@support_cases = SupportCase.where("caseType = :filterType", {:filterType => "#{typeVar}"})
@@ -20,7 +18,6 @@ class SupportCasesController < ApplicationController
   end
 
 
->>>>>>> Filter for contacts
   # GET /support_cases/1
   # GET /support_cases/1.json
   def show
@@ -36,15 +33,10 @@ class SupportCasesController < ApplicationController
   # GET /support_cases/new.json
   def new
     @support_case = SupportCase.new
-<<<<<<< HEAD
-<<<<<<< HEAD
-    
-    @contacts = Contact.all
-=======
->>>>>>> CRUD Employee SupoprtCase
-=======
->>>>>>> Filter for contacts
+    @all_employees = Employee.all
+    @all_employees.unshift(Employee.new)
 
+    @contacts = Contact.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @support_case }
@@ -54,20 +46,14 @@ class SupportCasesController < ApplicationController
   # GET /support_cases/1/edit
   def edit
     @support_case = SupportCase.find(params[:id])
-<<<<<<< HEAD
-<<<<<<< HEAD
-    
     @contacts = Contact.all
-=======
->>>>>>> CRUD Employee SupoprtCase
-=======
->>>>>>> Filter for contacts
   end
 
   # POST /support_cases
   # POST /support_cases.json
   def create
-    @support_case = SupportCase.new(params[:support_case])
+    @support_case = SupportCase.new(params[:support_case])    
+    @support_case.employee = Employee.find(params[:employee][:employee_id])
 
     respond_to do |format|
       if @support_case.save
@@ -84,7 +70,10 @@ class SupportCasesController < ApplicationController
   # PUT /support_cases/1.json
   def update
     @support_case = SupportCase.find(params[:id])
+	
+    @employee = @support_case.employee
 
+    
     respond_to do |format|
       if @support_case.update_attributes(params[:support_case])
         format.html { redirect_to @support_case, notice: 'Support case was successfully updated.' }

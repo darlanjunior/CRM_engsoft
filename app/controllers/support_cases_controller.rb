@@ -33,6 +33,9 @@ class SupportCasesController < ApplicationController
   # GET /support_cases/new.json
   def new
     @support_case = SupportCase.new
+    @all_employees = Employee.all
+    @all_employees.unshift(Employee.new)
+
     @contacts = Contact.all
     respond_to do |format|
       format.html # new.html.erb
@@ -50,8 +53,7 @@ class SupportCasesController < ApplicationController
   # POST /support_cases.json
   def create
     @support_case = SupportCase.new(params[:support_case])    
-    @all_employees = Employee.all
-
+    @support_case.employee = Employee.find(params[:employee][:employee_id])
 
     respond_to do |format|
       if @support_case.save
@@ -68,6 +70,7 @@ class SupportCasesController < ApplicationController
   # PUT /support_cases/1.json
   def update
     @support_case = SupportCase.find(params[:id])
+	
     @employee = @support_case.employee
 
     

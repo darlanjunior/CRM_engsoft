@@ -7,10 +7,11 @@ class CreateSupportCases < ActiveRecord::Migration
       t.string :status
       
       t.references :contact
+      t.references :employee
 
       t.timestamps
     end
-    
+    add_index(:support_cases, :employee_id)
     add_index(:support_cases, :contact_id)
   end
 end

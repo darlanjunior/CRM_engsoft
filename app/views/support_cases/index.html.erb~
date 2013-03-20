@@ -4,7 +4,7 @@
   <%= form_tag :controller => 'support_cases', :action => 'filter', :method => 'get' do %>
   <tr>
     <td>
-	Type:
+	<b>Type:</b>
     </td>
     <td>	  
 	  <%= text_field_tag :type, params[:type], :id => 'search_field' %>
