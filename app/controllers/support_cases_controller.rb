@@ -12,7 +12,7 @@ class SupportCasesController < ApplicationController
 
   def filter
 	typeVar = params[:type]
-	@support_cases = SupportCase.where("type = :filterType", {:filterType => "#{typeVar}"})
+	@support_cases = SupportCase.where("caseType = :filterType", {:filterType => "#{typeVar}"})
 	
 	render :index
   end
@@ -48,7 +48,9 @@ class SupportCasesController < ApplicationController
   # POST /support_cases
   # POST /support_cases.json
   def create
-    @support_case = SupportCase.new(params[:support_case])
+    @support_case = SupportCase.new(params[:support_case])    
+    @all_employees = Employee.all
+
 
     respond_to do |format|
       if @support_case.save
@@ -65,7 +67,9 @@ class SupportCasesController < ApplicationController
   # PUT /support_cases/1.json
   def update
     @support_case = SupportCase.find(params[:id])
+    @employee = @support_case.employee
 
+    
     respond_to do |format|
       if @support_case.update_attributes(params[:support_case])
         format.html { redirect_to @support_case, notice: 'Support case was successfully updated.' }

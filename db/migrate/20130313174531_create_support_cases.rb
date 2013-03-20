@@ -6,7 +6,7 @@ class CreateSupportCases < ActiveRecord::Migration
       t.string :description
       t.string :caseType
       t.string :status
-
+      t.string :name
       t.timestamps
     end
   end

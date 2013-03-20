@@ -12,7 +12,7 @@ class SupportCasesController < ApplicationController
 
   def filter
 	typeVar = params[:type]
-	@support_cases = SupportCase.where("type = :filterType", {:filterType => "#{typeVar}"})
+	@support_cases = SupportCase.where("caseType = :filterType", {:filterType => "#{typeVar}"})
 	
 	render :index
   end

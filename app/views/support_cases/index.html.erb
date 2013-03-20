@@ -1,23 +1,26 @@
 <h1>Listing support_cases</h1>
 
 <table>
-  <tr>
-    <th>Filtro por nome</th>
-  </tr>
+  <%= form_tag :controller => 'support_cases', :action => 'filter', :method => 'get' do %>
   <tr>
     <td>
-	  <%= form_tag :controller => 'support_cases', :action => 'filter', :method => 'get' do %>
+	<b>Type:</b>
+    </td>
+    <td>	  
 	  <%= text_field_tag :type, params[:type], :id => 'search_field' %>
+    </td>
+    <td>
 	  <%= submit_tag "Search", :name => nil %> 
 	  <%= link_to_function "Clear", "$('search_field').clear()" %>
-	  <% end %> 
+
     </td>
   </tr>
+	  <% end %> 
   <tr>
     <th>Creationdate</th>
     <th>Casecode</th>
     <th>Description</th>
-    <th>Type</th>
+    <th>CaseType</th>
     <th>Status</th>
     <th></th>
     <th></th>
@@ -29,7 +32,7 @@
     <td><%= support_case.creationDate %></td>
     <td><%= support_case.caseCode %></td>
     <td><%= support_case.description %></td>
-    <td><%= support_case.type %></td>
+    <td><%= support_case.caseType %></td>
     <td><%= support_case.status %></td>
     <td><%= link_to 'Show', support_case %></td>
     <td><%= link_to 'Edit', edit_support_case_path(support_case) %></td>
