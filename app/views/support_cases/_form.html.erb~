@@ -11,6 +11,7 @@
     </div>
   <% end %>
 <<<<<<< HEAD
+<<<<<<< HEAD
   
   <h3>Clientes</h3>
   
@@ -64,6 +65,8 @@
   <h3>Chamado</h3>
 =======
 >>>>>>> CRUD Employee SupoprtCase
+=======
+>>>>>>> relationship SupportCase-Employee
 
   <div class="field">
     <%= f.label :creationDate %><br />

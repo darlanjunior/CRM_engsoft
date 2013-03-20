@@ -1,30 +1,21 @@
 class CreateSupportCases < ActiveRecord::Migration
   def change
     create_table :support_cases do |t|
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      t.Date :creationDate
->>>>>>> CRUD Employee SupoprtCase
-=======
-      t.date :creationDate
->>>>>>> Filter for contacts
       t.string :caseCode
       t.string :description
-      t.string :type
+      t.string :caseType
       t.string :status
 <<<<<<< HEAD
+
       
       t.references :contact
 
+=======
+      t.string :name
+>>>>>>> relationship SupportCase-Employee
       t.timestamps
     end
     
     add_index(:support_cases, :contact_id)
-=======
-
-      t.timestamps
-    end
->>>>>>> CRUD Employee SupoprtCase
   end
 end

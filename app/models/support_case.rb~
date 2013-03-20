@@ -1,9 +1,11 @@
 class SupportCase < ActiveRecord::Base
 <<<<<<< HEAD
 
+
   attr_accessible :caseCode, :description, :status, :type
 belongs_to :contact
 =======
-  attr_accessible :caseCode, :creationDate, :description, :status, :caseType
->>>>>>> Filter for contacts
+  attr_accessible :caseCode,:name, :creationDate, :description, :status, :caseType
+  belongs_to :employee
+>>>>>>> relationship SupportCase-Employee
 end

@@ -5,7 +5,6 @@ class CreateSupportCases < ActiveRecord::Migration
       t.string :description
       t.string :caseType
       t.string :status
-
       
       t.references :contact
 
