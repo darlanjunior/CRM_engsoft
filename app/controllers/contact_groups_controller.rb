@@ -25,6 +25,7 @@ class ContactGroupsController < ApplicationController
   # GET /contact_groups/new.json
   def new
     @contact_group = ContactGroup.new
+    @contacts = Contact.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,13 +36,19 @@ class ContactGroupsController < ApplicationController
   # GET /contact_groups/1/edit
   def edit
     @contact_group = ContactGroup.find(params[:id])
+    
+    @contacts = Contact.all
   end
 
   # POST /contact_groups
   # POST /contact_groups.json
   def create
     @contact_group = ContactGroup.new(params[:contact_group])
-
+    
+    params[:contacts].each do |id|
+    	@contact_group.contacts << Contact.find(id[0])
+		end
+		
     respond_to do |format|
       if @contact_group.save
         format.html { redirect_to @contact_group, notice: 'Contact group was successfully created.' }

@@ -1,23 +1,26 @@
-<h1>Listing contact_groups</h1>
+<h1>Grupos de contatos</h1>
 
-<table>
+<table class="table table-striped">
+  <thead>
   <tr>
-    <th>Name</th>
+    <th>Nome do Grupo</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
+  </thead>
 
+  <tbody>
 <% @contact_groups.each do |contact_group| %>
   <tr>
     <td><%= contact_group.name %></td>
-    <td><%= link_to 'Show', contact_group %></td>
-    <td><%= link_to 'Edit', edit_contact_group_path(contact_group) %></td>
-    <td><%= link_to 'Destroy', contact_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', contact_group, :class => "btn btn-small dark-blue" %></td>
+    <td><%= link_to 'Edit', edit_contact_group_path(contact_group), :class => "btn btn-small dark-blue" %></td>
+    <td><%= button_to 'Destroy', contact_group, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small dark-blue"  %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Contact group', new_contact_group_path %>
+<%= link_to 'New Contact group', new_contact_group_path, :class => "btn btn-small light-blue inverse"  %>

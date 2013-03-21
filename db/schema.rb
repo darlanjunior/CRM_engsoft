@@ -11,13 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130320183753) do
+ActiveRecord::Schema.define(:version => 20130320204103) do
 
   create_table "contact_groups", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "contact_groups_contacts", :id => false, :force => true do |t|
+    t.integer "contact_id"
+    t.integer "contact_group_id"
+  end
+
+  add_index "contact_groups_contacts", ["contact_id", "contact_group_id"], :name => "c_g_c_index", :unique => true
 
   create_table "contacts", :force => true do |t|
     t.string   "clientId"

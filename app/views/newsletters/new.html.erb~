@@ -1,7 +1,0 @@
-<h1>New newsletter</h1>
-
-<%= render 'form' %>
-
-<hidden name="x" value="blablablablablabla"/>
-
-<%= link_to 'Back', newsletters_path %>
