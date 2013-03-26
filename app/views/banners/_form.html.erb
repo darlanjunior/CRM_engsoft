@@ -1,0 +1,34 @@
+<%= form_for(@banner, :html => { :multipart => true }) do |f| %>
+  <% if @banner.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@banner.errors.count, "error") %> prohibited this banner from being saved:</h2>
+
+      <ul>
+      <% @banner.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, 'Nome' %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :size_type, 'Tipo de banner' %><br />
+    <select name="banner[size_type]">
+      <% @banner_types.each_key do |type| %>
+        <option value="<%= type %>"><%= type %>(<%= @banner_types[type].first %>x<%= @banner_types[type].last %>)</option>
+      <% end %>
+    </select>
+  </div>
+  <div class="field">
+    <%= f.label :image, 'Imagem' %>
+    <%= f.file_field :image %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -40,3 +40,4 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem "better_errors", ">= 0.6.0", :group => :development
+gem 'paperclip'

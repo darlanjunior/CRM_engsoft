@@ -1,0 +1,26 @@
+<h1>Banners</h1>
+
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Tamanho</th>
+    <th>Tipo</th>
+    
+  </tr>
+
+<% @banners.each do |banner| %>
+  <tr>
+    <td><%= banner.name %></td>
+    <td>(<%= banner.width %>x<%= banner.height %>)</td>
+    <td><%= banner.size_type %></td>
+
+    <td><%= link_to 'Ver Banner', banner %></td>
+    <td><%= link_to 'Editar', edit_banner_path(banner) %></td>
+    <td><%= link_to 'Excluir', banner, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Criar Banner', new_banner_path %>

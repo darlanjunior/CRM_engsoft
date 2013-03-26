@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nome:</b>
+  <%= @banner.name %>
+</p>
+
+<p>
+  <b>Tamanho:</b>
+  <%= @banner.width %> x <%= @banner.height %>
+</p>
+
+<p>
+  <b>Tipo de Banner:</b>
+  <%= @banner.size_type %>
+</p>
+
+<p>
+  <b>Banner:</b>
+  <%= image_tag @banner.image.url %>
+</p>
+
+
+<%= link_to 'Editar', edit_banner_path(@banner) %> |
+<%= link_to 'Voltar', banners_path %>
