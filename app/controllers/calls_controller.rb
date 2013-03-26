@@ -25,6 +25,8 @@ class CallsController < ApplicationController
   # GET /calls/new.json
   def new
     @call = Call.new 
+    @contacts = Contact.all
+
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +37,7 @@ class CallsController < ApplicationController
   # GET /calls/1/edit
   def edit
     @call = Call.find(params[:id])
+    @contacts = Contact.all
   end
 
   # POST /calls

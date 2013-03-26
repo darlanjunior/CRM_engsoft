@@ -56,8 +56,11 @@ ActiveRecord::Schema.define(:version => 20130320184118) do
     t.string   "description"
     t.string   "type"
     t.string   "status"
+    t.integer  "contact_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "support_cases", ["contact_id"], :name => "index_support_cases_on_contact_id"
 
 end

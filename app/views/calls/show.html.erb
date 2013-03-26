@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Reason:</b>
+  <b>Motivo:</b>
   <%= @call.reason %>
 </p>
 
 <p>
-  <b>Comments:</b>
+  <b>Comentários:</b>
   <%= @call.comments %>
 </p>
 
@@ -16,10 +16,19 @@
 </p>
 
 <p>
-  <b>Call date:</b>
+  <b>Data:</b>
   <%= @call.call_date %>
 </p>
 
+<p>
+	<b>Nome do Contato:</b>
+	<%= @call.contact.name %>
+</p>
+
+<p>
+	<b>Id do Contato:</b>
+	<%= @call.contact_id %>
+</p>
 
 <%= link_to 'Edit', edit_call_path(@call) %> |
 <%= link_to 'Back', calls_path %>

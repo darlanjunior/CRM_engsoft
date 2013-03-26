@@ -12,11 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :reason %><br />
+    <%= f.label :motivo %><br />
     <%= f.text_field :reason %>
   </div>
   <div class="field">
-    <%= f.label :comments %><br />
+    <%= f.label :comentários %><br />
     <%= f.text_area :comments %>
   </div>
   <div class="field">
@@ -24,11 +24,12 @@
     <%= f.text_field :status %>
   </div>
   <div class="field">
-    <%= f.label :call_date %><br />
+    <%= f.label :data %><br />
     <%= f.datetime_select :call_date %>
   </div>
   <div class="field">
-    <%= collection_select(:contact, :contact_id, Contact.all, :id, :name, :prompt => true) %>
+    <%= f.label :contato %><br />
+    <%= f.collection_select(:contact_id, @contacts, :id, :name, :prompt => true) %>
   </div>
   <div class="actions">
     <%= f.submit %>
