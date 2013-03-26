@@ -13,5 +13,6 @@ class CreateSupportCases < ActiveRecord::Migration
     end
     add_index(:support_cases, :employee_id)
     add_index(:support_cases, :contact_id)
+
   end
 end

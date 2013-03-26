@@ -13,6 +13,18 @@
 
 ActiveRecord::Schema.define(:version => 20130320204103) do
 
+  create_table "calls", :force => true do |t|
+    t.string   "reason"
+    t.text     "comments"
+    t.string   "status"
+    t.datetime "call_date"
+    t.integer  "contact_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "calls", ["contact_id"], :name => "index_calls_on_contact_id"
+
   create_table "contact_groups", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -45,13 +57,6 @@ ActiveRecord::Schema.define(:version => 20130320204103) do
     t.datetime "updated_at",   :null => false
   end
 
-  create_table "newsletters", :force => true do |t|
-    t.string   "title"
-    t.text     "message_body"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
   create_table "faqs", :force => true do |t|
     t.string   "question"
     t.string   "answer"
@@ -61,6 +66,20 @@ ActiveRecord::Schema.define(:version => 20130320204103) do
   end
 
   add_index "faqs", ["subject_id"], :name => "index_faqs_on_subject_id"
+
+  create_table "newsletters", :force => true do |t|
+    t.string   "title"
+    t.text     "message_body"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "questions", :force => true do |t|
+    t.string   "title"
+    t.string   "answer"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "subjects", :force => true do |t|
     t.string   "subject"
@@ -72,15 +91,13 @@ ActiveRecord::Schema.define(:version => 20130320204103) do
   create_table "support_cases", :force => true do |t|
     t.string   "caseCode"
     t.string   "description"
-    t.string   "caseType"
+    t.string   "type"
     t.string   "status"
     t.integer  "contact_id"
-    t.integer  "employee_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
 
   add_index "support_cases", ["contact_id"], :name => "index_support_cases_on_contact_id"
-  add_index "support_cases", ["employee_id"], :name => "index_support_cases_on_employee_id"
 
 end
