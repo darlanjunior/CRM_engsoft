@@ -1,6 +1,12 @@
-<h1>Editar banner</h1>
+<h2><%= @page_title = "Alterar Banner" %></h2><hr />
+<%= form_for @banner, :validate => true, :html => {:class => "form-horizontal", :multipart => true} do |f| %>
+  
+  <%= render(:partial => 'form', :locals => {:f => f}) %>    
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit("Atualizar", :class => "btn btn-small dark-blue") %>
+    </div>
+  </div>
+<% end %>
 
-<%= render 'form' %>
-
-<%= link_to 'Ver Banner', @banner %> |
-<%= link_to 'Voltar', banners_path %>
+<%= link_to 'Ir para a lista de Banners', banners_path, :class => "btn btn-small light-blue inverse" %>

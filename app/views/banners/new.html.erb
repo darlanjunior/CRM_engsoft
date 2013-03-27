@@ -1,5 +1,13 @@
-<h1>Criar Banner</h1>
+<h2><%= @page_title = "Novo Banner" %></h2><hr />
 
-<%= render 'form' %>
+<%= form_for @banner, :validate => true, :html => {:class => "form-horizontal", :multipart => true} do |f| %>
+  
+  <%= render(:partial => 'form', :locals => {:f => f}) %>    
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit("Criar", :class => "btn btn-small dark-blue") %>
+    </div>
+  </div>
+<% end %>
 
-<%= link_to 'Voltar', banners_path %>
+<%= link_to 'Ir para a lista de Banners', banners_path, :class => "btn btn-small light-blue inverse" %>

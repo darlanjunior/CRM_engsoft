@@ -1,25 +1,21 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @page_title = "Visualizar Banner" %></h2><hr />
 
-<p>
-  <b>Nome:</b>
-  <%= @banner.name %>
-</p>
+<% if notice %>
+  <div class="alert green fade in">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <%= notice %>
+  </div>
+<% end %>
 
-<p>
-  <b>Tamanho:</b>
-  <%= @banner.width %> x <%= @banner.height %>
-</p>
+<%= form_for @banner, :html => {:class => "form-horizontal", :multipart => true} do |f| -%>
 
-<p>
-  <b>Tipo de Banner:</b>
-  <%= @banner.size_type %>
-</p>
+  <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %>    
+  <div class="control-group">
+    <div class="controls">
+      <%= link_to 'Editar Banner', {:action => 'edit', :id => @banner.id}, :class => "btn btn-small dark-blue" %>
+  </div>
+<% end %>
 
-<p>
-  <b>Banner:</b>
-  <%= image_tag @banner.image.url %>
-</p>
-
-
-<%= link_to 'Editar', edit_banner_path(@banner) %> |
-<%= link_to 'Voltar', banners_path %>
+<br />
+<%= link_to 'Ir para a lista de Ligações', banners_path, :class => "btn btn-small light-blue inverse" %>&nbsp; &nbsp;&nbsp;
+<%= link_to 'Novo Banner', new_banner_path, :class => "btn btn-small light-blue inverse" %>
