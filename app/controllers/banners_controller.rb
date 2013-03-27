@@ -75,6 +75,10 @@ class BannersController < ApplicationController
     end
   end
 
+  def delete
+    @banner = Banner.find(params[:id])
+  end
+
   # DELETE /banners/1
   # DELETE /banners/1.json
   def destroy
