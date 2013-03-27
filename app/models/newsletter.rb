@@ -5,4 +5,12 @@ class Newsletter < ActiveRecord::Base
   
   validates :title, :presence => {:message => "Favor digitar um titulo"}, :length => { :in => 5..255 , :message => "Tem que ser entre 5 e 255 caracteres"}
   validates :message_body, :presence => {:message => "Favor digitar uma mensagem"}
+  
+  validate :validate_contact_groups_not_empty
+  
+  def validate_contact_groups_not_empty
+  	if(contact_groups.empty?)
+  		errors.add(:base, "Pelo menos um grupo deve ser selecionado")
+  	end
+  end
 end

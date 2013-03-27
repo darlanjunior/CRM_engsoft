@@ -14,8 +14,6 @@ class NewslettersController < ApplicationController
   # GET /newsletters/1.json
   def show
     @newsletter = Newsletter.find(params[:id])
-    
-    @contact_groups = ContactGroup.all
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,8 +32,6 @@ class NewslettersController < ApplicationController
     	@newsletter.message_body = newsletter_aux.message_body
     	@newsletter.contact_groups = newsletter_aux.contact_groups
     end
-    
-    @contact_groups = ContactGroup.all
 
     respond_to do |format|
       format.html # new.html.erb

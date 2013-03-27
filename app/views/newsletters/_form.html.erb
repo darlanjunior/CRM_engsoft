@@ -1,5 +1,5 @@
 <% readonly ||= false %>
-<%= error_messages_for(@faq) %>
+<%= error_messages_for(@newsletter) %>
 
 <div class="control-group">
     <%= f.label :title, "Titulo", :class => "control-label strong" %>
@@ -28,13 +28,13 @@
 			</tr>
 		</thead>
 		
-		<% @contact_groups.each do |contact_group| %>
+		<% for contact_group in ContactGroup.find(:all) %>
 		<tr>
 			<td>
 				<% if(@newsletter.contact_groups.include? contact_group) %>
-					<%= check_box_tag("contact_groups[" + contact_group.id.to_s + "]", 1, true, :class => "checkbox") %>
+					<%= check_box_tag("contact_groups[" + contact_group.id.to_s + "]", 1, true, {:disabled => readonly, :class => "checkbox"}) %>
 				<% else %>
-					<%= check_box_tag("contact_groups[" + contact_group.id.to_s + "]", 1, false, :class => "checkbox") %>
+					<%= check_box_tag("contact_groups[" + contact_group.id.to_s + "]", 1, false, {:disabled => readonly, :class => "checkbox"}) %>
 				<% end %>
 			</td>
 			<td><%= contact_group.name %></td>

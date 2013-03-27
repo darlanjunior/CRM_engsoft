@@ -23,13 +23,13 @@
 			</tr>
 		</thead>
 		
-		<% @contacts.each do |contact| %>
+		<% for contact in Contact.find(:all) %>
 		<tr>
 			<td>
 				<% if(@contact_group.contacts.include? contact) %>
-					<%= check_box_tag("contacts[" + contact.id.to_s + "]", 1, true) %>
+					<%= check_box_tag("contacts[" + contact.id.to_s + "]", 1, true, {:disabled => readonly, :class => "checkbox"}) %>
 				<% else %>
-					<%= check_box_tag("contacts[" + contact.id.to_s + "]", 1, false) %>
+					<%= check_box_tag("contacts[" + contact.id.to_s + "]", 1, false, {:disabled => readonly, :class => "checkbox"}) %>
 				<% end %>
 			</td>
 			<td><%= contact.name %></td>
