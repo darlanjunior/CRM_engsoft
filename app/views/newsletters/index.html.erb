@@ -6,20 +6,20 @@
 	<table class="table table-striped data-table">
 		<thead>
 			<tr>
-			    <th>T&iacute;tulo</th>
-			    <th>Data da newsletter</th>
-			    <th>Ações</th>
+				<th>Ações</th>
+			  <th>T&iacute;tulo</th>
+			  <th>Data da newsletter</th>
 			</tr>
 		</thead>
 		<tbody>
 			<% @newsletters.each do |newsletter| %>
 			  <tr>
+			  	<td class="td-actions">
+						<%= link_to '', {:action => 'show', :id => newsletter.id}, :class => "icon-eye-open", :title => "Visualizar" %>&nbsp;
+						<%= link_to '', {:action => 'new', :id => newsletter.id}, :class => "icon-edit", :title => "Editar" %>
+					</td>
 			    <td><%= newsletter.title.humanize %></td>
 			    <td><%= newsletter.created_at %></td>
-			    <td class="td-actions">
-					<%= link_to 'Visualizar', {:action => 'show', :id => newsletter.id}, :class => "btn btn-small dark-blue" %>&nbsp;
-					<%= link_to 'Editar', {:action => 'new', :id => newsletter.id}, :class => "btn btn-small dark-blue" %>&nbsp;
-				</td>
 			  </tr>
 			<% end %>
 		</tbody>
