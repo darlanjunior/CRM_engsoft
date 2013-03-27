@@ -30,6 +30,10 @@ CRMEngsoft::Application.routes.draw do
 
   resources :questions
 
+  resources :calls
+
+  resources :banners
+
   match '/dummy/clients' => 'dummy_service#client'
 
 
