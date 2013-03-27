@@ -14,6 +14,8 @@ class NewslettersController < ApplicationController
   # GET /newsletters/1.json
   def show
     @newsletter = Newsletter.find(params[:id])
+    
+    @contact_groups = ContactGroup.all
 
     respond_to do |format|
       format.html # show.html.erb
@@ -41,18 +43,6 @@ class NewslettersController < ApplicationController
     end
   end
 
-  # GET /newsletters/1/edit
-  def edit
-  	@newsletter = Newsletter.find(params[:id])
-    
-    @contact_groups = ContactGroup.all
-    
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @newsletter }
-    end
-  end
-
   # POST /newsletters
   # POST /newsletters.json
   def create
@@ -66,46 +56,27 @@ class NewslettersController < ApplicationController
 
     respond_to do |format|
       if @newsletter.save
+      	
+      	contacts = Array.new
+      	
+      	@newsletter.contact_groups.each do |contact_group|
+      		contact_group.contacts.each do |contact|
+		    		if(not (contacts.include?(contact)))
+		    			contacts.push(contact)
+		    		end
+		    	end
+      	end
+      	
+      	contacts.each do |contact|
+      		NewsletterMailer.send_newsletter(@newsletter, contact).deliver
+      	end
+      	
         format.html { redirect_to @newsletter, notice: 'Newsletter was successfully created.' }
         format.json { render json: @newsletter, status: :created, location: @newsletter }
       else
         format.html { render action: "new" }
         format.json { render json: @newsletter.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # PUT /newsletters/1
-  # PUT /newsletters/1.json
-  def update
-    @newsletter = Newsletter.find(params[:id])
-    
-    @newsletter.contact_groups = Array.new
-    
-    params[:contact_groups].each do |id|
-    	@newsletter.contact_groups << ContactGroup.find(id[0])
-		end
-
-    respond_to do |format|
-      if @newsletter.update_attributes(params[:newsletter])
-        format.html { redirect_to @newsletter, notice: 'Newsletter was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @newsletter.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /newsletters/1
-  # DELETE /newsletters/1.json
-  def destroy
-    @newsletter = Newsletter.find(params[:id])
-    @newsletter.destroy
-
-    respond_to do |format|
-      format.html { redirect_to newsletters_url }
-      format.json { head :no_content }
     end
   end
 end

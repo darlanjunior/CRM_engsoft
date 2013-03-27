@@ -1,31 +1,31 @@
-<h1>Listing newsletters</h1>
+<div class="box bordered" style="position:relative;">
+	<div class="box-header" >
+		<i class="icon-th-list"></i><%= @page_title = "Newsletters" %>
+	</div>
 
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th>T&iacute;tulo</th>
-    <th>Mensage a ser enviada</th>
-    <th>Data da mensagem</th>
-    <th></th>
-    <th></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @newsletters.each do |newsletter| %>
-  <tr>
-    <td><%= newsletter.title.humanize %></td>
-    <td><%= newsletter.message_body %></td>
-    <td><%= newsletter.created_at %></td>
-    <td><%= link_to 'Visualizar', {:action => 'show', :id => newsletter.id}, :class => "btn btn-small dark-blue" %></td>
-    <td><%= link_to 'Editar', {:action => 'new', :id => newsletter.id}, :class => "btn btn-small dark-blue" %></td>
-  </tr>
-	<% end %>
-  </tbody>
-</table>
+	<table class="table table-striped data-table">
+		<thead>
+			<tr>
+			    <th>T&iacute;tulo</th>
+			    <th>Data da newsletter</th>
+			    <th>Ações</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @newsletters.each do |newsletter| %>
+			  <tr>
+			    <td><%= newsletter.title.humanize %></td>
+			    <td><%= newsletter.created_at %></td>
+			    <td class="td-actions">
+					<%= link_to 'Visualizar', {:action => 'show', :id => newsletter.id}, :class => "btn btn-small dark-blue" %>&nbsp;
+					<%= link_to 'Editar', {:action => 'new', :id => newsletter.id}, :class => "btn btn-small dark-blue" %>&nbsp;
+				</td>
+			  </tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
 
 <br />
 
-
-
-<%= link_to 'Criar Nova Newsletter', {:action => 'new'}, :class => "btn btn-small light-blue inverse" %>
+<%= link_to 'Nova Newsletter', {:action => 'new'}, :class => "btn btn-small light-blue inverse" %>

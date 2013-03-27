@@ -1,15 +1,19 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @page_title = "Visualizar Newsletter" %></h2><hr />
 
-<p>
-  <b>Title:</b>
-  <%= @newsletter.title %>
-</p>
+<% if notice %>
+	<div class="alert green fade in">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<%= notice %>
+	</div>
+<% end %>
 
-<p>
-  <b>Message body:</b>
-  <%= @newsletter.message_body %>
-</p>
+<%= form_for @newsletter, :html => {:class => "form-horizontal"} do |f| -%>
 
+  <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %>    
+  <div class="control-group">
+    <div class="controls">
+      <%= link_to 'Editar Newsletter', {:action => 'new', :id => @newsletter.id}, :class => "btn btn-small dark-blue" %>
+  </div>
+<% end %>
 
-<%= link_to 'Edit', edit_newsletter_path(@newsletter) %> |
-<%= link_to 'Back', newsletters_path %>
+<%= link_to '<< Voltar', newsletters_path, :class => "btn btn-small light-blue inverse" %>

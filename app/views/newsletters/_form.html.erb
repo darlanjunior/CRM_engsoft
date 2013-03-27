@@ -1,40 +1,43 @@
-<%= form_for(@newsletter) do |f| %>
-  <% if @newsletter.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@newsletter.errors.count, "error") %> prohibited this newsletter from being saved:</h2>
+<% readonly ||= false %>
+<%= error_messages_for(@faq) %>
 
-      <ul>
-      <% @newsletter.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<div class="control-group">
+    <%= f.label :title, "Titulo", :class => "control-label strong" %>
+	<div class="controls">
+      <%= f.text_field :title, :placeholder => "Titulo", :readonly => readonly %>
     </div>
-  <% end %>
+</div>
+<div class="control-group">
+	<%= f.label :message_body, "Mensagem", :class => "control-label strong" %>
+	<div class="controls">
+	  <%= f.text_area :message_body, :placeholder => "Mensagem", :readonly => readonly %>
+    </div>
+</div>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :message_body %><br />
-    <%= f.text_area :message_body %>
-  </div>
-  
- <h3>Grupos</h3>
-  <div class="vpadded">
- <% @contact_groups.each do |contact_group|
- 			if(@newsletter.contact_groups.include? contact_group)%>
-				<%= check_box_tag("contact_groups[" + contact_group.id.to_s + "]", 1, true, :class => "checkbox") %>
-			<% else %>
-				<%= check_box_tag("contact_groups[" + contact_group.id.to_s + "]", 1, false, :class => "checkbox") %>
-			<% end %>
-		
-		<%= contact_group.name %>
-		<br/>
-<% end %>
+<div class="box bordered" style="position:relative;">
+	<div class="box-header" >
+		<i class="icon-th-list"></i> Grupos de Contatos
 	</div>
-  
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+	
+	<table class="table table-striped data-table">
+		<thead>
+			<tr>
+				<th>Presente</th>
+				<th>Nome do Grupo</th>
+			</tr>
+		</thead>
+		
+		<% @contact_groups.each do |contact_group| %>
+		<tr>
+			<td>
+				<% if(@newsletter.contact_groups.include? contact_group) %>
+					<%= check_box_tag("contact_groups[" + contact_group.id.to_s + "]", 1, true, :class => "checkbox") %>
+				<% else %>
+					<%= check_box_tag("contact_groups[" + contact_group.id.to_s + "]", 1, false, :class => "checkbox") %>
+				<% end %>
+			</td>
+			<td><%= contact_group.name %></td>
+		</tr>
+		<% end %>
+	</table>
+</div>

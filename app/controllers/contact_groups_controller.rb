@@ -14,6 +14,8 @@ class ContactGroupsController < ApplicationController
   # GET /contact_groups/1.json
   def show
     @contact_group = ContactGroup.find(params[:id])
+    
+    @contacts = Contact.all
 
     respond_to do |format|
       format.html # show.html.erb
@@ -51,7 +53,7 @@ class ContactGroupsController < ApplicationController
 		
     respond_to do |format|
       if @contact_group.save
-        format.html { redirect_to @contact_group, notice: 'Contact group was successfully created.' }
+        format.html { redirect_to @contact_group, notice: 'Grupo de contatos criado com sucesso.' }
         format.json { render json: @contact_group, status: :created, location: @contact_group }
       else
         format.html { render action: "new" }
@@ -72,7 +74,7 @@ class ContactGroupsController < ApplicationController
 
     respond_to do |format|
       if @contact_group.update_attributes(params[:contact_group])
-        format.html { redirect_to @contact_group, notice: 'Contact group was successfully updated.' }
+        format.html { redirect_to @contact_group, notice: 'Grupo de contatos atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -91,5 +93,11 @@ class ContactGroupsController < ApplicationController
       format.html { redirect_to contact_groups_url }
       format.json { head :no_content }
     end
+  end
+  
+  def delete
+    @contact_group = ContactGroup.find(params[:id])
+    
+    @contacts = Contact.all
   end
 end

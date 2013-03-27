@@ -1,40 +1,42 @@
-<%= form_for(@contact_group) do |f| %>
-  <% if @contact_group.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@contact_group.errors.count, "error") %> prohibited this contact_group from being saved:</h2>
+<% readonly ||= false %>
+<%= error_messages_for(@contact_group) %>
 
-      <ul>
-      <% @contact_group.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<div class="control-group">
+    <%= f.label :name, "Nome", :class => "control-label strong" %>
+	<div class="controls">
+      <%= f.text_field :name, :placeholder => "Nome", :readonly => readonly %>
     </div>
-  <% end %>
+</div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-
-	<br/> 
-
-	<h3>Contatos</h3>
-  <div class="vpadded">
- <% @contacts.each do |contact|
- 			if(@contact_group.contacts.include? contact)%>
-				<%= check_box_tag("contacts[" + contact.id.to_s + "]", 1, true, :class => "checkbox") %>
-			<% else %>
-				<%= check_box_tag("contacts[" + contact.id.to_s + "]", 1, false, :class => "checkbox") %>
-			<% end %>
-		
-		<%= contact.name %>
-		<br/>
-<% end %>
+<div class="box bordered" style="position:relative;">
+	<div class="box-header" >
+		<i class="icon-th-list"></i> Contatos&nbsp;&nbsp;&nbsp;&nbsp;
+		<%= link_to 'Novo Contato', {:controller => 'contacts', :action => 'new'}, :class => "btn btn-small dark-blue" %>
 	</div>
 	
-	<div class="actions">
-    <%= f.submit 'Salvar', :class => 'btn btn-small dark-blue' %>
-  </div>
-
+	<table class="table table-striped data-table">
+		<thead>
+			<tr>
+				<th>Presente</th>
+				<th>Nome</th>
+				<th>Email</th>
+			</tr>
+		</thead>
+		
+		<% @contacts.each do |contact| %>
+		<tr>
+			<td>
+				<% if(@contact_group.contacts.include? contact) %>
+					<%= check_box_tag("contacts[" + contact.id.to_s + "]", 1, true) %>
+				<% else %>
+					<%= check_box_tag("contacts[" + contact.id.to_s + "]", 1, false) %>
+				<% end %>
+			</td>
+			<td><%= contact.name %></td>
+			<td><%= contact.email %></td>
+		</tr>
+		<% end %>
+	</table>
 </div>
-<% end %>
+
+

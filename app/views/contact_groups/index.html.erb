@@ -1,26 +1,30 @@
-<h1>Grupos de contatos</h1>
+<div class="box bordered" style="position:relative;">
+	<div class="box-header" >
+		<i class="icon-th-list"></i><%= @page_title = "Grupos de contatos" %>
+	</div>
 
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th>Nome do Grupo</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  </thead>
+	<table class="table table-striped data-table">
+		<thead>
+		<tr>
+		  <th>Nome do Grupo</th>
+		  <th>Ações</th>
+		</tr>
+		</thead>
 
-  <tbody>
-<% @contact_groups.each do |contact_group| %>
-  <tr>
-    <td><%= contact_group.name %></td>
-    <td><%= link_to 'Show', contact_group, :class => "btn btn-small dark-blue" %></td>
-    <td><%= link_to 'Edit', edit_contact_group_path(contact_group), :class => "btn btn-small dark-blue" %></td>
-    <td><%= button_to 'Destroy', contact_group, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small dark-blue"  %></td>
-  </tr>
-<% end %>
-</table>
+		<tbody>
+	<% @contact_groups.each do |contact_group| %>
+		<tr>
+		  <td><%= contact_group.name %></td>
+		  <td class="td-actions">
+		  	<%= link_to 'Vizualizar', {:action => 'show', :id => contact_group.id}, :class => "btn btn-small dark-blue" %>
+		  	<%= link_to 'Editar', {:action => 'edit', :id => contact_group.id}, :class => "btn btn-small dark-blue" %>
+		  	<%= link_to 'Remover', {:action => 'delete', :id => contact_group.id}, :class => "btn btn-small dark-blue"  %>
+		  </td>
+		</tr>
+	<% end %>
+	</table>
+</div>
 
 <br />
 
-<%= link_to 'New Contact group', new_contact_group_path, :class => "btn btn-small light-blue inverse"  %>
+<%= link_to 'Novo grupo de contatos', {:action => 'new'}, :class => "btn btn-small light-blue inverse"  %>
