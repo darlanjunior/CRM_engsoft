@@ -49,7 +49,7 @@
 
       <ul>
         <li>
-          <%= link_to "Banner", :controller => "home", :action => "blank" %>
+          <%= link_to "Banner", :controller => "banners", :action => "index" %>
         </li>
         <li>
           <%= link_to "Gestão de Campanha", :controller => "home", :action => "blank" %>
@@ -70,7 +70,7 @@
 
       <ul>
         <li>
-          <%= link_to "Gestão de Chamados", :controller => "home", :action => "blank" %>
+          <%= link_to "Gestão de Chamados", :controller => "support_cases", :action => "index" %>
         </li>
         <li>
           <%= link_to "Relatório de Chamados", :controller => "home", :action => "blank" %>
@@ -93,7 +93,7 @@
           <%= link_to "Relatório de Atividade de Clientes", :controller => "home", :action => "blank" %>
         </li>
         <li>
-           <%= link_to "Gestão de Contatos pendentes", :controller => "home", :action => "blank" %>
+           <%= link_to "Agenda de Contatos pendentes", :controller => "calls", :action => "index" %>
         </li>
         <li>
            <%= link_to "Pesquisar Cliente", :controller => "home", :action => "blank" %>
@@ -114,7 +114,7 @@
         </li>
         <li>
 
-           <%= link_to "FAQ", :controller => "questions", :action => "index" %>
+           <%= link_to "FAQ", :controller => "faqs", :action => "index" %>
         </li>
         <li>
            <%= link_to "Meus Chamados", :controller => "home", :action => "blank" %>
@@ -131,7 +131,7 @@
 
       <ul>
         <li>
-           <%= link_to "Contatos Pendentes", :controller => "home", :action => "blank" %>
+           <%= link_to "Contatos Pendentes", :controller => "calls", :action => "index" %>
         </li>
       </ul>
     </li> 
