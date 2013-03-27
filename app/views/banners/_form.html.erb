@@ -1,34 +1,29 @@
-<%= form_for(@banner, :html => { :multipart => true }) do |f| %>
-  <% if @banner.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@banner.errors.count, "error") %> prohibited this banner from being saved:</h2>
-
-      <ul>
-      <% @banner.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<% readonly ||= false %>
+<%= error_messages_for(@call) %>
+<div class="control-group">
+    <%= f.label :name, "Nome", :class => "control-label strong" %>
+  <div class="controls">
+      <%= f.text_field :name, :placeholder => "Nome", :readonly => readonly %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name, 'Nome' %><br />
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :size_type, 'Tipo de banner' %><br />
+</div>
+<div class="control-group">
+  <%= f.label :size, "Tamanho", :class => "control-label strong" %>
+  <div class="controls">
     <select name="banner[size_type]">
-      <% @banner_types.each_key do |type| %>
-        <option value="<%= type %>"><%= type %>(<%= @banner_types[type].first %>x<%= @banner_types[type].last %>)</option>
+      <% @banner.banner_types.each_key do |type| %>
+        <option value="<%= type %>"><%= type %>(<%= @banner.banner_types[type].first %>x<%= @banner.banner_types[type].last %>)</option>
       <% end %>
     </select>
+    </div>
+</div>
+<div class="control-group">
+  <%= f.label :image, "Imagem", :class => "control-label strong" %>
+  <div class="controls">
+    <% if !readonly %>
+      <%= f.file_field :image, :readonly => readonly%>
+    <% else %>
+      <%= image_tag @banner.image.url %>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :image, 'Imagem' %>
-    <%= f.file_field :image %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+
+</div>

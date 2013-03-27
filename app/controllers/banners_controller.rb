@@ -25,7 +25,6 @@ class BannersController < ApplicationController
   # GET /banners/new.json
   def new
     @banner = Banner.new
-    @banner_types =  @banner.banner_types
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,7 +35,6 @@ class BannersController < ApplicationController
   # GET /banners/1/edit
   def edit
     @banner = Banner.find(params[:id])
-    @banner_types =  @banner.banner_types
   end
 
   # POST /banners

@@ -1,26 +1,35 @@
-<h1>Banners</h1>
 
-<table>
-  <tr>
-    <th>Nome</th>
-    <th>Tamanho</th>
-    <th>Tipo</th>
-    
-  </tr>
 
-<% @banners.each do |banner| %>
-  <tr>
-    <td><%= banner.name %></td>
-    <td>(<%= banner.width %>x<%= banner.height %>)</td>
-    <td><%= banner.size_type %></td>
+<div class="box bordered" style="position:relative;">
+  <div class="box-header" >
+    <%= @page_title = "Banners" %>
+  </div>
 
-    <td><%= link_to 'Ver Banner', banner %></td>
-    <td><%= link_to 'Editar', edit_banner_path(banner) %></td>
-    <td><%= link_to 'Excluir', banner, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
-  </tr>
-<% end %>
-</table>
+  <table class="table table-striped data-table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+          <th>Tamanho</th>
+          <th>Tipo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @banners.each do |banner| %>
+        <tr>
+            <td class="td-actions">
+            <%= link_to '', {:action => 'show', :id => banner.id}, :class => "icon-eye-open", :title => "Visualizar" %>&nbsp;
+            <%= link_to '', {:action => 'edit', :id => banner.id}, :class => "icon-edit", :title => "Editar" %>&nbsp;
+            <%= link_to '', {:action => 'delete', :id => banner.id}, :class => "icon-remove", :title => "Deletar" %>
+          </td>
+          <td><%= banner.name %></td>
+          <td>(<%= banner.width %>x<%= banner.height %>)</td>
+          <td><%= banner.size_type %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br />
 
-<%= link_to 'Criar Banner', new_banner_path %>
+<%= link_to 'Agendar ligação', new_banner_path, :class => "btn btn-small light-blue inverse" %>&nbsp; &nbsp;&nbsp;
