@@ -19,6 +19,11 @@
 <div class="control-group">
   <%= f.label :image, "Imagem", :class => "control-label strong" %>
   <div class="controls">
-    <%= f.file_field :image, :readonly => readonly%>
-    </div>
+    <% if !readonly %>
+      <%= f.file_field :image, :readonly => readonly%>
+    <% else %>
+      <%= image_tag @banner.image.url %>
+    <% end %>
+  </div>
+
 </div>
