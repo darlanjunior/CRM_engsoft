@@ -21,6 +21,8 @@ CRMEngsoft::Application.routes.draw do
 
   resources :questions
 
+  match '/dummy/clients' => 'dummy_service#client'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
