@@ -1,0 +1,32 @@
+<div class="box bordered" style="position:relative;">
+	<div class="box-header" >
+		<i class="icon-th-list"></i><%= @page_title = "Clientes" %>
+	</div>
+
+	<table class="table table-striped data-table">
+		<thead>
+			<tr>
+				<th>Ações</th>
+			    <th>Nome</th>
+			    <th>E-mail</th>
+				<th>Telefone</th>
+				<th>Tipo de cliente</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @clients.each do |client| %>
+			  <tr>
+  			    <td class="td-actions">
+  			        <%= link_to '', {:action => 'show', :id => client.id}, :class => "icon-eye-open", :title => "Visualizar" %>
+  				</td>
+			    <td><%= client.name %></td>
+			    <td><%= client.email %></td>
+				<td><%= client.phone %></td>
+				<td><%= client.clientType %></td
+			  </tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+
+<br />

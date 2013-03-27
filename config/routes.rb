@@ -1,4 +1,6 @@
 CRMEngsoft::Application.routes.draw do
+  get "clients/index"
+
   resources :support_case_events
 
 

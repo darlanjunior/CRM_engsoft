@@ -24,7 +24,7 @@
 			    <td><%= contact.name %></td>
 			    <td><%= contact.email %></td>
 				<td><%= contact.phone %></td>
-				<td><%= contact.clientType %></td
+				<td><%= @client_types_inv[contact.clientType] %></td
 			  </tr>
 			<% end %>
 		</tbody>

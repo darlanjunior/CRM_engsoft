@@ -1,5 +1,7 @@
 # encoding: UTF-8
 class ContactsController < ApplicationController
+  before_filter :define_client_types
+
   # GET /contacts
   # GET /contacts.json
   def index
@@ -87,5 +89,18 @@ class ContactsController < ApplicationController
       format.html { redirect_to contacts_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def define_client_types
+    @client_types = {
+      'Responsável da Instituição' => 'resp_instituicao', 
+      'Responsável da Empresa' => 'resp_empresa'
+    }
+    @client_types_inv = {
+      'resp_instituicao' => 'Responsável da Instituição', 
+      'resp_empresa' => 'Responsável da Empresa'
+    }
   end
 end

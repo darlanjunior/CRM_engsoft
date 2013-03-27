@@ -4,6 +4,7 @@ gem 'rails', '3.2.11'
 gem 'mysql2'
 gem 'client_side_validations'
 gem 'lograge'
+gem 'rest-client'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
