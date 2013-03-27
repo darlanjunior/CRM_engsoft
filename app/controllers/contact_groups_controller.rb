@@ -47,8 +47,10 @@ class ContactGroupsController < ApplicationController
   def create
     @contact_group = ContactGroup.new(params[:contact_group])
     
-    params[:contacts].each do |id|
-    	@contact_group.contacts << Contact.find(id[0])
+    if(params[:contacts] != nil)
+		  params[:contacts].each do |id|
+		  	@contact_group.contacts << Contact.find(id[0])
+			end		
 		end
 		
     respond_to do |format|
@@ -68,8 +70,10 @@ class ContactGroupsController < ApplicationController
     @contact_group = ContactGroup.find(params[:id])
     
     @contact_group.contacts = Array.new
-    params[:contacts].each do |id|
-    	@contact_group.contacts << Contact.find(id[0])
+    if(params[:contacts] != nil)
+		  params[:contacts].each do |id|
+		  	@contact_group.contacts << Contact.find(id[0])
+			end		
 		end
 
     respond_to do |format|

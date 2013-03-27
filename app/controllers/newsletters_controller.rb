@@ -50,8 +50,10 @@ class NewslettersController < ApplicationController
     
     @newsletter.contact_groups = Array.new
     
-    params[:contact_groups].each do |id|
-    	@newsletter.contact_groups << ContactGroup.find(id[0])
+    if(params[:contact_groups] != nil)
+		  params[:contact_groups].each do |id|
+		  	@newsletter.contact_groups << ContactGroup.find(id[0])
+			end
 		end
 
     respond_to do |format|

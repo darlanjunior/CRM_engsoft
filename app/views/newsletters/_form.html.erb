@@ -16,7 +16,8 @@
 
 <div class="box bordered" style="position:relative;">
 	<div class="box-header" >
-		<i class="icon-th-list"></i> Grupos de Contatos
+		<i class="icon-th-list"></i> Grupos de Contatos&nbsp;&nbsp;&nbsp;&nbsp;
+		<%= link_to '', {:controller => 'contact_groups', :action => 'new'}, {:class => "icon-plus-sign", :target => '_new', :style => "font-size:20px"} %>
 	</div>
 	
 	<table class="table table-striped data-table">
