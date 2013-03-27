@@ -1,29 +1,29 @@
 <div class="box bordered" style="position:relative;">
 	<div class="box-header" >
-		<i class="icon-th-list"></i><%= @page_title = "Perguntas e Respostas" %>
+		<i class="icon-th-list"></i><%= link_to "Tópicos", subjects_path %> >> <%= @page_title = "Perguntas e Respostas" %>
 	</div>
 
 	<table class="table table-striped data-table">
 		<thead>
 			<tr>
+				<th>Ações</th>
 			    <th>Pergunta</th>
 			    <th>Resposta</th>
-			    <th>Assunto</th>
-			    <th>Ações</th>
+			    <th>Tópico</th>
 			</tr>
 		</thead>
 		<tbody>
 			<% @faqs.each do |faq| %>
 			  <tr>
+  			    <td class="td-actions">
+  			        <%= link_to '', {:action => 'show', :id => faq.id}, :class => "icon-eye-open", :title => "Visualizar" %>&nbsp;
+  					<%= link_to '', {:action => 'edit', :id => faq.id}, :class => "icon-edit", :title => "Editar" %>&nbsp;
+  					<%= link_to '', {:action => 'delete', :id => faq.id}, :class => "icon-remove", :title => "Deletar" %>
+  				</td>
 			    <td><%= faq.question %></td>
 			    <td><%= faq.answer %></td>
 			    <td><%= faq.subject.subject %>
 				    (Desc: <%= faq.subject.description %>)</td>
-			    <td class="td-actions">
-					<%= link_to 'Visualizar', {:action => 'show', :id => faq.id}, :class => "btn btn-small dark-blue" %>&nbsp;
-					<%= link_to 'Editar', {:action => 'edit', :id => faq.id}, :class => "btn btn-small dark-blue" %>&nbsp;
-					<%= link_to 'Remover', {:action => 'delete', :id => faq.id}, :class => "btn btn-small dark-blue" %>
-				</td>
 			  </tr>
 			<% end %>
 		</tbody>
@@ -32,4 +32,6 @@
 
 <br />
 
-<%= link_to 'Nova pergunta', new_faq_path, :class => "btn btn-small light-blue inverse" %>
+<%= link_to 'Novo tópico', new_subject_path, :class => "btn btn-small light-blue inverse" %>&nbsp; &nbsp;&nbsp;
+<%= link_to 'Nova dúvida', new_faq_path, :class => "btn btn-small light-blue inverse" %>&nbsp; |&nbsp;&nbsp;
+<%= link_to 'Ir para a lista de tópicos', subjects_path, :class => "btn btn-small light-blue inverse" %>

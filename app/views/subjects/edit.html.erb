@@ -1,15 +1,13 @@
-<h1>Editing subject</h1>
+<h2><%= @page_title = "Alterar Tópico" %></h2><hr />
 
-<%= form_for(:subject, :url => {:action => 'update', :id => @subject.id}) do |f| %>
-
-  <%= render(:partial => "form", :locals => {:f => f}) %>
+<%= form_for @subject, :validate => true, :html => {:class => "form-horizontal"} do |f| %>
   
-  <div class="form-buttons">
-    <%= submit_tag("Update Subject") %>
+  <%= render(:partial => 'form', :locals => {:f => f}) %>    
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit("Atualizar", :class => "btn btn-small dark-blue") %>
+    </div>
   </div>
-  
 <% end %>
 
-
-<%= link_to 'Show', @subject %> |
-<%= link_to 'Back', subjects_path %>
+<%= link_to 'Ir para a lista de tópicos', subjects_path, :class => "btn btn-small light-blue inverse" %>

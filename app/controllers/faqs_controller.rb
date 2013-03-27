@@ -64,10 +64,9 @@ class FaqsController < ApplicationController
   # PUT /faqs/1.json
   def update
     @faq = Faq.find(params[:id])
-    @faq.update_attributes(params[:faq])
 
     respond_to do |format|
-      if @faq.save
+      if @faq.update_attributes(params[:faq])
         format.html { redirect_to @faq, notice: 'FAQ atualizada com sucesso.' }
         format.json { head :no_content }
       else

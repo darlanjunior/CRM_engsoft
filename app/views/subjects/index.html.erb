@@ -1,25 +1,39 @@
-<h1>Listing subjects</h1>
+<div class="box bordered" style="position:relative;">
+	<div class="box-header" >
+		<i class="icon-th-list"></i><%= @page_title = "Lista de tópicos das FAQs" %>
+	</div>
 
-<table>
-  <tr>
-    <th>Subject</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @subjects.each do |subject| %>
-  <tr>
-    <td><%= subject.subject %></td>
-    <td><%= subject.description %></td>
-    <td><%= link_to 'Show', subject %></td>
-    <td><%= link_to 'Edit', edit_subject_path(subject) %></td>
-    <td><%= button_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+	<table class="table table-striped data-table">
+		<thead>
+			<tr>
+				<th>Ações</th>
+			    <th>Tópico</th>
+			    <th>Descrição</th>
+				<th>Total de FAQs</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @subjects.each do |subject| %>
+			  <tr>
+  			    <td class="td-actions">
+  			        <%= link_to '', {:action => 'show', :id => subject.id}, :class => "icon-eye-open", :title => "Visualizar" %>&nbsp;
+  					<%= link_to '', {:action => 'edit', :id => subject.id}, :class => "icon-edit", :title => "Editar" %>&nbsp;
+  					<%= link_to '', {:action => 'delete', :id => subject.id}, :class => "icon-remove", :title => "Deletar" %>
+  				</td>
+			    <td><%= subject.subject %></td>
+			    <td><%= subject.description %></td>
+				<td>
+					<%= link_to '', {:controller => 'faqs', :action => 'index', :subject_id => subject.id}, :class => "icon-search", :title => "Visualizar FAQs relacionadas" %>
+					<%= subject.faqs.size %>
+				</td>
+			  </tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
 
 <br />
 
-<%= link_to 'New Subject', new_subject_path %>
+<%= link_to 'Novo tópico', new_subject_path, :class => "btn btn-small light-blue inverse" %>&nbsp; &nbsp;&nbsp;
+<%= link_to 'Nova dúvida', new_faq_path, :class => "btn btn-small light-blue inverse" %>&nbsp; |&nbsp;&nbsp;
+<%= link_to 'Ir para a lista de FAQs', faqs_path, :class => "btn btn-small light-blue inverse" %>

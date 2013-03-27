@@ -14,8 +14,9 @@
     </div>
 </div>
 <div class="control-group">
-	<%= f.label :subject_id, "Assunto", :class => "control-label strong" %>
+	<%= f.label :subject_id, "Tópico", :class => "control-label strong" %>
 	<div class="controls">
-      <%= f.select :subject_id, @subjects.collect {|s| [s.subject, s.id]}, {}, :disabled => readonly %>
+      <%= f.select :subject_id, @subjects.collect {|s| [s.subject, s.id]}, {}, :disabled => readonly %>&nbsp;
+	  <%= link_to '', {:controller => 'subjects', :action => 'new'}, {:class => "icon-plus-sign", :target => '_new', :style => "font-size:20px"} %>
     </div>
 </div>

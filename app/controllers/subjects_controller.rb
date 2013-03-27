@@ -1,8 +1,9 @@
+# encoding: UTF-8
 class SubjectsController < ApplicationController
   # GET /subjects
   # GET /subjects.json
   def index
-    @subjects = Subject.all
+    @subjects = Subject.sorted
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,7 +45,7 @@ class SubjectsController < ApplicationController
 
     respond_to do |format|
       if @subject.save
-        format.html { redirect_to @subject, notice: 'Subject was successfully created.' }
+        format.html { redirect_to @subject, notice: "Tópico criado com sucesso." }
         format.json { render json: @subject, status: :created, location: @subject }
       else
         format.html { render action: "new" }
@@ -60,7 +61,7 @@ class SubjectsController < ApplicationController
 
     respond_to do |format|
       if @subject.update_attributes(params[:subject])
-        format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
+        format.html { redirect_to @subject, notice: "Tópico atualizado com sucesso." }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -75,6 +76,9 @@ class SubjectsController < ApplicationController
 
   def destroy
     @subject = Subject.find(params[:id])
+    @subject.faqs.each do |p|
+      p.destroy
+    end
     @subject.destroy
 
     respond_to do |format|
