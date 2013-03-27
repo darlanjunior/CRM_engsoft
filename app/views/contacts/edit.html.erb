@@ -1,6 +1,13 @@
-<h1>Editing contact</h1>
+<h2><%= @page_title = "Alterar Contato" %></h2><hr />
 
-<%= render 'form' %>
+<%= form_for @contact, :validate => true, :html => {:class => "form-horizontal"} do |f| %>
+  
+  <%= render(:partial => 'form', :locals => {:f => f}) %>    
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit("Atualizar", :class => "btn btn-small dark-blue") %>
+    </div>
+  </div>
+<% end %>
 
-<%= link_to 'Show', @contact %> |
-<%= link_to 'Back', contacts_path %>
+<%= link_to 'Ir para a lista de contatos', contacts_path, :class => "btn btn-small light-blue inverse" %>

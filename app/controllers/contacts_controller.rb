@@ -1,23 +1,15 @@
+# encoding: UTF-8
 class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
-    
-    @contacts = Contact.all
+    @contacts = Contact.sorted
 
     respond_to do |format|
       format.html #index.html.erb
       format.json { render json: @contacts }
     end
   end
-
-  def filter
-	nameVar = params[:name]
-	@contacts = Contact.where("name LIKE :filterName", {:filterName => "%#{nameVar}%"})
-	
-	render :index
-  end
-
 
   # GET /contacts/1
   # GET /contacts/1.json
@@ -53,7 +45,7 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
+        format.html { redirect_to @contact, notice: 'Contato foi criado com sucesso.' }
         format.json { render json: @contact, status: :created, location: @contact }
       else
         format.html { render action: "new" }
@@ -69,7 +61,7 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.update_attributes(params[:contact])
-        format.html { redirect_to @contact, notice: 'Contact was successfully updated.' }
+        format.html { redirect_to @contact, notice: 'Contato atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -78,10 +70,17 @@ class ContactsController < ApplicationController
     end
   end
 
+  def delete
+    @contact = Contact.find(params[:id])
+  end
+
   # DELETE /contacts/1
   # DELETE /contacts/1.json
   def destroy
     @contact = Contact.find(params[:id])
+    @contact.support_cases.each do |sc|
+      sc.destroy
+    end
     @contact.destroy
 
     respond_to do |format|

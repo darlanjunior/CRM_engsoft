@@ -1,45 +1,36 @@
-<h1>Listing contacts</h1>
+<div class="box bordered" style="position:relative;">
+	<div class="box-header" >
+		<i class="icon-th-list"></i><%= @page_title = "Contatos" %>
+	</div>
 
-<table>
-  <tr>
-    <th>Filtro por nome</th>
-  </tr>
-  <tr>
-    <td>
-	  <%= form_tag :controller => 'contacts', :action => 'filter', :method => 'get' do %>
-	  <%= text_field_tag :name, params[:name], :id => 'search_field' %>
-	  <%= submit_tag "Search", :name => nil %> 
-	  <%= link_to_function "Clear", "$('search_field').clear()" %>
-	  <% end %> 
-    </td>
-  </tr>
-  <tr>
-    <th>Clientid</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Phone</th>
-    <th>Address</th>
-    <th>Type</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @contacts.each do |contact| %>
-  <tr>
-    <td><%= contact.clientId %></td>
-    <td><%= contact.name %></td>
-    <td><%= contact.email %></td>
-    <td><%= contact.phone %></td>
-    <td><%= contact.address %></td>
-    <td><%= contact.clientType %></td>
-    <td><%= link_to 'Show', contact %></td>
-    <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
-    <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+	<table class="table table-striped data-table">
+		<thead>
+			<tr>
+				<th>Ações</th>
+			    <th>Nome</th>
+			    <th>E-mail</th>
+				<th>Telefone</th>
+				<th>Tipo de cliente</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @contacts.each do |contact| %>
+			  <tr>
+  			    <td class="td-actions">
+  			        <%= link_to '', {:action => 'show', :id => contact.id}, :class => "icon-eye-open", :title => "Visualizar" %>&nbsp;
+  					<%= link_to '', {:action => 'edit', :id => contact.id}, :class => "icon-edit", :title => "Editar" %>&nbsp;
+  					<%= link_to '', {:action => 'delete', :id => contact.id}, :class => "icon-remove", :title => "Deletar" %>
+  				</td>
+			    <td><%= contact.name %></td>
+			    <td><%= contact.email %></td>
+				<td><%= contact.phone %></td>
+				<td><%= contact.clientType %></td
+			  </tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
 
 <br />
 
-<%= link_to 'New Contact', new_contact_path %>
+<%= link_to 'Novo contato', new_contact_path, :class => "btn btn-small light-blue inverse" %>

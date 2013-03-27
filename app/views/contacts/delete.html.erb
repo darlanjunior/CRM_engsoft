@@ -1,0 +1,14 @@
+<h2><%= @page_title = "Deletar Contato" %></h2><hr />
+
+<p class="red-text strong" style="font-size:16px">Você tem certeza que deseja deletar permanentemente esse Contato e todas as informações relacionadas?</p>
+<%= form_for @contact, :html => {:class => "form-horizontal"} do |f| -%>
+
+  <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %>    
+  <div class="control-group">
+	  <div class="controls">
+		  <%= button_to "Deletar Contato", contact_path(@contact), :method => 'delete', :class => "btn btn-small dark-blue" %>
+	  </div>
+  </div>
+<% end %>
+
+<%= link_to 'Ir para a lista de contatos', contacts_path, :class => "btn btn-small light-blue inverse" %>

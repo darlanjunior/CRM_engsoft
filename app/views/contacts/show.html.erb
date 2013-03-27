@@ -1,35 +1,21 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @page_title = "Visualizar Contato" %></h2><hr />
 
-<p>
-  <b>Clientid:</b>
-  <%= @contact.clientId %>
-</p>
+<% if notice %>
+	<div class="alert green fade in">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<%= notice %>
+	</div>
+<% end %>
 
-<p>
-  <b>Name:</b>
-  <%= @contact.name %>
-</p>
+<%= form_for @contact, :html => {:class => "form-horizontal"} do |f| -%>
 
-<p>
-  <b>Email:</b>
-  <%= @contact.email %>
-</p>
+  <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %>    
+  <div class="control-group">
+    <div class="controls">
+      <%= link_to 'Editar Contato', {:action => 'edit', :id => @contact.id}, :class => "btn btn-small dark-blue" %>
+  </div>
+<% end %>
 
-<p>
-  <b>Phone:</b>
-  <%= @contact.phone %>
-</p>
-
-<p>
-  <b>Address:</b>
-  <%= @contact.address %>
-</p>
-
-<p>
-  <b>Type:</b>
-  <%= @contact.clientType %>
-</p>
-
-
-<%= link_to 'Edit', edit_contact_path(@contact) %> |
-<%= link_to 'Back', contacts_path %>
+<br />
+<%= link_to 'Ir para a lista de contatos', contacts_path, :class => "btn btn-small light-blue inverse" %>&nbsp; &nbsp;&nbsp;
+<%= link_to 'Novo contato', new_contact_path, :class => "btn btn-small light-blue inverse" %>

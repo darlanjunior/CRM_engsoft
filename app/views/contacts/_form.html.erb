@@ -1,41 +1,33 @@
-<%= form_for(@contact) do |f| %>
-  <% if @contact.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+<% readonly ||= false %>
+<%= error_messages_for(@contact) %>
 
-      <ul>
-      <% @contact.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<div class="control-group">
+    <%= f.label :name, "Nome", :class => "control-label strong" %>
+	<div class="controls">
+      <%= f.text_field :name, :placeholder => "Nome", :readonly => readonly %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :clientId %><br />
-    <%= f.text_field :clientId %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :clientType %><br />
-    <%= f.text_field :clientType %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
+<div class="control-group">
+	<%= f.label :email, "E-mail", :class => "control-label strong" %>
+	<div class="controls">
+	  <%= f.text_field :email, :placeholder => "E-mail", :readonly => readonly %>
+    </div>
+</div>
+<div class="control-group">
+	<%= f.label :phone, "Telefone", :class => "control-label strong" %>
+	<div class="controls">
+	  <%= f.text_field :phone, :placeholder => "Telefone", :readonly => readonly %>
+    </div>
+</div>
+<div class="control-group">
+	<%= f.label :address, "Endereço", :class => "control-label strong" %>
+	<div class="controls">
+	  <%= f.text_field :address, :placeholder => "Endereço", :readonly => readonly %>
+    </div>
+</div>
+<div class="control-group">
+	<%= f.label :clientType, "Tipo de cliente", :class => "control-label strong" %>
+	<div class="controls">
+	  <%= f.text_field :clientType, :placeholder => "Tipo de cliente", :readonly => readonly %>
+    </div>
+</div>
