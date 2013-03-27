@@ -69,8 +69,10 @@ class SubjectsController < ApplicationController
     end
   end
 
-  # DELETE /subjects/1
-  # DELETE /subjects/1.json
+  def delete
+    @subject = Subject.find(params[:id])
+  end
+
   def destroy
     @subject = Subject.find(params[:id])
     @subject.destroy

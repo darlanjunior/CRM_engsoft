@@ -1,6 +1,15 @@
 <h1>Editing subject</h1>
 
-<%= render 'form' %>
+<%= form_for(:subject, :url => {:action => 'update', :id => @subject.id}) do |f| %>
+
+  <%= render(:partial => "form", :locals => {:f => f}) %>
+  
+  <div class="form-buttons">
+    <%= submit_tag("Update Subject") %>
+  </div>
+  
+<% end %>
+
 
 <%= link_to 'Show', @subject %> |
 <%= link_to 'Back', subjects_path %>

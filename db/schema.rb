@@ -88,13 +88,6 @@ ActiveRecord::Schema.define(:version => 20130326172558) do
     t.datetime "updated_at",   :null => false
   end
 
-  create_table "questions", :force => true do |t|
-    t.string   "title"
-    t.string   "answer"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "subjects", :force => true do |t|
     t.string   "subject"
     t.string   "description"
@@ -103,15 +96,13 @@ ActiveRecord::Schema.define(:version => 20130326172558) do
   end
 
   create_table "support_cases", :force => true do |t|
+    t.date     "creationDate"
     t.string   "caseCode"
     t.string   "description"
     t.string   "type"
     t.string   "status"
-    t.integer  "contact_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
-
-  add_index "support_cases", ["contact_id"], :name => "index_support_cases_on_contact_id"
 
 end

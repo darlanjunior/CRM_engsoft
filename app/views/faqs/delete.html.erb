@@ -1,0 +1,14 @@
+<h2><%= @page_title = "Deletar FAQ" %></h2><hr />
+
+<p class="red-text strong" style="font-size:16px">Você tem certeza que deseja deletar permanentemente essa FAQ?</p>
+<%= form_for @faq, :html => {:class => "form-horizontal"} do |f| -%>
+
+  <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %>    
+  <div class="control-group">
+	  <div class="controls">
+		  <%= button_to "Deletar FAQ", faq_path(@faq), :method => 'delete', :class => "btn btn-small dark-blue" %>
+	  </div>
+  </div>
+<% end %>
+
+<%= link_to '<< Voltar', faqs_path, :class => "btn btn-small light-blue inverse" %>

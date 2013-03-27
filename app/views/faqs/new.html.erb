@@ -1,5 +1,13 @@
-<h1>Nova Dúvida</h1>
+<h2><%= @page_title = "Nova Dúvida" %></h2><hr />
 
-<%= render 'form' %>
+<%= form_for @faq, :validate => true, :html => {:class => "form-horizontal"} do |f| %>
+  
+  <%= render(:partial => 'form', :locals => {:f => f}) %>    
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit("Criar Dúvida", :class => "btn btn-small dark-blue") %>
+    </div>
+  </div>
+<% end %>
 
-<%= link_to 'Voltar', faqs_path %>
+<%= link_to '<< Voltar', faqs_path, :class => "btn btn-small light-blue inverse" %>

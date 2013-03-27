@@ -1,50 +1,21 @@
-<%= form_for(@faq, :validate => true) do |f| %>
-<script>
-  $(function() {
-	var availableTagsFaq = [
-	<% @subjects.each do |subject| %>
-	{
-		id_subject: "<%= subject.id %>",
-		subject: "<%= subject.subject.humanize %>",
-		description: "<%= subject.description.humanize %>",
-		label: "<%= subject.subject.humanize %>"
-	},
-	<% end %>
-	];
-	$("#subject").autocomplete({
-		source: availableTagsFaq,
-		minLength: 2,
-	});
-  });
-</script>
+<% readonly ||= false %>
+<%= error_messages_for(@faq) %>
 
-  <% if @faq.errors.any? %>
-    <div id="error_explanation" class="alert-error">
-      <h5><%= pluralize(@faq.errors.count, "erro impediu", "erros impediram") %> essa pergunta de ser salva:</h2>
-
-      <ul>
-      <% @faq.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<div class="control-group">
+    <%= f.label :question, "Dúvida", :class => "control-label strong" %>
+	<div class="controls">
+      <%= f.text_field :question, :placeholder => "Dúvida", :readonly => readonly %>
     </div>
-  <% end %>
-
-  <div class="field">
-    Dúvida<br />
-    <%= f.text_field :question %>
-  </div>
-  <div class="field">
-    Resposta<br />
-    <%= f.text_field :answer %>
-  </div>
-  <div class="ui-widget">
-    Assunto<br />
-    <input id="subject" name="subject" value="<%= @faq.subject.nil? ? "" : @faq.subject.subject %>" />
-  </div>
-
-  <br />
-  <div class="actions">
-	<%= f.submit "Enviar", :class => "btn btn-small dark-blue" %> 
-  </div>
-<% end %>
+</div>
+<div class="control-group">
+	<%= f.label :answer, "Resposta", :class => "control-label strong" %>
+	<div class="controls">
+	  <%= f.text_field :answer, :placeholder => "Resposta", :readonly => readonly %>
+    </div>
+</div>
+<div class="control-group">
+	<%= f.label :subject_id, "Assunto", :class => "control-label strong" %>
+	<div class="controls">
+      <%= f.select :subject_id, @subjects.collect {|s| [s.subject, s.id]}, {}, :disabled => readonly %>
+    </div>
+</div>

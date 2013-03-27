@@ -1,6 +1,13 @@
-<h1>Modificando a FAQ</h1>
+<h2><%= @page_title = "Alterar FAQ" %></h2><hr />
 
-<%= render 'form' %>
+<%= form_for @faq, :validate => true, :html => {:class => "form-horizontal"} do |f| %>
+  
+  <%= render(:partial => 'form', :locals => {:f => f}) %>    
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit("Atualizar", :class => "btn btn-small dark-blue") %>
+    </div>
+  </div>
+<% end %>
 
-<%= link_to 'Visualizar', @faq %> |
-<%= link_to 'Voltar', faqs_path %>
+<%= link_to '<< Voltar', faqs_path, :class => "btn btn-small light-blue inverse" %>

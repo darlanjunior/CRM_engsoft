@@ -1,27 +1,34 @@
-<h1>Lista de FAQs</h1>
+<div class="box bordered" style="position:relative;">
+	<div class="box-header" >
+		<i class="icon-th-list"></i><%= @page_title = "Perguntas e Respostas" %>
+	</div>
 
-<table class="table table-striped">
-  <tr>
-    <th>Dúvida</th>
-    <th>Resposta</th>
-    <th>Assunto</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @faqs.each do |faq| %>
-  <tr>
-    <td><%= faq.question %></td>
-    <td><%= faq.answer %></td>
-    <td><%= faq.subject.subject %>
-	    (Desc: <%= faq.subject.description %>)</td>
-    <td><%= link_to 'Visualizar', faq, :class => "btn btn-small dark-blue" %></td>
-    <td><%= link_to 'Editar', edit_faq_path(faq), :class => "btn btn-small dark-blue" %></td>
-    <td><%= button_to 'Remover', faq, :method => :delete, :class => "btn btn-small dark-blue" %></td>
-  </tr>
-<% end %>
-</table>
+	<table class="table table-striped data-table">
+		<thead>
+			<tr>
+			    <th>Pergunta</th>
+			    <th>Resposta</th>
+			    <th>Assunto</th>
+			    <th>Ações</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @faqs.each do |faq| %>
+			  <tr>
+			    <td><%= faq.question %></td>
+			    <td><%= faq.answer %></td>
+			    <td><%= faq.subject.subject %>
+				    (Desc: <%= faq.subject.description %>)</td>
+			    <td class="td-actions">
+					<%= link_to 'Visualizar', {:action => 'show', :id => faq.id}, :class => "btn btn-small dark-blue" %>&nbsp;
+					<%= link_to 'Editar', {:action => 'edit', :id => faq.id}, :class => "btn btn-small dark-blue" %>&nbsp;
+					<%= link_to 'Remover', {:action => 'delete', :id => faq.id}, :class => "btn btn-small dark-blue" %>
+				</td>
+			  </tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
 
 <br />
 
