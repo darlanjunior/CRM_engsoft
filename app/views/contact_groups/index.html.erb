@@ -6,20 +6,20 @@
 	<table class="table table-striped data-table">
 		<thead>
 		<tr>
+			<th>Ações</th>
 		  <th>Nome do Grupo</th>
-		  <th>Ações</th>
 		</tr>
 		</thead>
 
 		<tbody>
 	<% @contact_groups.each do |contact_group| %>
 		<tr>
-		  <td><%= contact_group.name %></td>
-		  <td class="td-actions">
-		  	<%= link_to 'Vizualizar', {:action => 'show', :id => contact_group.id}, :class => "btn btn-small dark-blue" %>
-		  	<%= link_to 'Editar', {:action => 'edit', :id => contact_group.id}, :class => "btn btn-small dark-blue" %>
-		  	<%= link_to 'Remover', {:action => 'delete', :id => contact_group.id}, :class => "btn btn-small dark-blue"  %>
+			<td class="td-actions">
+		  	<%= link_to '', {:action => 'show', :id => contact_group.id}, :class => "icon-eye-open", :title => "Visualizar" %>
+		  	<%= link_to '', {:action => 'edit', :id => contact_group.id}, :class => "icon-edit", :title => "Editar" %>
+		  	<%= link_to '', {:action => 'delete', :id => contact_group.id}, :class => "icon-remove", :title => "Deletar"  %>
 		  </td>
+		  <td><%= contact_group.name %></td>
 		</tr>
 	<% end %>
 	</table>
