@@ -1,25 +1,72 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Casecode:</b>
-  <%= @support_case.caseCode %>
-</p>
+<div class="box-header" >
+  <%= @page_title = "Acompanhamento Do Chamado" %>
+</div>
 
-<p>
-  <b>Description:</b>
-  <%= @support_case.description %>
-</p>
+<div id="support_case_values" class="box bordered" style="position:relative;">
+    <h4>Dados do Chamado:</h4>
+    <p>
+      <b>Descrição:</b>
+      <%= @support_case.description %>
+    </p>
 
-<p>
-  <b>Type:</b>
-  <%= @support_case.caseType %>
-</p>
+    <p>
+      <b>Tipo:</b>
+      <%= @support_case.caseType %>
+    </p>
 
-<p>
-  <b>Status:</b>
-  <%= @support_case.status %>
-</p>
+    <p>
+      <b>Status:</b>
+      <%= @support_case.status %>
+    </p>
 
+    <p>
+      <b>Responsavel:</b>
+      <%= link_to @employee_name,{:action =>'show',:id =>@employee.id} %>
+    </p>
 
-<%= link_to 'Edit', edit_support_case_path(@support_case) %> |
-<%= link_to 'Back', support_cases_path %>
+    <p>
+      <%= link_to 'Editar',{:action => 'edit', :id => @support_case.id},:class => "btn btn-small dark-blue" %>
+    </p>
+
+</div>
+
+<div id="addComment" class="box bordered" style="position:relative;">
+  <h4> Adicione um Comentario:</h4>
+  <table>
+    <%= form_tag :controller => 'support_cases', :action => 'addComment', :support_case_id=>@support_case.id, :method => 'post' do %>
+        <%hidden_field_tag :support_case_id, @support_case.id%>
+    <tr>
+      <td><%= text_area_tag :comment, params[:comment], :rows => 30, :cols=> 100,:placeholder => 'Seu comentario aqui...'%></td>
+      <td><%= submit_tag "Adicionar" ,:class => "btn btn-small dark-blue"%> </td>
+    </tr>
+    <tr>
+      <% end %>
+    </tr>
+  </table>
+</div>
+
+<div id="comments"class="box bordered" style="position:relative;">
+  <h4>Comentarios:</h4>
+  <table class="table table-striped data-table">
+    <thead>
+    <tr>
+      <th>Comentario</th>
+      <th>Data de postagem</th>
+    </tr>
+    </thead>
+    <tbody>
+<%if @support_case_comments!=nil && @support_case_comments.size!=0
+    @support_case_comments.each do |comment|%>
+        <tr>
+          <td><%= comment.content %></td>
+          <td><%= comment.created_at %></td>
+        </tr>
+<%  end
+   end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to 'Voltar', :action => 'index',:class => "btn btn-small dark-blue"%>

@@ -1,44 +1,33 @@
-<h1>Listing support_cases</h1>
+<div class="box bordered" style="position:relative;">
+  <div class="box-header" >
+    <i class="icon-th-list"></i><%= @page_title = "Lista de Chamados" %>
+  </div>
 
-<table>
-  <%= form_tag :controller => 'support_cases', :action => 'filter', :method => 'get' do %>
-  <tr>
-    <td>
-	<b>Type:</b>
-    </td>
-    <td>	  
-	  <%= text_field_tag :type, params[:type], :id => 'search_field' %>
-    </td>
-    <td>
-	  <%= submit_tag "Search", :name => nil %> 
-	  <%= link_to_function "Clear", "$('search_field').clear()" %>
-
-    </td>
-  </tr>
-	  <% end %> 
-  <tr>
-
-    <th>Casecode</th>
-    <th>Description</th>
-    <th>CaseType</th>
-    <th>Status</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+  <table class="table table-striped data-table">
+      <thead>
+          <tr>
+            <th>Descricao</th>
+            <th>Tipo</th>
+            <th>Status</th>
+            <th>Acoes</th>
+          </tr>
+      </thead>
+      <tbody>
 <% @support_cases.each do |support_case| %>
-  <tr>
-    <td><%= support_case.caseCode %></td>
-    <td><%= support_case.description %></td>
-    <td><%= support_case.caseType %></td>
-    <td><%= support_case.status %></td>
-    <td><%= link_to 'Show', support_case %></td>
-    <td><%= link_to 'Edit', edit_support_case_path(support_case) %></td>
-    <td><%= link_to 'Destroy', support_case, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+          <tr>
+            <td><%= support_case.description %></td>
+            <td><%= support_case.caseType %></td>
+            <td><%= support_case.status %></td>
+            <td class="td-actions">
+              <%= link_to 'Visualizar',{:action => 'show', :id => support_case.id},:class => "btn btn-small dark-blue" %>
+              <%= link_to 'Editar',{:action => 'edit', :id => support_case.id},:class => "btn btn-small dark-blue" %>
+              <%= link_to 'Remover',{:action => 'destroy', :id => support_case.id},:class => "btn btn-small dark-blue" %>
+            </td>
+          </tr>
 <% end %>
+     </tbody>
 </table>
+ </div>
 
 <br />
 

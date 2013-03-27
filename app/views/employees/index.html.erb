@@ -13,7 +13,6 @@
 <% @employees.each do |employee| %>
   <tr>
     <td><%= employee.name %></td>
-    <td><%= employee.employeeCode %></td>
     <td><%= employee.dateOfBirth %></td>
     <td><%= link_to 'Show', employee %></td>
     <td><%= link_to 'Edit', edit_employee_path(employee) %></td>

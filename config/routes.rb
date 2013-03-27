@@ -1,23 +1,30 @@
 CRMEngsoft::Application.routes.draw do
+  resources :support_case_events
 
-  resources :banners
+
+  resources :comments
 
 
   resources :subjects
 
+
   resources :faqs
 
-  resources :calls
 
   resources :contacts
 
+
   resources :contact_groups
+
 
   resources :newsletters
 
+
   resources :employees
 
+
   resources :support_cases
+
 
   resources :questions
 
