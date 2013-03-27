@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @marketing_campaign.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @marketing_campaign.description %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @marketing_campaign.status %>
+</p>
+
+<p>
+  <b>Estimated begin date:</b>
+  <%= @marketing_campaign.estimated_begin_date %>
+</p>
+
+<p>
+  <b>Estimated end date:</b>
+  <%= @marketing_campaign.estimated_end_date %>
+</p>
+
+<p>
+  <b>Estimated return over investiment:</b>
+  <%= @marketing_campaign.estimated_return_over_investiment %>
+</p>
+
+<p>
+  <b>Begin date:</b>
+  <%= @marketing_campaign.begin_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @marketing_campaign.end_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_marketing_campaign_path(@marketing_campaign) %> |
+<%= link_to 'Back', marketing_campaigns_path %>

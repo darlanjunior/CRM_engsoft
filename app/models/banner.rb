@@ -1,6 +1,8 @@
 class Banner < ActiveRecord::Base
   attr_accessible :height, :name, :size_type, :width, :image
   has_attached_file :image
+  
+  has_many :marketing_actions
 
   def banner_types
   	return {'Cabecalho' => [728, 90], 

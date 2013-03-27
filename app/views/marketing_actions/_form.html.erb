@@ -1,0 +1,33 @@
+<%= form_for(@marketing_action) do |f| %>
+  <% if @marketing_action.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@marketing_action.errors.count, "error") %> prohibited this marketing_action from being saved:</h2>
+
+      <ul>
+      <% @marketing_action.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br />
+    <%= f.text_field :type %>
+  </div>
+  <div class="field">
+    <%= f.label :value %><br />
+    <%= f.text_field :value %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @marketing_action.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @marketing_action.description %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @marketing_action.type %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @marketing_action.value %>
+</p>
+
+
+<%= link_to 'Edit', edit_marketing_action_path(@marketing_action) %> |
+<%= link_to 'Back', marketing_actions_path %>

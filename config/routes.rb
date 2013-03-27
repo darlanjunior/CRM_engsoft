@@ -1,4 +1,10 @@
 CRMEngsoft::Application.routes.draw do
+  resources :marketing_actions
+
+
+  resources :marketing_campaigns
+
+
   get "clients/index"
 
   resources :support_case_events
