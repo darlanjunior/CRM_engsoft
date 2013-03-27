@@ -48,7 +48,7 @@ class CallsController < ApplicationController
 
     respond_to do |format|
       if @call.save
-        format.html { redirect_to @call, notice: 'Call was successfully created.' }
+        format.html { redirect_to @call, notice: 'Ligacao agendada com sucesso.' }
         format.json { render json: @call, status: :created, location: @call }
       else
         format.html { render action: "new" }
@@ -64,13 +64,17 @@ class CallsController < ApplicationController
 
     respond_to do |format|
       if @call.update_attributes(params[:call]) && (@call.contact = Contact.find(params[:contact][:contact_id])) && @call.save
-        format.html { redirect_to @call, notice: 'Call was successfully updated.' }
+        format.html { redirect_to @call, notice: 'Ligacao alterada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
         format.json { render json: @call.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def delete
+    @call = Call.find(params[:id])
   end
 
   # DELETE /calls/1

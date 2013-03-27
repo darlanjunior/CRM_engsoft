@@ -1,29 +1,35 @@
-<h1>Chamados</h1>
+<div class="box bordered" style="position:relative;">
+  <div class="box-header" >
+    <%= @page_title = "Ligações pendentes" %>
+  </div>
 
-<table>
-  <tr>
-    <th>Motivo</th>
-    <th>Comentários</th>
-    <th>Status</th>
-    <th>Data</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @calls.each do |call| %>
-  <tr>
-    <td><%= call.reason %></td>
-    <td><%= call.comments %></td>
-    <td><%= call.status %></td>
-    <td><%= call.call_date %></td>
-    <td><%= link_to 'Detalhes', call %></td>
-    <td><%= link_to 'Editar', edit_call_path(call) %></td>
-    <td><%= link_to 'Excluir', call, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
-  </tr>
-<% end %>
-</table>
+  <table class="table table-striped data-table">
+    <thead>
+      <tr>
+        <th>Motivo</th>
+          <th>Comentários</th>
+          <th>Status</th>
+          <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @calls.each do |call| %>
+        <tr>
+            <td class="td-actions">
+                <%= link_to '', {:action => 'show', :id => call.id}, :class => "icon-eye-open", :title => "Visualizar" %>&nbsp;
+            <%= link_to '', {:action => 'edit', :id => call.id}, :class => "icon-edit", :title => "Editar" %>&nbsp;
+            <%= link_to '', {:action => 'delete', :id => call.id}, :class => "icon-remove", :title => "Deletar" %>
+          </td>
+          <td><%= call.reason %></td>
+          <td><%= call.comments %></td>
+          <td><%= call.status %></td>
+          <td><%= call.call_date %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br />
 
-<%= link_to 'Novo Chamado', new_call_path %>
+<%= link_to 'Agendar ligação', new_call_path, :class => "btn btn-small light-blue inverse" %>&nbsp; &nbsp;&nbsp;

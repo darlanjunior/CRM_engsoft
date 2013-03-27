@@ -1,0 +1,14 @@
+<h2><%= @page_title = "Excluir ligação" %></h2><hr />
+
+<p class="red-text strong" style="font-size:16px">Você tem certeza que deseja deletar permanentemente essa ligação?</p>
+<%= form_for @call, :html => {:class => "form-horizontal"} do |f| -%>
+
+  <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %>    
+  <div class="control-group">
+	  <div class="controls">
+		  <%= button_to "Excluir ligação", call_path(@call), :method => 'delete', :class => "btn btn-small dark-blue" %>
+	  </div>
+  </div>
+<% end %>
+
+<%= link_to 'Ir para a lista de ligações', calls_path, :class => "btn btn-small light-blue inverse" %>

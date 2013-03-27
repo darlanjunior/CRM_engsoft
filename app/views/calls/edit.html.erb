@@ -1,6 +1,13 @@
-<h1>Editando Chamado</h1>
+<h2><%= @page_title = "Alterar Ligação" %></h2><hr />
 
-<%= render 'form' %>
+<%= form_for @call, :validate => true, :html => {:class => "form-horizontal"} do |f| %>
+  
+  <%= render(:partial => 'form', :locals => {:f => f}) %>    
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit("Atualizar", :class => "btn btn-small dark-blue") %>
+    </div>
+  </div>
+<% end %>
 
-<%= link_to 'Detalhes', @call %> |
-<%= link_to 'Voltar', calls_path %>
+<%= link_to 'Ir para a lista de Ligações', calls_path, :class => "btn btn-small light-blue inverse" %>

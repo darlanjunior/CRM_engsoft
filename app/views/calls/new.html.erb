@@ -1,5 +1,13 @@
-<h1>Novo Chamado</h1>
+<h2><%= @page_title = "Nova Ligação" %></h2><hr />
 
-<%= render 'form' %>
+<%= form_for @call, :validate => true, :html => {:class => "form-horizontal"} do |f| %>
+  
+  <%= render(:partial => 'form', :locals => {:f => f}) %>    
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit("Agendar", :class => "btn btn-small dark-blue") %>
+    </div>
+  </div>
+<% end %>
 
-<%= link_to 'Voltar', calls_path %>
+<%= link_to 'Ir para a lista de Ligações pendentes', calls_path, :class => "btn btn-small light-blue inverse" %>

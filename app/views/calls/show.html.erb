@@ -1,34 +1,21 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @page_title = "Visualizar Ligação" %></h2><hr />
 
-<p>
-  <b>Motivo:</b>
-  <%= @call.reason %>
-</p>
+<% if notice %>
+  <div class="alert green fade in">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <%= notice %>
+  </div>
+<% end %>
 
-<p>
-  <b>Comentários:</b>
-  <%= @call.comments %>
-</p>
+<%= form_for @call, :html => {:class => "form-horizontal"} do |f| -%>
 
-<p>
-  <b>Status:</b>
-  <%= @call.status %>
-</p>
+  <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %>    
+  <div class="control-group">
+    <div class="controls">
+      <%= link_to 'Editar Ligação', {:action => 'edit', :id => @call.id}, :class => "btn btn-small dark-blue" %>
+  </div>
+<% end %>
 
-<p>
-  <b>Data:</b>
-  <%= @call.call_date %>
-</p>
-
-<p>
-	<b>Nome do Contato:</b>
-	<%= @call.contact.name %>
-</p>
-
-<p>
-	<b>Id do Contato:</b>
-	<%= @call.contact_id %>
-</p>
-
-<%= link_to 'Edit', edit_call_path(@call) %> |
-<%= link_to 'Back', calls_path %>
+<br />
+<%= link_to 'Ir para a lista de Ligações', calls_path, :class => "btn btn-small light-blue inverse" %>&nbsp; &nbsp;&nbsp;
+<%= link_to 'Agendar Ligação', new_call_path, :class => "btn btn-small light-blue inverse" %>
