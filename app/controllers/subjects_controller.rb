@@ -7,7 +7,7 @@ class SubjectsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @subjects }
+      format.json { render json: @subjects.to_json(:include => [:faqs]) }
     end
   end
 

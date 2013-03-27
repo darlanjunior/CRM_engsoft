@@ -29,6 +29,6 @@
 <div class="control-group">
 	<%= f.label :clientType, "Tipo de cliente", :class => "control-label strong" %>
 	<div class="controls">
-	  <%= f.text_field :clientType, :placeholder => "Tipo de cliente", :readonly => readonly %>
+	  <%= f.select :clientType, @client_types, {}, {:disabled => readonly} %>
     </div>
 </div>
