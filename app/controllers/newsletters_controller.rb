@@ -24,7 +24,16 @@ class NewslettersController < ApplicationController
   # GET /newsletters/new
   # GET /newsletters/new.json
   def new
-    @newsletter = Newsletter.new
+ 		@newsletter = Newsletter.new
+  	if(params[:id] != nil)
+    	newsletter_aux = Newsletter.find(params[:id])
+    	
+    	@newsletter.title = "Anula e substitui: " + newsletter_aux.title
+    	@newsletter.message_body = newsletter_aux.message_body
+    	@newsletter.contact_groups = newsletter_aux.contact_groups
+    end
+    
+    @contact_groups = ContactGroup.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,7 +43,14 @@ class NewslettersController < ApplicationController
 
   # GET /newsletters/1/edit
   def edit
-    @newsletter = Newsletter.find(params[:id])
+  	@newsletter = Newsletter.find(params[:id])
+    
+    @contact_groups = ContactGroup.all
+    
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @newsletter }
+    end
   end
 
   # POST /newsletters
@@ -42,7 +58,11 @@ class NewslettersController < ApplicationController
   def create
     @newsletter = Newsletter.new(params[:newsletter])
     
-    puts("xxxxxxxxxxxxx" + params[:newsletter][:x].to_s + "xxxxxxxxxxxxxxx")
+    @newsletter.contact_groups = Array.new
+    
+    params[:contact_groups].each do |id|
+    	@newsletter.contact_groups << ContactGroup.find(id[0])
+		end
 
     respond_to do |format|
       if @newsletter.save
@@ -59,6 +79,12 @@ class NewslettersController < ApplicationController
   # PUT /newsletters/1.json
   def update
     @newsletter = Newsletter.find(params[:id])
+    
+    @newsletter.contact_groups = Array.new
+    
+    params[:contact_groups].each do |id|
+    	@newsletter.contact_groups << ContactGroup.find(id[0])
+		end
 
     respond_to do |format|
       if @newsletter.update_attributes(params[:newsletter])

@@ -20,8 +20,12 @@
 
 	<h3>Contatos</h3>
   <div class="vpadded">
- <% @contacts.each do |contact| %>
-		<%= check_box_tag("contacts[" + contact.id.to_s + "]", :class => "checkbox") %>
+ <% @contacts.each do |contact|
+ 			if(@contact_group.contacts.include? contact)%>
+				<%= check_box_tag("contacts[" + contact.id.to_s + "]", 1, true, :class => "checkbox") %>
+			<% else %>
+				<%= check_box_tag("contacts[" + contact.id.to_s + "]", 1, false, :class => "checkbox") %>
+			<% end %>
 		
 		<%= contact.name %>
 		<br/>

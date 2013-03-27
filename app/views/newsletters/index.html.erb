@@ -17,8 +17,8 @@
     <td><%= newsletter.title.humanize %></td>
     <td><%= newsletter.message_body %></td>
     <td><%= newsletter.created_at %></td>
-    <td><%= link_to 'Visualizar', newsletter, :class => "btn btn-small dark-blue" %></td>
-    <td><%= link_to 'Editar', edit_newsletter_path(newsletter), :class => "btn btn-small dark-blue" %></td>
+    <td><%= link_to 'Visualizar', {:action => 'show', :id => newsletter.id}, :class => "btn btn-small dark-blue" %></td>
+    <td><%= link_to 'Editar', {:action => 'new', :id => newsletter.id}, :class => "btn btn-small dark-blue" %></td>
   </tr>
 	<% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 
 
-<%= link_to 'Criar Nova Newsletter', new_newsletter_path, :class => "btn btn-small light-blue inverse" %>
+<%= link_to 'Criar Nova Newsletter', {:action => 'new'}, :class => "btn btn-small light-blue inverse" %>

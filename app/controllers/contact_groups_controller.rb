@@ -64,6 +64,11 @@ class ContactGroupsController < ApplicationController
   # PUT /contact_groups/1.json
   def update
     @contact_group = ContactGroup.find(params[:id])
+    
+    @contact_group.contacts = Array.new
+    params[:contacts].each do |id|
+    	@contact_group.contacts << Contact.find(id[0])
+		end
 
     respond_to do |format|
       if @contact_group.update_attributes(params[:contact_group])

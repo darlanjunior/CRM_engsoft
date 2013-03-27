@@ -10,8 +10,6 @@
       </ul>
     </div>
   <% end %>
-  
-  <% f.hidden_field :x, :value => "blablablablablabla" %>
 
   <div class="field">
     <%= f.label :title %><br />
@@ -21,6 +19,21 @@
     <%= f.label :message_body %><br />
     <%= f.text_area :message_body %>
   </div>
+  
+ <h3>Grupos</h3>
+  <div class="vpadded">
+ <% @contact_groups.each do |contact_group|
+ 			if(@newsletter.contact_groups.include? contact_group)%>
+				<%= check_box_tag("contact_groups[" + contact_group.id.to_s + "]", 1, true, :class => "checkbox") %>
+			<% else %>
+				<%= check_box_tag("contact_groups[" + contact_group.id.to_s + "]", 1, false, :class => "checkbox") %>
+			<% end %>
+		
+		<%= contact_group.name %>
+		<br/>
+<% end %>
+	</div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
