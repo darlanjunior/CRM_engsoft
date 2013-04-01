@@ -1,25 +1,21 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @page_title = "Visualizar Ação de Marketing" %></h2><hr />
 
-<p>
-  <b>Name:</b>
-  <%= @marketing_action.name %>
-</p>
+<% if notice %>
+	<div class="alert green fade in">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<%= notice %>
+	</div>
+<% end %>
 
-<p>
-  <b>Description:</b>
-  <%= @marketing_action.description %>
-</p>
+<%= form_for @marketing_action, :html => {:class => "form-horizontal"} do |f| -%>
 
-<p>
-  <b>Type:</b>
-  <%= @marketing_action.type %>
-</p>
+  <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %>    
+  <div class="control-group">
+    <div class="controls">
+      <%= link_to 'Editar Ação de Marketing', {:action => 'edit', :id => @marketing_action.id}, :class => "btn btn-small dark-blue" %>
+  </div>
+<% end %>
 
-<p>
-  <b>Value:</b>
-  <%= @marketing_action.value %>
-</p>
-
-
-<%= link_to 'Edit', edit_marketing_action_path(@marketing_action) %> |
-<%= link_to 'Back', marketing_actions_path %>
+<br />
+<%= link_to 'Ir para a lista de ações de marketing', marketing_actions_path, :class => "btn btn-small light-blue inverse" %>&nbsp; &nbsp;&nbsp;
+<%= link_to 'Nova Ação de Marketing', new_marketing_action_path, :class => "btn btn-small light-blue inverse" %>

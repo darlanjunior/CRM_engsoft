@@ -41,10 +41,12 @@ class MarketingActionsController < ApplicationController
   # POST /marketing_actions.json
   def create
     @marketing_action = MarketingAction.new(params[:marketing_action])
+    
+    @marketing_action.banner = Banner.find(params[:banner])
 
     respond_to do |format|
       if @marketing_action.save
-        format.html { redirect_to @marketing_action, notice: 'Marketing action was successfully created.' }
+        format.html { redirect_to @marketing_action, notice: 'A acao de marketing foi criada com sucesso' }
         format.json { render json: @marketing_action, status: :created, location: @marketing_action }
       else
         format.html { render action: "new" }
@@ -57,10 +59,12 @@ class MarketingActionsController < ApplicationController
   # PUT /marketing_actions/1.json
   def update
     @marketing_action = MarketingAction.find(params[:id])
+    
+    @marketing_action.banner = Banner.find(params[:banner])
 
     respond_to do |format|
       if @marketing_action.update_attributes(params[:marketing_action])
-        format.html { redirect_to @marketing_action, notice: 'Marketing action was successfully updated.' }
+        format.html { redirect_to @marketing_action, notice: 'A acao de marketing foi atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -79,5 +83,9 @@ class MarketingActionsController < ApplicationController
       format.html { redirect_to marketing_actions_url }
       format.json { head :no_content }
     end
+  end
+  
+  def delete
+    @marketing_action = MarketingAction.find(params[:id])
   end
 end

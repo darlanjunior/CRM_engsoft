@@ -1,33 +1,60 @@
-<%= form_for(@marketing_action) do |f| %>
-  <% if @marketing_action.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@marketing_action.errors.count, "error") %> prohibited this marketing_action from being saved:</h2>
+<% readonly ||= false %>
+<%= error_messages_for(@marketing_action) %>
 
-      <ul>
-      <% @marketing_action.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<div class="control-group">
+    <%= f.label :name, "Nome", :class => "control-label strong" %>
+	<div class="controls">
+      <%= f.text_field :name, :placeholder => "Nome", :readonly => readonly %>
     </div>
-  <% end %>
+</div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :type %><br />
-    <%= f.text_field :type %>
-  </div>
-  <div class="field">
-    <%= f.label :value %><br />
-    <%= f.text_field :value %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<div class="control-group">
+	<%= f.label :action_type, "Tipo de Ação", :class => "control-label strong" %>
+	<div class="controls">
+	  <%= f.select :action_type, MarketingAction.marketing_types, {}, :disabled => readonly %>
+    </div>
+</div>
+
+<div class="control-group">
+	<%= f.label :description, "Descrição", :class => "control-label strong" %>
+	<div class="controls">
+	  <%= f.text_area :description, :placeholder => "Descrição", :readonly => readonly %>
+    </div>
+</div>
+
+<div class="control-group">
+	<%= f.label :value, "Preço", :class => "control-label strong" %>
+	<div class="controls">
+	  <%= f.text_field :value, :placeholder => "Preço", :readonly => readonly %>
+    </div>
+</div>
+
+<script>
+$('#marketing_action_action_type').change(function() {
+    var selected = $(this).val();
+    if(selected == 'Banner'){
+      $('#banner').show();
+    }
+    else{
+      $('#banner').hide();
+    }
+});
+
+$('#marketing_action_action_type').ready(function() {
+    $("#marketing_action_action_type").change();
+});
+</script>
+
+<div id="banner">
+	<div class="control-group">
+	<%= f.label :banner_id, "Escolha o banner", :class => "control-label strong" %>
+	<div class="controls">
+	  <% if !@marketing_action.banner %>
+        <%= select_tag "banner", options_from_collection_for_select(Banner.all, "id", "name") %>&nbsp;
+      <% else %>
+      <%= select_tag "banner", options_from_collection_for_select(Banner.all, "id", "name", :selected => @marketing_action.banner.id), :disabled => readonly %>&nbsp;
+      <% end %>
+	  <%= link_to '', {:controller => 'banners', :action => 'new'}, {:class => "icon-plus-sign", :target => '_new', :style => "font-size:20px", :title => 'Adicionar banner'}, :disabled => readonly %>
+    </div>
+</div>
+</div>

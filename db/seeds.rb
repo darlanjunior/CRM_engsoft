@@ -1,7 +1,21 @@
-
 # Criando banner
 Banner.delete_all
 Banner.create(:width => 728, :height => 90, :name => 'New Relic', :image => open('http://s0.2mdn.net/viewad/3742665/1-728x90_All.jpg'))
+=======
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+#
+# Examples:
+#
+#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+#   Mayor.create(name: 'Emanuel', city: cities.first)
+=======
+
+# Criando banner
+Banner.delete_all
+banner1 = Banner.create!(:width => 728, :height => 90, :name => 'New Relic', :image => open('http://s0.2mdn.net/viewad/3742665/1-728x90_All.jpg'))
+banner2 = Banner.create!(:width => 728, :height => 90, :name => 'New Relic2', :image => open('http://s0.2mdn.net/viewad/3742665/1-728x90_All.jpg'))
+banner3 = Banner.create!(:width => 728, :height => 90, :name => 'New Relic3', :image => open('http://s0.2mdn.net/viewad/3742665/1-728x90_All.jpg'))
 
 # Criando contatos
 Contact.delete_all
@@ -52,3 +66,12 @@ SupportCase.delete_all
 s = SupportCase.new(description: 'Bug ao se cadastrar numa nova vaga', status: 'Em andamento')
 s.contact = Contact.last
 s.save
+
+#Criando açao de marketing
+MarketingAction.delete_all
+action1 = MarketingAction.new(:name => 'Propaganda1', :description => 'Divulgacao da propaganda 1', :action_type => MarketingAction.marketing_types.first, :value => 666.66)
+action1.banner = banner1
+action1.save
+action2 = MarketingAction.new(:name => 'Propaganda2', :description => 'Divulgacao da propaganda 2', :action_type => MarketingAction.marketing_types.first, :value => 666.66)
+action2.banner = banner2
+action2.save
