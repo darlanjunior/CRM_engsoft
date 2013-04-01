@@ -3,7 +3,7 @@ class Newsletter < ActiveRecord::Base
   
   has_and_belongs_to_many :contact_groups
   
-  validates :title, :presence => {:message => "Favor digitar um titulo"}, :length => { :in => 5..255 , :message => "Tem que ser entre 5 e 255 caracteres"}
+  validates :title, :presence => {:message => "Favor digitar um titulo"}, :length => { :in => 5..255 , :message => "Deve possuir entre 5 e 255 caracteres"}
   validates :message_body, :presence => {:message => "Favor digitar uma mensagem"}
   
   validate :validate_contact_groups_not_empty

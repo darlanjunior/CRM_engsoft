@@ -1,29 +1,34 @@
-<h1>Listing marketing_actions</h1>
+<div class="box bordered" style="position:relative;">
+	<div class="box-header" >
+		<i class="icon-th-list"></i><%= @page_title = "Ações de Marketing" %>
+	</div>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Type</th>
-    <th>Value</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+	<table class="table table-striped data-table">
+		<thead>
+		<tr>
+			<th>Ações</th>
+		  <th>Nome</th>
+		  <th>Tipo</th>
+		  <th>Valor</th>
+		</tr>
+		</thead>
 
-<% @marketing_actions.each do |marketing_action| %>
-  <tr>
-    <td><%= marketing_action.name %></td>
-    <td><%= marketing_action.description %></td>
-    <td><%= marketing_action.type %></td>
-    <td><%= marketing_action.value %></td>
-    <td><%= link_to 'Show', marketing_action %></td>
-    <td><%= link_to 'Edit', edit_marketing_action_path(marketing_action) %></td>
-    <td><%= link_to 'Destroy', marketing_action, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+		<tbody>
+	<% @marketing_actions.each do |marketing_action| %>
+		<tr>
+			<td class="td-actions">
+		  	<%= link_to '', {:action => 'show', :id => marketing_action.id}, :class => "icon-eye-open", :title => "Visualizar" %>
+		  	<%= link_to '', {:action => 'edit', :id => marketing_action.id}, :class => "icon-edit", :title => "Editar" %>
+		  	<%= link_to '', {:action => 'delete', :id => marketing_action.id}, :class => "icon-remove", :title => "Deletar"  %>
+		  </td>
+		  <td><%= marketing_action.name %></td>
+		  <td><%= marketing_action.action_type %></td>
+		  <td><%= number_to_currency(marketing_action.value, :unit => 'R$', :separator => ',') %></td>
+		</tr>
+	<% end %>
+	</table>
+</div>
 
 <br />
 
-<%= link_to 'New Marketing action', new_marketing_action_path %>
+<%= link_to 'Nova ação de marketing', {:action => 'new'}, :class => "btn btn-small light-blue inverse"  %>

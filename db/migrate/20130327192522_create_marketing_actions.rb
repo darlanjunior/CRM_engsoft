@@ -3,7 +3,7 @@ class CreateMarketingActions < ActiveRecord::Migration
     create_table :marketing_actions do |t|
       t.string :name
       t.text :description
-      t.string :type
+      t.string :action_type
       t.decimal :value, :precision => 8, :scale => 2
       
       t.references :banner

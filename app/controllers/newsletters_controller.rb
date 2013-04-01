@@ -69,7 +69,7 @@ class NewslettersController < ApplicationController
       		NewsletterMailer.send_newsletter(@newsletter, contact).deliver
       	end
       	
-        format.html { redirect_to @newsletter, notice: 'Newsletter was successfully created.' }
+        format.html { redirect_to @newsletter, notice: 'Newsletter criada com sucesso.' }
         format.json { render json: @newsletter, status: :created, location: @newsletter }
       else
         format.html { render action: "new" }
