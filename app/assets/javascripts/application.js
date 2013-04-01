@@ -45,3 +45,4 @@
 //= require gauges
 //= require ie-hacks
 //= require rails.validations
+//= require jquery.maskedinput-1.2.2
