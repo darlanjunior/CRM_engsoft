@@ -1,0 +1,52 @@
+<div id="report" class = "box bordered">
+  <h4>Relatorio de chamados</h4>
+  <p>
+    <b>Numero total de Chamados no periodo:</b>
+    <%= @createdCases.size %>
+  </p>
+  <p>
+    <b>Porcentagem dos chamados que foram fechados no periodo:</b>
+    <%= (@perctClosedCases*100).round(2)%>
+  </p>
+
+  <p>
+    <b>Porcentagem dos chamados que estao em andamento no periodo:</b>
+    <%= (@perctOpenCases*100).round(2)%>
+  </p>
+  <p>
+    <b>Porcentagem dos chamados do tipo Duvida:</b>
+    <%= (@perctDoubtCases*100).round(2)%>
+  </p>
+  <p>
+    <b>Porcentagem dos chamados do tipo Problema:</b>
+    <%= (@perctProblemCases*100).round(2)%>
+  </p>
+  <p>
+    <b>Periodo medio de duracao de um chamado no periodo (Em dias):</b>
+    <%= @averageCompletionTime.round(2)%>
+  </p>
+  <div id="idle_cases" class="box bordered">
+    <h5>Casos abertos ociosos:</h5>
+    <table class="table table-striped data-table">
+      <thead>
+        <tr>
+          <th>Descricao</th>
+          <th>Tipo</th>
+          <th>Responsavel</th>
+        </tr>
+      </thead>
+      <tbody>
+      <%@idleCases.each do |idleCase|%>
+        <tr>
+          <td><%= idleCase.description %></td>
+          <td><%= idleCase.caseType %></td>
+          <% if(idleCase.employee!=nil)%>
+            <td><%= idleCase.employee.name%></td>
+          <%end%>
+        </tr>
+
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,6 +1,11 @@
-<h1>Editing support_case</h1>
+<h1>Edicao de Chamado</h1>
+<%= form_for @support_case, :validate => true, :html => {:class => "form-horizontal"} do |f|%>
+    <%= render(:partial => 'form',:locals => {:f => f}) %>
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit "Salvar chamado",:class => "btn btn-small dark-blue"%>
+      </div>
+    </div>
+<%end%>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @support_case %> |
-<%= link_to 'Back', support_cases_path %>
+<%= link_to 'Voltar', support_cases_path,:class => "btn btn-small dark-blue"  %>

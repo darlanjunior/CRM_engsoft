@@ -21,7 +21,7 @@
             <td class="td-actions">
               <%= link_to 'Visualizar',{:action => 'show', :id => support_case.id},:class => "btn btn-small dark-blue" %>
               <%= link_to 'Editar',{:action => 'edit', :id => support_case.id},:class => "btn btn-small dark-blue" %>
-              <%= link_to 'Remover',{:action => 'destroy', :id => support_case.id},:class => "btn btn-small dark-blue" %>
+              <%= link_to 'Remover',support_case, method: :delete, :class => "btn btn-small dark-blue" %>
             </td>
           </tr>
 <% end %>
@@ -31,4 +31,4 @@
 
 <br />
 
-<%= link_to 'New Support case', new_support_case_path %>
+<%= link_to 'Criar novo Chamado', new_support_case_path %>

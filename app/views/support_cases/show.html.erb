@@ -21,9 +21,14 @@
       <%= @support_case.status %>
     </p>
 
+  <p>
+    <b>Data de Criacao:</b>
+    <%= @support_case.created_at%>
+  </p>
+
     <p>
       <b>Responsavel:</b>
-      <%= link_to @employee_name,{:action =>'show',:id =>@employee.id} %>
+      <%= link_to @employee_name,{:controller => 'employees',:action =>'show',:id =>@employee.id} %>
     </p>
 
     <p>
@@ -69,4 +74,30 @@
   </table>
 </div>
 
-<%= link_to 'Voltar', :action => 'index',:class => "btn btn-small dark-blue"%>
+<div id="history" class="box bordered" style="position:relative;">
+  <h4>Historico:</h4>
+  <table class="table table-striped">
+    <thead>
+        <tr>
+          <th>Descricao</th>
+          <th>Conteudo</th>
+          <th>Tipo</th>
+          <th>Data</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @support_case_events.each do |event|%>
+        <tr>
+          <td><%= event.description %></td>
+          <td><%= event.content %></td>
+          <td><%= event.eventType %></td>
+          <td><%= event.created_at %></td>
+        </tr>
+    <%end%>
+    </tbody>
+ </table>
+
+</div>
+
+
+<%= link_to 'Voltar', {:action => 'index'},:class => "btn btn-small dark-blue"%>

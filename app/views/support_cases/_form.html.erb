@@ -1,15 +1,3 @@
-<%= form_for(@support_case) do |f| %>
-  <% if @support_case.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@support_case.errors.count, "error") %> prohibited this support_case from being saved:</h2>
-
-      <ul>
-      <% @support_case.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <% if !@edit%>
   <h3>Cliente</h3>
@@ -52,11 +40,10 @@
 		});
 	</script>
 	
-	<div class="ui-widget">
-		<label for="contact" value="Contato"><%= f.label :contact %></label>
+	<div class="control-group">
+		<label for="contact" value="Contato"><%= f.label :contact,:class => "control-label strong"  %></label>
 		<input id="contact" name="contactName" value=<%=@support_contact_name%> />
 	</div>
-     </br>
     <% end %>
 
 
@@ -65,21 +52,19 @@
     <%= f.label :description ,"Descricao", :class => "control-label strong" %>
     <%= f.text_field :description %>
   </div>
+  <% if !@edit %>
   <div class="control-group">
     <%= f.label :caseType ,"Tipo", :class => "control-label strong"%>
-    <%= f.text_field :caseType %>
+    <%= f.select :caseType,@case_types,{} %>
   </div>
+  <%end%>
+  <%if @edit%>
   <div class="control-group">
     <%= f.label :status,"Status", :class => "control-label strong" %>
-    <%= f.text_field :status %>
+    <%= f.select :status,@case_status,{} %>
   </div>
+  <%end%>
   <div class="control-group">
     <%=f.label :employee ,"Responsavel", :class => "control-label strong"%>
     <%=collection_select(:support_case,:employee_id,@all_employees,:id,:name,{:selected=>@support_employee_index,:prompt => true})%><br/>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-
-

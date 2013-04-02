@@ -41,6 +41,8 @@ CRMEngsoft::Application.routes.draw do
 
   resources :banners
 
+  resources :reports
+
   match '/dummy/clients' => 'dummy_service#client'
 
 

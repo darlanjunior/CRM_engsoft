@@ -1,4 +1,6 @@
 class SupportCasesController < ApplicationController
+  before_filter :define_case_types,:define_case_status
+
 
 
 
@@ -28,9 +30,18 @@ class SupportCasesController < ApplicationController
     @comment = Comment.new
     @comment.content = params[:comment]
     @comment.support_case_id = @support_case.id
+
+    @event = SupportCaseEvent.new
+    @event.description = "Comentario adicionado"
+    @event.eventType = "Comentario"
+    @event.content = @comment.content
+    @event.support_case_id = @support_case.id
+
     @comment.save
+    @event.save
 
     @support_case_comments = @support_case.comments
+    @support_case_events = @support_case.support_case_events
 
     @employee = @support_case.employee
     if (@employee == nil)
@@ -57,6 +68,7 @@ class SupportCasesController < ApplicationController
   def show
     @support_case = SupportCase.find(params[:id])
     @support_case_comments = @support_case.comments
+    @support_case_events = @support_case.support_case_events;
 
     @employee = @support_case.employee
     if (@employee == nil)
@@ -78,6 +90,8 @@ class SupportCasesController < ApplicationController
       format.json { render json: @support_case }
     end
   end
+
+
 
   # GET /support_cases/new
   # GET /support_cases/new.json
@@ -142,12 +156,17 @@ class SupportCasesController < ApplicationController
   # PUT /support_cases/1.json
   def update
     @support_case = SupportCase.find(params[:id])
+    support_case_changed = @support_case
 
     if(params[:support_case][:employee_id]!=nil)
       @support_case.employee = Employee.find(params[:support_case][:employee_id])
     else
       @support_case.employee = nil
     end
+
+    support_case_changed.attributes =params[:support_case]
+
+    createEvents(support_case_changed)
 
     respond_to do |format|
       if (@support_case.update_attributes(params[:support_case]))
@@ -157,7 +176,6 @@ class SupportCasesController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @support_case.errors, status: :unprocessable_entity }
       end
-
     end
   end
 
@@ -171,5 +189,45 @@ class SupportCasesController < ApplicationController
       format.html { redirect_to support_cases_url }
       format.json { head :no_content }
     end
+  end
+
+  def createEvents(supportCase)
+    changesHash = supportCase.changes
+    if(changesHash!=nil && changesHash.size!=0)
+      changesHash.keys.each do |changedField|
+        finalValue = changesHash[changedField][1]
+        if(changedField == "employee_id")
+          @employee = Employee.find(finalValue)
+          eventDescription = "Chamado atribuido a " + @employee.name
+          eventType = "Alocacao"
+        else
+          if(changedField=="status")
+            field = "Status"
+          elsif(changedField =="caseType")
+            field = "Tipo"
+          elsif(changedField == "description")
+            field = "Descricao"
+          end
+            eventDescription = field + " modificado para " + finalValue.to_s
+            eventType = "Modificacao"
+        end
+        @support_case_event = SupportCaseEvent.new
+        @support_case_event.support_case = supportCase
+        @support_case_event.description = eventDescription
+        @support_case_event.eventType = eventType
+        @support_case_event.save
+      end
+    end
+  end
+
+  private
+
+  def define_case_types
+    @case_types = ['Problema','Duvida']
+
+  end
+
+  def define_case_status
+    @case_status = ['Em andamento','Fechado']
   end
 end
