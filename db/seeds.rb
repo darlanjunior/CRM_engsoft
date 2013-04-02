@@ -9,7 +9,6 @@ Banner.create(:width => 728, :height => 90, :name => 'New Relic', :image => open
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-=======
 
 # Criando banner
 Banner.delete_all
@@ -75,3 +74,7 @@ action1.save
 action2 = MarketingAction.new(:name => 'Propaganda2', :description => 'Divulgacao da propaganda 2', :action_type => MarketingAction.marketing_types.first, :value => 666.66)
 action2.banner = banner2
 action2.save
+
+#Criando campanha de marketing
+MarketingCampaign.delete_all
+MarketingCampaign.create!(:begin_date => "20/01/2012", :description => "Teste de descricao de campanha de marketing", :end_date => "22/01/2012", :estimated_begin_date => "19/01/2012", :estimated_end_date => "21/01/2012", :estimated_revenue => 100.23, :name => "Super Campanha de Marketing", :status => "Aberta", :revenue => 98.05, :financial_feedback => "Campanha aprovada com sucesso")

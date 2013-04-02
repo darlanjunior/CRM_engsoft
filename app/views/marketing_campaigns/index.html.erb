@@ -1,37 +1,28 @@
-<h1>Listing marketing_campaigns</h1>
+<div class="box bordered" style="position:relative;">
+	<div class="box-header" >
+		<i class="icon-th-list"></i><%= @page_title = "Campanhas de Marketing" %>
+	</div>
+	
+	<table class="table table-striped data-table">
+		<tr>
+			<th>Ações</th>
+		  <th>Name</th>
+		  <th>Estado</th>
+		</tr>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Status</th>
-    <th>Estimated begin date</th>
-    <th>Estimated end date</th>
-    <th>Estimated return over investiment</th>
-    <th>Begin date</th>
-    <th>End date</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @marketing_campaigns.each do |marketing_campaign| %>
-  <tr>
-    <td><%= marketing_campaign.name %></td>
-    <td><%= marketing_campaign.description %></td>
-    <td><%= marketing_campaign.status %></td>
-    <td><%= marketing_campaign.estimated_begin_date %></td>
-    <td><%= marketing_campaign.estimated_end_date %></td>
-    <td><%= marketing_campaign.estimated_return_over_investiment %></td>
-    <td><%= marketing_campaign.begin_date %></td>
-    <td><%= marketing_campaign.end_date %></td>
-    <td><%= link_to 'Show', marketing_campaign %></td>
-    <td><%= link_to 'Edit', edit_marketing_campaign_path(marketing_campaign) %></td>
-    <td><%= link_to 'Destroy', marketing_campaign, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
+	<% @marketing_campaigns.each do |marketing_campaign| %>
+		<tr>
+			<td class="td-actions">
+				<%= link_to '', {:action => 'show', :id => marketing_campaign.id}, :class => "icon-eye-open", :title => "Visualizar" %>
+				<%= link_to '', {:action => 'edit', :id => marketing_campaign.id}, :class => "icon-edit", :title => "Editar" %>
+				<%= link_to '', {:action => 'delete', :id => marketing_campaign.id}, :class => "icon-remove", :title => "Deletar"  %>
+		  </td>
+		  <td><%= marketing_campaign.name %></td>
+		  <td><%= marketing_campaign.status %></td>
+		</tr>
+	<% end %>
+	</table>
+</div>
 <br />
 
-<%= link_to 'New Marketing campaign', new_marketing_campaign_path %>
+<%= link_to 'Nova campanha de marketing', new_marketing_campaign_path, :class => "btn btn-small light-blue inverse" %>

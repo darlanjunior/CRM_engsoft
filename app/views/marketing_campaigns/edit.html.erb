@@ -1,6 +1,13 @@
-<h1>Editing marketing_campaign</h1>
+<h2><%= @page_title = "Alterar Campanha de Marketing" %></h2><hr />
 
-<%= render 'form' %>
+<%= form_for @marketing_campaign, :validate => true, :html => {:class => "form-horizontal"} do |f| %>
+  
+  <%= render(:partial => 'form', :locals => {:f => f}) %>    
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit("Atualizar", :class => "btn btn-small dark-blue") %>
+    </div>
+  </div>
+<% end %>
 
-<%= link_to 'Show', @marketing_campaign %> |
-<%= link_to 'Back', marketing_campaigns_path %>
+<%= link_to 'Ir para a lista de campanhas de marketing', marketing_campaigns_path, :class => "btn btn-small light-blue inverse" %>

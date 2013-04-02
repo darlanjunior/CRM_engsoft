@@ -80,4 +80,8 @@ class MarketingCampaignsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def delete
+    @marketing_campaign = MarketingCampaign.find(params[:id])
+  end
 end

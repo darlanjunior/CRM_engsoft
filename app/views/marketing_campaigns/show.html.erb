@@ -1,45 +1,21 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @page_title = "Visualizar Campanha de Marketing" %></h2><hr />
 
-<p>
-  <b>Name:</b>
-  <%= @marketing_campaign.name %>
-</p>
+<% if notice %>
+	<div class="alert green fade in">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<%= notice %>
+	</div>
+<% end %>
 
-<p>
-  <b>Description:</b>
-  <%= @marketing_campaign.description %>
-</p>
+<%= form_for @marketing_campaign, :html => {:class => "form-horizontal"} do |f| -%>
 
-<p>
-  <b>Status:</b>
-  <%= @marketing_campaign.status %>
-</p>
+  <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %>    
+  <div class="control-group">
+    <div class="controls">
+      <%= link_to 'Editar Campanha de Marketing', {:action => 'edit', :id => @marketing_campaign.id}, :class => "btn btn-small dark-blue" %>
+  </div>
+<% end %>
 
-<p>
-  <b>Estimated begin date:</b>
-  <%= @marketing_campaign.estimated_begin_date %>
-</p>
-
-<p>
-  <b>Estimated end date:</b>
-  <%= @marketing_campaign.estimated_end_date %>
-</p>
-
-<p>
-  <b>Estimated return over investiment:</b>
-  <%= @marketing_campaign.estimated_return_over_investiment %>
-</p>
-
-<p>
-  <b>Begin date:</b>
-  <%= @marketing_campaign.begin_date %>
-</p>
-
-<p>
-  <b>End date:</b>
-  <%= @marketing_campaign.end_date %>
-</p>
-
-
-<%= link_to 'Edit', edit_marketing_campaign_path(@marketing_campaign) %> |
-<%= link_to 'Back', marketing_campaigns_path %>
+<br />
+<%= link_to 'Ir para a lista de campanhas de marketing', marketing_campaigns_path, :class => "btn btn-small light-blue inverse" %>&nbsp; &nbsp;&nbsp;
+<%= link_to 'Nova Campanha de Marketing', new_marketing_campaign_path, :class => "btn btn-small light-blue inverse" %>
