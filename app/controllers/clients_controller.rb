@@ -127,7 +127,6 @@ class ClientsController < ApplicationController
             \"institution\":\"PCS\"
           }
         ]"""
-        
       end
       @clients_json = JSON.parse response
       @clients_json.each do |cl_json|

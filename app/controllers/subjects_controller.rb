@@ -15,6 +15,7 @@ class SubjectsController < ApplicationController
   # GET /subjects/1.json
   def show
     @subject = Subject.find(params[:id])
+    criar_lista_faqs
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,6 +37,7 @@ class SubjectsController < ApplicationController
   # GET /subjects/1/edit
   def edit
     @subject = Subject.find(params[:id])
+    criar_lista_faqs
   end
 
   # POST /subjects
@@ -72,6 +74,7 @@ class SubjectsController < ApplicationController
 
   def delete
     @subject = Subject.find(params[:id])
+    criar_lista_faqs
   end
 
   def destroy
@@ -84,6 +87,14 @@ class SubjectsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to subjects_url }
       format.json { head :no_content }
+    end
+  end
+
+  private
+  def criar_lista_faqs
+    @lista_faqs = "Não há FAQs a serem mostradas."
+    if not @subject.faqs.empty?
+      @lista_faqs = @subject.faqs.collect{|f| "<dt>" + f.question + "</dt><dd>" + f.answer + "</dd>"}.join().html_safe
     end
   end
 end

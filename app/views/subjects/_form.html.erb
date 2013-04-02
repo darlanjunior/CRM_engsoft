@@ -13,3 +13,11 @@
 	  <%= f.text_field :description, :placeholder => "Descrição", :readonly => readonly %>
     </div>
 </div>
+<div class="control-group">
+	<%= label_tag "faqs", "Lista de FAQs", :class => "control-label strong" %>
+	<div class="controls">
+		<dl>
+		  <%= label_tag "faqs", @lista_faqs %>
+		</dl>
+    </div>
+</div>
