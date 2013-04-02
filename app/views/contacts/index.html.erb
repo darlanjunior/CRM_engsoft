@@ -11,6 +11,7 @@
 			    <th>E-mail</th>
 				<th>Telefone</th>
 				<th>Tipo de cliente</th>
+				<th>Instituição/Empresa</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -24,7 +25,8 @@
 			    <td><%= contact.name %></td>
 			    <td><%= contact.email %></td>
 				<td><%= contact.phone %></td>
-				<td><%= @client_types_inv[contact.clientType] %></td
+				<td><%= Contact.contact_types[contact.clientType] %></td>
+				<td><%= contact.institution %></td>
 			  </tr>
 			<% end %>
 		</tbody>

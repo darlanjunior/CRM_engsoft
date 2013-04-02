@@ -1,11 +1,16 @@
 <% readonly ||= false %>
 <%= error_messages_for(@client) %>
 
-<!-- TODO: Change/add/rm fields to match the Clients table in Portal -->
 <div class="control-group">
     <%= f.label :name, "Nome", :class => "control-label strong" %>
 	<div class="controls">
       <%= f.text_field :name, :placeholder => "Nome", :readonly => readonly %>
+    </div>
+</div>
+<div class="control-group">
+	<%= f.label :login, "Login", :class => "control-label strong" %>
+	<div class="controls">
+	  <%= f.text_field :login, :placeholder => "Login", :readonly => readonly %>
     </div>
 </div>
 <div class="control-group">
@@ -21,6 +26,12 @@
     </div>
 </div>
 <div class="control-group">
+	<%= f.label :cellphone, "Celular", :class => "control-label strong" %>
+	<div class="controls">
+	  <%= f.text_field :cellphone, :placeholder => "Celular", :readonly => readonly %>
+    </div>
+</div>
+<div class="control-group">
 	<%= f.label :address, "Endereço", :class => "control-label strong" %>
 	<div class="controls">
 	  <%= f.text_field :address, :placeholder => "Endereço", :readonly => readonly %>
@@ -29,6 +40,12 @@
 <div class="control-group">
 	<%= f.label :clientType, "Tipo de cliente", :class => "control-label strong" %>
 	<div class="controls">
-	  <%= f.select :clientType, @client_types, {}, {:disabled => readonly} %>
+	  <%= f.select :clientType, Client.client_types.invert, {}, {:disabled => readonly} %>
+    </div>
+</div>
+<div class="control-group">
+	<%= f.label :institution, "Instituição/Empresa", :class => "control-label strong" %>
+	<div class="controls">
+	  <%= f.text_field :institution, :placeholder => "Instituição/Empresa", :readonly => readonly %>
     </div>
 </div>

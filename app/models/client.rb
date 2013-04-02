@@ -1,10 +1,16 @@
 # encoding: UTF-8
-class Contact < ActiveRecord::Base
-  attr_accessible :clientId, :name, :email, :phone, :address, :clientType, :institution
-  has_many :support_cases
-  has_and_belongs_to_many :contact_groups
+class Client < Tableless
+  column :id
+  column :name
+  column :email
+  column :phone
+  column :clientType
+  column :institution
+  column :login
+  column :cellphone
+  column :address
 
-  def self.contact_types
+  def self.client_types
     return {
         'aluno' => 'Aluno',
         'resp_instituicao' => 'Responsável da Instituição', 
@@ -14,16 +20,14 @@ class Contact < ActiveRecord::Base
       }
   end
 
-  validates :clientId,
+  validates :id,
     :numericality => {:only_integer => true, :allow_blank => true, :message => "ID do cliente deve ser um inteiro"}
   validates :name,
     :presence => {:message => "Favor digitar um nome"},
-    :uniqueness => {:message => "Esse nome já existe no sistema"},
     :length => { :in => 3..255 , :message => "Tem que ter entre 3 e 255 caracteres"}
   validates :email,
       :presence => {:message => "Favor digitar um e-mail"},
-      :format => {:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, :message => "E-mail inválido"},
-      :uniqueness => {:message => "Esse e-mail já consta no sistema"}
+      :format => {:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, :message => "E-mail inválido"}
   validates :phone,
         :presence => {:message => "Favor digitar um telefone"},
         :numericality => {:only_integer => true, :message => "Telefone só pode conter digitos de 0 a 9"},
@@ -31,10 +35,7 @@ class Contact < ActiveRecord::Base
   validates :address,
     :length => { :in => 5..255 , :message => "Tem que ter entre 5 e 255 caracteres"}
   validates :clientType,
-      :inclusion => { :in => contact_types.keys, :message => "Tem que ser um desses: #{contact_types.values.join(', ')}"}
+      :inclusion => { :in => client_types, :message => "Tem que ser um desses: #{client_types.keys.join(', ')}"}
   validates :institution,
       :presence => {:message => "Favor digitar uma instituição"}
-      
-
-  scope :sorted, order('contacts.name ASC')
 end

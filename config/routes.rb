@@ -9,6 +9,7 @@ CRMEngsoft::Application.routes.draw do
 
   resources :support_case_events
 
+  resources :clients
 
   resources :comments
 

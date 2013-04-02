@@ -11,10 +11,11 @@
 			    <th>E-mail</th>
 				<th>Telefone</th>
 				<th>Tipo de cliente</th>
+				<th>Instituição/Empresa</th>
 			</tr>
 		</thead>
 		<tbody>
-			<% @clients.each do |client| %>
+			<% @clients.each do |k, client| %>
 			  <tr>
   			    <td class="td-actions">
   			        <%= link_to '', {:action => 'show', :id => client.id}, :class => "icon-eye-open", :title => "Visualizar" %>
@@ -22,7 +23,8 @@
 			    <td><%= client.name %></td>
 			    <td><%= client.email %></td>
 				<td><%= client.phone %></td>
-				<td><%= @client_types_inv[client.clientType] %></td
+				<td><%= Client.client_types[client.clientType] %></td>
+				<td><%= client.institution %></td>
 			  </tr>
 			<% end %>
 		</tbody>
