@@ -12,7 +12,13 @@
   <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %>    
   <div class="control-group">
     <div class="controls">
-      <%= link_to 'Editar Campanha de Marketing', {:action => 'edit', :id => @marketing_campaign.id}, :class => "btn btn-small dark-blue" %>
+      <%= link_to 'Editar Campanha de Marketing', {:action => 'edit', :id => @marketing_campaign.id}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
+      <%= link_to 'Terminar criação', {:action => 'edit', :id => @marketing_campaign.id}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
+      <%= link_to 'Pedir Aprovação', {:action => 'edit', :id => @marketing_campaign.id}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
+      <%= link_to 'Aprovar', {:action => 'approve', :id => @marketing_campaign.id}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
+      <%= link_to 'Desaprovar', {:action => 'desapprove', :id => @marketing_campaign.id}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
+      <%= link_to 'Iniciar campanha', {:action => 'edit', :id => @marketing_campaign.id}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
+      <%= link_to 'Terminar campanha', {:action => 'edit', :id => @marketing_campaign.id}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
   </div>
 <% end %>
 
