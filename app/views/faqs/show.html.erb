@@ -7,9 +7,10 @@
 	</div>
 <% end %>
 
-<%= form_for @faq, :html => {:class => "form-horizontal"} do |f| -%>
+<%= form_for @faq, :html => {:class => "form-horizontal"} do |f| %>
 
-  <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %>    
+  <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %> 
+  <%= render(:partial => 'partials/timestamps', :locals => {:obj => @faq}) %>
   <div class="control-group">
     <div class="controls">
       <%= link_to 'Editar FAQ', {:action => 'edit', :id => @faq.id}, :class => "btn btn-small dark-blue" %>

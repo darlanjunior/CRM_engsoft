@@ -30,15 +30,17 @@ class ClientsController < ApplicationController
   def clients_web_service
     # TODO: Change to webservice Clients
     @clients = {}
+    folder = "http://localhost:3000/webservice/"
     @types = {
-      "aluno" => "http://localhost:3000/portal/aluno.json",
-      "resp_instituicao" => "http://localhost:3000/portal/resp_instituicao.json",
-      "resp_empresa" => "http://localhost:3000/portal/resp_empresa.json",
-      "admin_instituicao" => "http://localhost:3000/portal/admin_instituicao.json",
-      "admin_empresa" => "http://localhost:3000/portal/admin_empresa.json"
+      "aluno" => "alunos.json",
+      "resp_instituicao" => "coordenadores.json",
+      "resp_empresa" => "gestores.json",
+      "admin_instituicao" => "adminempresas.json",
+      "admin_empresa" => "admininstituicoes.json"
     }
     @types.each_pair do |kt, vt|
-      # response = RestClient.get vt, {:accept => :json}
+      path = folder + vt
+      # response = RestClient.get path, {:accept => :json}
       case kt
       when "aluno"
         response = """[

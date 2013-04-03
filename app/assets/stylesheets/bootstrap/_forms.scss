@@ -651,6 +651,10 @@ legend + .control-group {
     padding-top: 5px;
     text-align: right;
   }
+  .control-label-desc {
+    padding-top: 5px;
+    text-align: left;
+  }
   // Move over all input controls and content
   .controls {
     // Super jank IE7 fix to ensure the inputs in .input-append and input-prepend

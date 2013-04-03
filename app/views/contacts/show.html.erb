@@ -9,7 +9,8 @@
 
 <%= form_for @contact, :html => {:class => "form-horizontal"} do |f| %>
 
-  <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %>    
+  <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %> 
+  <%= render(:partial => 'partials/timestamps', :locals => {:obj => @contact}) %> 
   <div class="control-group">
     <div class="controls">
       <%= link_to 'Editar Contato', {:action => 'edit', :id => @contact.id}, :class => "btn btn-small dark-blue" %>

@@ -92,9 +92,9 @@ class SubjectsController < ApplicationController
 
   private
   def criar_lista_faqs
-    @lista_faqs = "Não há FAQs a serem mostradas."
+    @lista_faqs = "Não há FAQs relacionadas a esse tópico."
     if not @subject.faqs.empty?
-      @lista_faqs = @subject.faqs.collect{|f| "<dt>" + f.question + "</dt><dd>" + f.answer + "</dd>"}.join().html_safe
+      @lista_faqs = ("<dl style='margin-bottom:0px;'>" + @subject.faqs.collect{|f| "<dt>" + f.question + "</dt><dd>" + f.answer + "</dd>"}.join() + "</dl>").html_safe
     end
   end
 end

@@ -9,7 +9,8 @@
 
 <%= form_for @subject, :html => {:class => "form-horizontal"} do |f| -%>
 
-  <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %>    
+  <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %> 
+  <%= render(:partial => 'partials/timestamps', :locals => {:obj => @subject}) %>
   <div class="control-group">
     <div class="controls">
       <%= link_to 'Editar Tópico', {:action => 'edit', :id => @subject.id}, :class => "btn btn-small dark-blue" %>
