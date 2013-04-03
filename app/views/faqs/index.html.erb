@@ -8,7 +8,6 @@
 			<tr>
 				<th>Ações</th>
 			    <th>Pergunta</th>
-			    <th>Resposta</th>
 			    <th>Tópico</th>
 			</tr>
 		</thead>
@@ -21,7 +20,6 @@
   					<%= link_to '', {:action => 'delete', :id => faq.id}, :class => "icon-remove", :title => "Deletar" %>
   				</td>
 			    <td><%= faq.question %></td>
-			    <td><%= faq.answer %></td>
 			    <td><%= faq.subject.subject %>
 				    (Desc: <%= faq.subject.description %>)</td>
 			  </tr>

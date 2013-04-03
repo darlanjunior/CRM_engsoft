@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130327033213) do
+ActiveRecord::Schema.define(:version => 20130327200123) do
 
   create_table "banners", :force => true do |t|
     t.integer  "width"
@@ -39,17 +39,6 @@ ActiveRecord::Schema.define(:version => 20130327033213) do
 
   add_index "calls", ["contact_id"], :name => "index_calls_on_contact_id"
 
-  create_table "comments", :force => true do |t|
-    t.string   "content"
-    t.integer  "support_case_id"
-    t.integer  "employee_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
-  add_index "comments", ["employee_id"], :name => "index_comments_on_employee_id"
-  add_index "comments", ["support_case_id"], :name => "index_comments_on_support_case_id"
-
   create_table "contact_groups", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -62,6 +51,13 @@ ActiveRecord::Schema.define(:version => 20130327033213) do
   end
 
   add_index "contact_groups_contacts", ["contact_id", "contact_group_id"], :name => "c_g_c_index", :unique => true
+
+  create_table "contact_groups_marketing_campaigns", :id => false, :force => true do |t|
+    t.integer "marketing_campaign_id"
+    t.integer "contact_group_id"
+  end
+
+  add_index "contact_groups_marketing_campaigns", ["marketing_campaign_id", "contact_group_id"], :name => "c_g_m_c_index", :unique => true
 
   create_table "contact_groups_newsletters", :id => false, :force => true do |t|
     t.integer "newsletter_id"
@@ -77,8 +73,9 @@ ActiveRecord::Schema.define(:version => 20130327033213) do
     t.string   "phone"
     t.string   "address"
     t.string   "clientType"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "institution"
   end
 
   create_table "employees", :force => true do |t|
@@ -98,6 +95,35 @@ ActiveRecord::Schema.define(:version => 20130327033213) do
 
   add_index "faqs", ["subject_id"], :name => "index_faqs_on_subject_id"
 
+  create_table "marketing_actions", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "action_type"
+    t.decimal  "value",                 :precision => 8, :scale => 2
+    t.integer  "banner_id"
+    t.integer  "marketing_campaign_id"
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
+  end
+
+  add_index "marketing_actions", ["banner_id"], :name => "index_marketing_actions_on_banner_id"
+  add_index "marketing_actions", ["marketing_campaign_id"], :name => "index_marketing_actions_on_marketing_campaign_id"
+
+  create_table "marketing_campaigns", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "status"
+    t.date     "estimated_begin_date"
+    t.date     "estimated_end_date"
+    t.decimal  "estimated_revenue",    :precision => 8, :scale => 2
+    t.text     "financial_feedback"
+    t.date     "begin_date"
+    t.date     "end_date"
+    t.decimal  "revenue",              :precision => 8, :scale => 2
+    t.datetime "created_at",                                         :null => false
+    t.datetime "updated_at",                                         :null => false
+  end
+
   create_table "newsletters", :force => true do |t|
     t.string   "title"
     t.text     "message_body"
@@ -111,19 +137,6 @@ ActiveRecord::Schema.define(:version => 20130327033213) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
-
-  create_table "support_case_events", :force => true do |t|
-    t.string   "eventType"
-    t.string   "description"
-    t.string   "content"
-    t.integer  "support_case_id"
-    t.integer  "employee_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
-  add_index "support_case_events", ["employee_id"], :name => "index_support_case_events_on_employee_id"
-  add_index "support_case_events", ["support_case_id"], :name => "index_support_case_events_on_support_case_id"
 
   create_table "support_cases", :force => true do |t|
     t.string   "description"

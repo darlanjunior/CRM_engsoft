@@ -5,11 +5,11 @@ CRMEngsoft::Application.routes.draw do
   resources :marketing_campaigns
 
 
-  get "clients/index"
-
   resources :support_case_events
 
+
   resources :clients
+
 
   resources :comments
 
@@ -37,13 +37,14 @@ CRMEngsoft::Application.routes.draw do
 
   resources :questions
 
+
   resources :calls
+
 
   resources :banners
 
-  resources :reports
 
-  match '/dummy/clients' => 'dummy_service#client'
+  resources :reports
 
 
   # The priority is based upon order of creation:
