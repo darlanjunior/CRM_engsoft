@@ -20,7 +20,7 @@
 				<%= link_to '', {:action => 'delete', :id => marketing_campaign.id}, :class => "icon-remove", :title => "Deletar"  %>
 		  </td>
 		  <td><%= marketing_campaign.name %></td>
-		  <td><%= marketing_campaign.status %></td>
+		  <td><%= MarketingCampaign.marketing_status[marketing_campaign.status] %></td>
 		</tr>
 	<% end %>
 	</table>

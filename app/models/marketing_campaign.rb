@@ -18,11 +18,19 @@ class MarketingCampaign < ActiveRecord::Base
   end
   
   def next_status
-  	status = MarketingCampaign.marketing_status[]
+  	if(status == 4)
+  		status = 2
+  	else
+  		status += 1
+  	end
   end
   
   def previous_status
-  	
+  	if(status == 2)
+  		status = 4
+  	else
+  		status -= 1
+  	end
   end
   
   def self.marketing_status
