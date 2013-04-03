@@ -14,21 +14,24 @@
 		</thead>
 
 		<tbody>
-	<% @marketing_actions.each do |marketing_action| %>
-		<tr>
-			<td class="td-actions">
-		  	<%= link_to '', {:action => 'show', :id => marketing_action.id}, :class => "icon-eye-open", :title => "Visualizar" %>
-		  	<%= link_to '', {:action => 'edit', :id => marketing_action.id}, :class => "icon-edit", :title => "Editar" %>
-		  	<%= link_to '', {:action => 'delete', :id => marketing_action.id}, :class => "icon-remove", :title => "Deletar"  %>
-		  </td>
-		  <td><%= marketing_action.name %></td>
-		  <td><%= marketing_action.action_type %></td>
-		  <td><%= number_to_currency(marketing_action.value, :unit => 'R$', :separator => ',') %></td>
-		</tr>
+	<% if(!@marketing_campaign.marketing_actions.nil?) %>
+		<% @marketing_campaign.marketing_actions.each do |marketing_action| %>
+			<tr>
+				<td class="td-actions">
+					<%= link_to '', {:action => 'show', :id => marketing_action.id}, :class => "icon-eye-open", :title => "Visualizar" %>
+					<%= link_to '', {:action => 'edit', :id => marketing_action.id}, :class => "icon-edit", :title => "Editar" %>
+					<%= link_to '', {:action => 'delete', :id => marketing_action.id}, :class => "icon-remove", :title => "Deletar"  %>
+				</td>
+				<td><%= marketing_action.name %></td>
+				<td><%= marketing_action.action_type %></td>
+				<td><%= number_to_currency(marketing_action.value, :unit => 'R$', :separator => ',') %></td>
+			</tr>
+		<% end %>
 	<% end %>
 	</table>
 </div>
 
 <br />
 
-<%= link_to 'Nova ação de marketing', {:action => 'new'}, :class => "btn btn-small light-blue inverse"  %>
+<%= link_to 'Nova ação de marketing', {:action => 'new'}, :class => "btn btn-small light-blue inverse"  %> </br>
+<%= link_to 'Voltar a campanha de marketing', {:controller => 'marketing_campaigns',:action => 'show', :id => @marketing_campaign.id}, :class => "btn btn-small dark-blue"  %>

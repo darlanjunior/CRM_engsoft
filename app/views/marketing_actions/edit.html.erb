@@ -1,6 +1,6 @@
 <h2><%= @page_title = "Alterar Ação de Marketing" %></h2><hr />
 
-<%= form_for @marketing_action, :validate => true, :html => {:class => "form-horizontal"} do |f| %>
+<%= form_for [@marketing_campaign, @marketing_action], :validate => true, :html => {:class => "form-horizontal"} do |f| %>
   
   <%= render(:partial => 'form', :locals => {:f => f}) %>    
   <div class="control-group">
@@ -10,4 +10,4 @@
   </div>
 <% end %>
 
-<%= link_to 'Ir para a lista de ações de marketing', marketing_actions_path, :class => "btn btn-small light-blue inverse" %>
+<%= link_to 'Ir para a lista de ações de marketing', {:action => 'index'}, :class => "btn btn-small light-blue inverse" %>

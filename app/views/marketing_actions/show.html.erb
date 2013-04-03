@@ -1,5 +1,6 @@
 <h2><%= @page_title = "Visualizar Ação de Marketing" %></h2><hr />
 
+<% notice = params[:notice] %>
 <% if notice %>
 	<div class="alert green fade in">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -7,7 +8,7 @@
 	</div>
 <% end %>
 
-<%= form_for @marketing_action, :html => {:class => "form-horizontal"} do |f| -%>
+<%= form_for [@marketing_campaign, @marketing_action], :html => {:class => "form-horizontal"} do |f| -%>
 
   <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %>    
   <div class="control-group">
@@ -17,5 +18,5 @@
 <% end %>
 
 <br />
-<%= link_to 'Ir para a lista de ações de marketing', marketing_actions_path, :class => "btn btn-small light-blue inverse" %>&nbsp; &nbsp;&nbsp;
-<%= link_to 'Nova Ação de Marketing', new_marketing_action_path, :class => "btn btn-small light-blue inverse" %>
+<%= link_to 'Ir para a lista de ações de marketing', {:action => 'index'}, :class => "btn btn-small light-blue inverse" %>&nbsp; &nbsp;&nbsp;
+<%= link_to 'Nova Ação de Marketing', {:action => 'new', :id => @marketing_action.id}, :class => "btn btn-small light-blue inverse" %>

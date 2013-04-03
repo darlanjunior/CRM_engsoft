@@ -16,4 +16,22 @@ class MarketingCampaign < ActiveRecord::Base
   
   	return sum
   end
+  
+  def next_status
+  	status = MarketingCampaign.marketing_status[]
+  end
+  
+  def previous_status
+  	
+  end
+  
+  def self.marketing_status
+  	return [0 => 'Criada',
+  					1 => 'Pronta',
+  					2 => 'Em espera',
+  					3 => 'Aprovada',
+  					4 => 'Desaprovada',
+  					5 => 'Iniciada',
+  					6 => 'Finalizada']
+  end
 end

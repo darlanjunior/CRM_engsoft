@@ -75,8 +75,7 @@
 <% if(@marketing_campaign.marketing_actions) %>
 	<div class="box bordered" style="position:relative;">
 		<div class="box-header" >
-			<i class="icon-th-list"></i>Ações de marketing&nbsp;&nbsp;&nbsp;&nbsp;
-		<%= link_to '', {:controller => 'marketing_actions', :action => 'new'}, {:class => "icon-plus-sign", :target => '_new', :style => "font-size:20px"} %>
+			<i class="icon-th-list"></i>Ações de marketing
 		</div>
 
 		<table class="table table-striped data-table">
@@ -98,6 +97,9 @@
 		<% end %>
 		</table>
 	</div>
+
+<%= link_to 'Editar ações de marketing', marketing_campaign_marketing_actions_path(@marketing_campaign.id), {:class => "btn btn-small dark-blue"} %>
+	
 <% end %>
 
 <div class="box bordered" style="position:relative;">
