@@ -4,24 +4,18 @@
 <div id="reportInputs" class="box bordered">
 
 
-         <%= form_tag :action =>'report', :method=>'get' do %>
+  <%= form_tag :action =>'supportCasesReport', :method=>'get' do %>
 
-            <div class="input-append date datepicker" data-date=<%=@today.to_s%> data-date-format="yyyy-mm-dd">
-                <%= label_tag 'startDate', 'Data Inicial' %>
-                <%= text_field_tag 'startDate', params[:startDate], :placeholder =>'Data inicial... ' %>
-                <button class="btn light-blue inverse date-button" type="button"><i class="icon-th"></i></button>
-            </div>
-            <div class="input-append date datepicker" data-date=<%=@today.to_s%> data-date-format="yyyy-mm-dd">
-                <%= label_tag 'endDate', 'Data Final' %>
-                <%= text_field_tag 'endDate', params[:endDate], :placeholder =>'Data final... ' %>
-                <button class="btn light-blue inverse date-button" type="button"><i class="icon-th"></i></button>
-            </div>
-            <%= submit_tag "Gerar Relatorio",:class => "btn btn-small dark-blue" %>
-        <% end %>
-
-    </div>
-</div>
-
-<% if(@allSupportCases!=nil) %>
-    <%= render "report"%>
-<% end %>
+      <div class="input-append date datepicker" data-date=<%=@today.to_s%> data-date-format="yyyy-mm-dd">
+      <%= label_tag 'startDate', 'Data Inicial' %>
+      <%= text_field_tag 'startDate', params[:startDate], :placeholder =>'Data inicial... ' %>
+      <button class="btn light-blue inverse date-button" type="button"><i class="icon-th"></i></button>
+      </div>
+      <div class="input-append date datepicker" data-date=<%=@today.to_s%> data-date-format="yyyy-mm-dd">
+      <%= label_tag 'endDate', 'Data Final' %>
+      <%= text_field_tag 'endDate', params[:endDate], :placeholder =>'Data final... ' %>
+      <button class="btn light-blue inverse date-button" type="button"><i class="icon-th"></i></button>
+      </div>
+      <%= submit_tag "Gerar Relatorio",:class => "btn btn-small dark-blue" %>
+  <% end %>
+  </div>

@@ -1,0 +1,36 @@
+
+<%
+case_type_pie_div = "caseType-pie"
+case_status_pie_div = "caseStatus-pie"
+case_type_label_name = 'Tipo de Chamado'
+case_type_label_value = 'Numero de Chamados'
+case_status_label_name = 'Status do Chamado'
+case_status_label_value = 'Numero de Chamados'
+num_problem_cases = @problemCases.size
+num_doubt_cases = @doubtCases.size
+num_closed_cases = @closedCases.size
+num_ongoing_cases = @openCases.size
+
+
+case_type_data = "[['Problema',#{num_problem_cases}],['Duvida',#{num_doubt_cases}]]"
+case_status_data  ="[['Fechado',#{num_closed_cases}],['Em Andamento',#{num_ongoing_cases}]]"
+
+ %>
+
+
+caseTypeData = <%= case_type_data.html_safe%>;
+caseStatusData = <%= case_status_data.html_safe%>;
+caseTypePieDiv = '<%=case_type_pie_div.html_safe%>';
+caseStatusPieDiv = '<%= case_status_pie_div.html_safe%>';
+caseTypeLabelName = '<%=case_type_label_name.html_safe%>';
+caseTypeLabelValue = '<%= case_type_label_value.html_safe%>';
+caseStatusLabelName = '<%= case_status_label_name.html_safe%>';
+caseStatusLabelValue = '<%=case_status_label_value.html_safe%>';
+
+
+
+drawChartPie(caseTypeLabelName, caseTypeLabelValue,caseTypeData,caseTypePieDiv,"Proporcoes de tipos de chamados:");
+drawChartPie(caseStatusLabelName,caseStatusLabelValue,caseStatusData,caseStatusPieDiv,"Proporcoes dos status de chamado:")
+
+
+

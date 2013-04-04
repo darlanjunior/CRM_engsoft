@@ -25,6 +25,18 @@
     <b>Periodo medio de duracao de um chamado no periodo (Em dias):</b>
     <%= @averageCompletionTime.round(2)%>
   </p>
+  <%= form_tag 'supportCasesReport',:remote=>true do %>
+      <%= submit_tag "Gerar Charts",:class => "btn btn-small dark-blue" %>
+  <% end %>
+  <div class="row box bordered">
+      <div class="span4" id="caseType-pie">
+      </div>
+      <div class="span4" id="caseStatus-pie">
+      </div>
+  </div>
+
+
+
   <div id="idle_cases" class="box bordered">
     <h5>Casos abertos ociosos:</h5>
     <table class="table table-striped data-table">

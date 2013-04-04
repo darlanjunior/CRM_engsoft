@@ -9,7 +9,10 @@ class ReportsController < ApplicationController
     end
   end
 
-  def report
+
+  def supportCasesReport
+
+    @test = params[:test]
 
     startDate = params[:startDate]
     endDate = params[:endDate]
@@ -44,23 +47,27 @@ class ReportsController < ApplicationController
           createdCase.created_at<endDate}
     end
 
-    @totalDays = 0
-    @closedCases.each do |closedCase|
-      @totalDays = @totalDays + (closedCase.updated_at.to_date - closedCase.created_at.to_date).to_i
-    end
+    if(@closedCases!=nil && @closedCases.size!=0)
+      @totalDays = 0
+      @closedCases.each do |closedCase|
+        @totalDays = @totalDays + (closedCase.updated_at.to_date - closedCase.created_at.to_date).to_i
+      end
 
-    @averageCompletionTime = @totalDays/@closedCases.size
+      @averageCompletionTime = @totalDays/@closedCases.size
+    end
 
     @idleCases = nil;
     if(thresholdLength!=nil)
       @idleCases = @openCases.select{|openCase| openCase.updated_at < (Time.now.to_date - thresholdLength.days)}
     end
 
-    @perctOpenCases = @openCases.size.to_f/@createdCases.size.to_f
-    @perctClosedCases = @closedCases.size.to_f/@createdCases.size.to_f
-    @perctProblemCases = @problemCases.size.to_f/@createdCases.size.to_f
-    @perctDoubtCases = @doubtCases.size.to_f/@createdCases.size.to_f
+    if(@createdCases!=nil && @createdCases.size!=0)
+      @perctOpenCases = @openCases.size.to_f/@createdCases.size.to_f
+      @perctClosedCases = @closedCases.size.to_f/@createdCases.size.to_f
+      @perctProblemCases = @problemCases.size.to_f/@createdCases.size.to_f
+      @perctDoubtCases = @doubtCases.size.to_f/@createdCases.size.to_f
+    end
 
-    render :new
+
   end
 end
