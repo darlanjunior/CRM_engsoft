@@ -8,8 +8,6 @@
 <% end %>
 
 <%= form_for @client, :html => {:class => "form-horizontal"} do |f| %>
-<%= puts @client.inspect %>
-
   <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %>    
 <% end %>
 

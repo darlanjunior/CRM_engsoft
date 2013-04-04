@@ -3,11 +3,11 @@ require 'rest_client'
 require 'json'
 
 class ClientsController < ApplicationController
-  before_filter :clients_web_service
-
   # GET /clients
   # GET /clients.json
   def index
+    @clients = clients_web_service
+
     respond_to do |format|
       format.html #index.html.erb
       format.json { render json: @clients }
@@ -17,7 +17,7 @@ class ClientsController < ApplicationController
   # GET /clients/1
   # GET /clients/1.json
   def show
-    @client = @clients[params[:id].to_i]
+    @clients = clients_web_service params[:id]
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,121 +27,106 @@ class ClientsController < ApplicationController
 
   private
   
-  def clients_web_service
-    # TODO: Change to webservice Clients
+  def clients_web_service id_client=""
     @clients = {}
-    folder = "http://localhost:3000/webservice/"
-    @types = {
-      "aluno" => "alunos.json",
-      "resp_instituicao" => "coordenadores.json",
-      "resp_empresa" => "gestores.json",
-      "admin_instituicao" => "adminempresas.json",
-      "admin_empresa" => "admininstituicoes.json"
-    }
-    @types.each_pair do |kt, vt|
-      path = folder + vt
-      # response = RestClient.get path, {:accept => :json}
-      case kt
-      when "aluno"
-        response = """[
-          {
-            \"id\":5,
-            \"email\":\"vlassance@gmail.com\",
-            \"name\":\"Victor Lassance Oliveira e Silva\",
-            \"login\":\"vlassance\",
-            \"cellphone\":\"11996012456\",
-            \"phone\":\"6503873751\",
-            \"address\":\"Rua do Ouvidor, 72\",
-            \"institution\":\"USP\"
-          },
-          {
-            \"id\":6,
-            \"email\":\"alandbarroso@gmail.com\",
-            \"name\":\"Alan\",
-            \"login\":\"alandbarroso\",
-            \"cellphone\":\"1712345678\",
-            \"phone\":\"1787654321\",
-            \"address\":\"Rio Preto\",
-            \"institution\":\"POLI\"
-      
-          }
-        ]"""
-      when "resp_instituicao"
-        response = """[
-          {
-            \"id\":7,
-            \"email\":\"risco@gmail.com\",
-            \"name\":\"Jorge Risco\",
-            \"login\":\"risco\",
-            \"cellphone\":\"11456546456\",
-            \"phone\":\"\",
-            \"address\":\"Lab soft.\",
-            \"institution\":\"PCS\"
-          },
-          {
-            \"id\":8,
-            \"email\":\"sbmorais@gmail.com\",
-            \"name\":\"Sergio Bueno de Morais\",
-            \"login\":\"sbmorais\",
-            \"cellphone\":\"1997972524\",
-            \"phone\":\"1932586366\",
-            \"address\":\"Rua do Ouvidor, 72\",
-            \"institution\":\"FAAP\"
+    path = "http://estagiofacil.no-ip.org:3005/webservices/usuarios"
+
+    # response = RestClient.get path, {:accept => :json}
+    response = """[
+      { 
+        \"_id\":\"515c6789789c8119c600000b\",
+        \"celular\":\"11996012456\",
+        \"login\":\"admin\",
+        \"nome\":\"Administrador \",
+        \"telefone\":\"1932586366\",
+        \"email\":\"admin@gmail.com\",
+        \"cpf\":\"38926370836\",
+        \"instituicao\":\"POLI-USP\",
+        \"grupo\":{\"internal_id\":1},
         
-          }
-        ]"""
-      when "resp_empresa"
-        response = """[
-          {
-            \"id\":9,
-            \"email\":\"risco@gmail.com\",
-            \"name\":\"Resp Empresa\",
-            \"login\":\"risco\",
-            \"cellphone\":\"11456546456\",
-            \"phone\":\"\",
-            \"address\":\"Lab soft.\",
-            \"institution\":\"PCS\"
-          }
-        ]"""
-      when "admin_instituicao"
-        response = """[
-          {
-            \"id\":10,
-            \"email\":\"risco@gmail.com\",
-            \"name\":\"Admin Instituicao\",
-            \"login\":\"risco\",
-            \"cellphone\":\"11456546456\",
-            \"phone\":\"\",
-            \"address\":\"Lab soft.\",
-            \"institution\":\"PCS\"
-          }
-        ]"""
-      else # admin_empresa
-        response = """[
-          {
-            \"id\":11,
-            \"email\":\"risco@gmail.com\",
-            \"name\":\"Admin Empresa\",
-            \"login\":\"risco\",
-            \"cellphone\":\"11456546456\",
-            \"phone\":\"\",
-            \"address\":\"Lab soft.\",
-            \"institution\":\"PCS\"
-          }
-        ]"""
-      end
-      @clients_json = JSON.parse response
-      @clients_json.each do |cl_json|
+        \"endereco\":\"Rua do Ouvidor, 72\",
+        \"cep\":\"13104-138\",
+        \"cidade\":\"Campinas\",
+        \"estado\":\"SP\",
+        \"pais\":\"Brasil\",
+        
+        \"last_sign_in_at\":null,
+        \"last_sign_in_ip\":null,
+        \"remember_created_at\":null,
+        \"reset_password_sent_at\":null,
+        \"reset_password_token\":null,
+        \"sign_in_count\":0,
+        \"current_sign_in_at\":null,
+        \"current_sign_in_ip\":null
+      },
+      { 
+        \"_id\":\"515c6789789c8119c600000c\",
+        \"celular\":null,
+        \"login\":null,
+        \"nome\":null,
+        \"telefone\":null,
+        \"email\":\"admin@gmail.com\",
+        \"cpf\":null,
+        \"instituicao\":null,
+        \"grupo\":{\"internal_id\":2},
+        
+        \"endereco\":\"Rua Válson Lopes, 70\",
+        \"cep\":null,
+        \"cidade\":null,
+        \"estado\":null,
+        \"pais\":null,
+        
+        \"last_sign_in_at\":null,
+        \"last_sign_in_ip\":null,
+        \"remember_created_at\":null,
+        \"reset_password_sent_at\":null,
+        \"reset_password_token\":null,
+        \"sign_in_count\":0,
+        \"current_sign_in_at\":null,
+        \"current_sign_in_ip\":null
+      }
+    ]"""
+    @clients_json = JSON.parse response
+    
+    @clients_json.each do |cl_json|
+      if id_client.empty? or id_client == cl_json["_id"]
         @client = Client.new
         cl_json.each_pair do |k, v|
           if @client.attributes.include? k
             @client[k] = v
           end
         end
-        @client["clientType"] = kt
-        @clients[@client["id"]] = @client
+        @client["clientType"] = Client.client_types[cl_json["grupo"]["internal_id"]]
+        @client["endereco"] = build_address cl_json
+        @clients[@client["_id"]] = @client
       end
     end
+
+    if not id_client.empty?
+      return @clients[id_client]
+    end
+    return @clients
+  end
+  
+  def build_address obj
+    endereco = ""
+    if not obj["endereco"].nil?
+      endereco << obj["endereco"]
+      if not obj["cep"].nil?
+        endereco << ", CEP " + obj["cep"]
+      end
+      if not obj["cidade"].nil?
+        endereco << ", " + obj["cidade"]
+        if not obj["estado"].nil?
+          endereco << "/" + obj["estado"]
+        end
+      end
+      if not obj["pais"].nil?
+        endereco << " - " + obj["pais"]
+      end
+    end
+
+    return endereco
   end
 
 end

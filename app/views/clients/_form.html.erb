@@ -2,50 +2,50 @@
 <%= error_messages_for(@client) %>
 
 <div class="control-group">
-    <%= f.label :name, "Nome", :class => "control-label strong" %>
+	<label class="control-label strong">Nome</label>
 	<div class="controls">
-      <%= f.text_field :name, :placeholder => "Nome", :readonly => readonly %>
-    </div>
+		<label class="control-label-desc"><%= @client.nome %></label>
+	</div>
 </div>
 <div class="control-group">
-	<%= f.label :login, "Login", :class => "control-label strong" %>
+	<label class="control-label strong">Login</label>
 	<div class="controls">
-	  <%= f.text_field :login, :placeholder => "Login", :readonly => readonly %>
-    </div>
+		<label class="control-label-desc"><%= @client.login %></label>
+	</div>
 </div>
 <div class="control-group">
-	<%= f.label :email, "E-mail", :class => "control-label strong" %>
+	<label class="control-label strong">E-mail</label>
 	<div class="controls">
-	  <%= f.text_field :email, :placeholder => "E-mail", :readonly => readonly %>
-    </div>
+		<label class="control-label-desc"><%= @client.email %></label>
+	</div>
 </div>
 <div class="control-group">
-	<%= f.label :phone, "Telefone", :class => "control-label strong" %>
+	<label class="control-label strong">Telefone</label>
 	<div class="controls">
-	  <%= f.text_field :phone, :placeholder => "Telefone", :readonly => readonly %>
-    </div>
+		<label class="control-label-desc"><%= @client.telefone %></label>
+	</div>
 </div>
 <div class="control-group">
-	<%= f.label :cellphone, "Celular", :class => "control-label strong" %>
+	<label class="control-label strong">Celular</label>
 	<div class="controls">
-	  <%= f.text_field :cellphone, :placeholder => "Celular", :readonly => readonly %>
-    </div>
+		<label class="control-label-desc"><%= @client.celular %></label>
+	</div>
 </div>
 <div class="control-group">
-	<%= f.label :address, "Endereço", :class => "control-label strong" %>
+	<label class="control-label strong">Endereço</label>
 	<div class="controls">
-	  <%= f.text_field :address, :placeholder => "Endereço", :readonly => readonly %>
-    </div>
+		<label class="control-label-desc"><%= @client.endereco %></label>
+	</div>
 </div>
 <div class="control-group">
-	<%= f.label :clientType, "Tipo de cliente", :class => "control-label strong" %>
+	<label class="control-label strong">Tipo de cliente</label>
 	<div class="controls">
-	  <%= f.select :clientType, Client.client_types.invert, {}, {:disabled => readonly} %>
-    </div>
+		<label class="control-label-desc"><%= Client.client_labels[@client.clientType] %></label>
+	</div>
 </div>
 <div class="control-group">
-	<%= f.label :institution, "Instituição/Empresa", :class => "control-label strong" %>
+	<label class="control-label strong">Instituição/Empresa</label>
 	<div class="controls">
-	  <%= f.text_field :institution, :placeholder => "Instituição/Empresa", :readonly => readonly %>
-    </div>
+		<label class="control-label-desc"><%= @client.instituicao %></label>
+	</div>
 </div>

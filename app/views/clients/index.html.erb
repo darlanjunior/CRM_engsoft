@@ -18,13 +18,13 @@
 			<% @clients.each do |k, client| %>
 			  <tr>
   			    <td class="td-actions">
-  			        <%= link_to '', {:action => 'show', :id => client.id}, :class => "icon-eye-open", :title => "Visualizar" %>
+  			        <%= link_to '', {:action => 'show', :id => client._id}, :class => "icon-eye-open", :title => "Visualizar" %>
   				</td>
-			    <td><%= client.name %></td>
+			    <td><%= client.nome %></td>
 			    <td><%= client.email %></td>
-				<td><%= client.phone %></td>
-				<td><%= Client.client_types[client.clientType] %></td>
-				<td><%= client.institution %></td>
+				<td><%= client.telefone %></td>
+				<td><%= Client.client_labels[client.clientType] %></td>
+				<td><%= client.instituicao %></td>
 			  </tr>
 			<% end %>
 		</tbody>
