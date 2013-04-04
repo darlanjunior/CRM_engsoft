@@ -14,6 +14,8 @@ class Contact < ActiveRecord::Base
       }
   end
 
+  validates :clientId,
+    :uniqueness => {:message => "Esse cliente já foi importado anteriormente"}
   validates :name,
     :presence => {:message => "Favor digitar um nome"},
     :uniqueness => {:message => "Esse nome já existe no sistema"},
