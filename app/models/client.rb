@@ -10,6 +10,8 @@ class Client < Tableless
   column :login
   column :celular
   column :endereco
+  
+  attr_accessible :_id, :nome, :email, :telefone, :clientType, :instituicao, :cpf, :login, :celular, :endereco
 
   def self.client_types # A ordem das linhas importa, não alterar
     return {

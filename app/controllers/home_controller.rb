@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
 	def index
 		debugger
-		puts 'blablabla'
 	end
 
 	def login

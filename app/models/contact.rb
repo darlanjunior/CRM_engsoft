@@ -14,8 +14,6 @@ class Contact < ActiveRecord::Base
       }
   end
 
-  validates :clientId,
-    :numericality => {:only_integer => true, :allow_blank => true, :message => "ID do cliente deve ser um inteiro"}
   validates :name,
     :presence => {:message => "Favor digitar um nome"},
     :uniqueness => {:message => "Esse nome já existe no sistema"},

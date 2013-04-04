@@ -27,6 +27,16 @@ class ContactsController < ApplicationController
   # GET /contacts/new.json
   def new
     @contact = Contact.new
+    if not params[:client].nil?
+      @client = Client.new JSON.parse(params[:client])
+      @contact.clientId = @client._id
+      @contact.name = @client.nome
+      @contact.email = @client.email
+      @contact.phone = @client.telefone
+      @contact.address = @client.endereco
+      @contact.clientType = @client.clientType
+      @contact.institution = @client.instituicao
+    end
 
     respond_to do |format|
       format.html # new.html.erb

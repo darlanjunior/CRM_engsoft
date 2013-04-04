@@ -1,15 +1,11 @@
 <h2><%= @page_title = "Visualizar Cliente" %></h2><hr />
 
-<% if notice %>
-	<div class="alert green fade in">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		<%= notice %>
-	</div>
-<% end %>
-
 <%= form_for @client, :html => {:class => "form-horizontal"} do |f| %>
   <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %>    
 <% end %>
+
+<%= link_to ' Importar cliente para a base de contatos...', {:controller => 'contacts', :action => 'new', :client => @client.to_json}, :class => "icon-circle-arrow-down btn btn-small light-blue inverse", :title => "Importar cliente para a base de contatos..." %>
+<br />
 
 <br />
 <%= link_to 'Ir para a lista de clientes', {:action => "index"}, :class => "btn btn-small light-blue inverse" %>
