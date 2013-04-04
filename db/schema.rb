@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130327200123) do
+ActiveRecord::Schema.define(:version => 20130403184949) do
 
   create_table "banners", :force => true do |t|
     t.integer  "width"
@@ -112,7 +112,6 @@ ActiveRecord::Schema.define(:version => 20130327200123) do
   create_table "marketing_campaigns", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "status"
     t.date     "estimated_begin_date"
     t.date     "estimated_end_date"
     t.decimal  "estimated_revenue",    :precision => 8, :scale => 2
@@ -122,6 +121,7 @@ ActiveRecord::Schema.define(:version => 20130327200123) do
     t.decimal  "revenue",              :precision => 8, :scale => 2
     t.datetime "created_at",                                         :null => false
     t.datetime "updated_at",                                         :null => false
+    t.integer  "status"
   end
 
   create_table "newsletters", :force => true do |t|

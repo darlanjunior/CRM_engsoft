@@ -1,7 +1,7 @@
 <h2><%= @page_title = "Deletar Ação de Marketing" %></h2><hr />
 
 <p class="red-text strong" style="font-size:16px">Você tem certeza que deseja deletar permanentemente essa ação?</p>
-<%= form_for @marketing_action, :html => {:class => "form-horizontal"} do |f| -%>
+<%= form_for [@marketing_campaign, @marketing_action], :html => {:class => "form-horizontal"} do |f| -%>
 
   <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %>    
   <div class="control-group">
@@ -11,4 +11,4 @@
   </div>
 <% end %>
 
-<%= link_to 'Ir para a lista de ações de marketing', marketing_actions_path, :class => "btn btn-small light-blue inverse" %>
+<%= link_to 'Ir para a lista de ações de marketing', {:action => 'index'}, :class => "btn btn-small light-blue inverse" %>

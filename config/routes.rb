@@ -2,7 +2,13 @@ CRMEngsoft::Application.routes.draw do
   resources :marketing_actions
 
 
-  resources :marketing_campaigns
+  resources :marketing_campaigns do
+  	get 'delete', :on => :collection
+  	
+  	resources :marketing_actions do
+  		get 'delete', :on => :collection
+  	end
+  end
 
 
   resources :support_case_events

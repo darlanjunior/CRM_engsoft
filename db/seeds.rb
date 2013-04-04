@@ -73,4 +73,4 @@ action2.save
 
 #Criando campanha de marketing
 MarketingCampaign.delete_all
-MarketingCampaign.create!(:begin_date => "20/01/2012", :description => "Teste de descricao de campanha de marketing", :end_date => "22/01/2012", :estimated_begin_date => "19/01/2012", :estimated_end_date => "21/01/2012", :estimated_revenue => 100.23, :name => "Super Campanha de Marketing", :status => "Aberta", :revenue => 98.05, :financial_feedback => "Campanha aprovada com sucesso")
+MarketingCampaign.create!(:begin_date => "20/01/2012", :description => "Teste de descricao de campanha de marketing", :end_date => "22/01/2012", :estimated_begin_date => "19/01/2012", :estimated_end_date => "21/01/2012", :estimated_revenue => 100.23, :name => "Super Campanha de Marketing", :status => 1, :revenue => 98.05, :financial_feedback => "Campanha aprovada com sucesso")

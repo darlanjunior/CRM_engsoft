@@ -1,4 +1,6 @@
 class MarketingActionsController < ApplicationController
+	before_filter :find_marketing_campaign
+	
   # GET /marketing_actions
   # GET /marketing_actions.json
   def index
@@ -43,10 +45,12 @@ class MarketingActionsController < ApplicationController
     @marketing_action = MarketingAction.new(params[:marketing_action])
     
     @marketing_action.banner = Banner.find(params[:banner])
+    
+    @marketing_action.marketing_campaign = @marketing_campaign
 
     respond_to do |format|
       if @marketing_action.save
-        format.html { redirect_to @marketing_action, notice: 'A acao de marketing foi criada com sucesso' }
+        format.html {redirect_to :action=> 'show', :id => @marketing_action.id, :notice => 'A acao de marketing foi criada com sucesso' }
         format.json { render json: @marketing_action, status: :created, location: @marketing_action }
       else
         format.html { render action: "new" }
@@ -61,10 +65,12 @@ class MarketingActionsController < ApplicationController
     @marketing_action = MarketingAction.find(params[:id])
     
     @marketing_action.banner = Banner.find(params[:banner])
+    
+    @marketing_action.marketing_campaign = @marketing_campaign
 
     respond_to do |format|
       if @marketing_action.update_attributes(params[:marketing_action])
-        format.html { redirect_to @marketing_action, notice: 'A acao de marketing foi atualizada com sucesso.' }
+        format.html { redirect_to :action=> 'show', :id => @marketing_action.id, :notice => 'A acao de marketing foi atualizada com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -80,12 +86,18 @@ class MarketingActionsController < ApplicationController
     @marketing_action.destroy
 
     respond_to do |format|
-      format.html { redirect_to marketing_actions_url }
+      format.html { redirect_to :action=> 'index' }
       format.json { head :no_content }
     end
   end
   
   def delete
     @marketing_action = MarketingAction.find(params[:id])
+  end
+  
+  def find_marketing_campaign
+  	@marketing_campaign = MarketingCampaign.find(params[:marketing_campaign_id])
+  	
+  	puts @marketing_campaign
   end
 end

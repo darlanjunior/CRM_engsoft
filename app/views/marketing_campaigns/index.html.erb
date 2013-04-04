@@ -4,21 +4,27 @@
 	</div>
 	
 	<table class="table table-striped data-table">
-		<tr>
-			<th>Ações</th>
-		  <th>Name</th>
-		  <th>Estado</th>
-		</tr>
+		<thead>
+			<tr>
+				<th>Ações</th>
+				<th>Name</th>
+				<th>Estado</th>
+			</tr>
+		</thead>
 
 	<% @marketing_campaigns.each do |marketing_campaign| %>
 		<tr>
 			<td class="td-actions">
 				<%= link_to '', {:action => 'show', :id => marketing_campaign.id}, :class => "icon-eye-open", :title => "Visualizar" %>
-				<%= link_to '', {:action => 'edit', :id => marketing_campaign.id}, :class => "icon-edit", :title => "Editar" %>
-				<%= link_to '', {:action => 'delete', :id => marketing_campaign.id}, :class => "icon-remove", :title => "Deletar"  %>
+				<% if(marketing_campaign.status != 5 && marketing_campaign.status != 6 && marketing_campaign.status != 8 && marketing_campaign.status != 9) %>
+					<%= link_to '', {:action => 'edit', :id => marketing_campaign.id}, :class => "icon-edit", :title => "Editar" %>
+				<% end %>
+				<% if(marketing_campaign.status != 5 && marketing_campaign.status != 6) %>
+					<%= link_to '', {:action => 'delete', :id => marketing_campaign.id}, :class => "icon-remove", :title => "Deletar"  %>
+				<% end %>
 		  </td>
 		  <td><%= marketing_campaign.name %></td>
-		  <td><%= marketing_campaign.status %></td>
+		  <td><%= MarketingCampaign.marketing_status[marketing_campaign.status] %></td>
 		</tr>
 	<% end %>
 	</table>

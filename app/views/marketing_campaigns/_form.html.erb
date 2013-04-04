@@ -1,129 +1,162 @@
 <% readonly ||= false %>
 <%= error_messages_for(@marketing_campaign) %>
 
+<%
+		readonlyName = setReadonlyName(@status)
+		readonlyDescription = setReadonlyDescription(@status)
+		readonlyEstimatedBeginDate = setReadonlyEstimatedBeginDate(@status)
+		readonlyEstimatedEndDate = setReadonlyEstimatedEndDate(@status)
+		readonlyEstimatedRevenue = setReadonlyEstimatedRevenue(@status)
+		readonlyRevenue = setReadonlyRevenue(@status)
+		readonlyContactGroups = setReadonlyContactGroups(@status)
+		readonlyCommentary = setReadonlyCommentary(@status)
+%>
+
 <div class="control-group">
     <%= f.label :name, "Nome", :class => "control-label strong" %>
 	<div class="controls">
-      <%= f.text_field :name, :placeholder => "Nome", :readonly => readonly %>
+      <%= f.text_field :name, :placeholder => "Nome", :readonly => (readonly || readonlyName) %>
     </div>
 </div>
 
 <div class="control-group">
     <%= f.label :description, "Descrição", :class => "control-label strong" %>
 	<div class="controls">
-      <%= f.text_area :description, :placeholder => "Descrição", :readonly => readonly %>
+      <%= f.text_area :description, :placeholder => "Descrição", :readonly => (readonly || readonlyDescription) %>
     </div>
 </div>
 
 <div class="control-group">
     <%= f.label :status, "Estado", :class => "control-label strong" %>
 	<div class="controls">
-      <%= f.text_field :status, :placeholder => "Estado", :readonly => true %>
+      <%= text_field_tag "status_text", MarketingCampaign.marketing_status[@marketing_campaign.status], :disabled => true %>
+      <%= f.hidden_field :status %>
     </div>
 </div>
 
-<div class="control-group">
-    <%= f.label :value, "Preço", :class => "control-label strong" %>
-	<div class="controls">
-		<input id="marketing_campaign_value" type="text" value=<%= @marketing_campaign.value() %> size=30 readonly="true" placeholder="Preço" />
-    </div>
-</div>
-
-<div class="control-group">
-    <%= f.label :estimated_begin_date, "Data estimada de início da campanha", :class => "control-label strong" %>
-	<div class="controls">
-      <%= f.date_select :estimated_begin_date, :placeholder => "Data estimada de início da campanha", :disabled => readonly %>
-    </div>
-</div>
-
-<div class="control-group">
-    <%= f.label :estimated_end_date, "Data estimada de fim da campanha", :class => "control-label strong" %>
-	<div class="controls">
-      <%= f.date_select :estimated_end_date, :placeholder => "Data estimada de fim da campanha", :disabled => readonly %>
-    </div>
-</div>
-
-<div class="control-group">
-    <%= f.label :estimated_revenue, "Retorno estimado", :class => "control-label strong" %>
-	<div class="controls">
-      <%= f.text_field :estimated_revenue, :placeholder => "Retorno estimado", :readonly => readonly %>
-    </div>
-</div>
-
-<div class="control-group">
-    <%= f.label :begin_date, "Data de início da campanha", :class => "control-label strong" %>
-	<div class="controls">
-      <%= f.date_select :begin_date, :placeholder => "Data de início da campanha", :disabled => readonly %>
-    </div>
-</div>
-
-<div class="control-group">
-    <%= f.label :end_date, "Data de fim da campanha", :class => "control-label strong" %>
-	<div class="controls">
-      <%= f.date_select :end_date, :placeholder => "Data de fim da campanha", :disabled => readonly %>
-    </div>
-</div>
-
-<div class="control-group">
-    <%= f.label :revenue, "Retorno", :class => "control-label strong" %>
-	<div class="controls">
-      <%= f.text_field :revenue, :placeholder => "Retorno", :readonly => readonly %>
-    </div>
-</div>
-
-<% if(@marketing_campaign.marketing_actions) %>
-	<div class="box bordered" style="position:relative;">
-		<div class="box-header" >
-			<i class="icon-th-list"></i>Ações de marketing&nbsp;&nbsp;&nbsp;&nbsp;
-		<%= link_to '', {:controller => 'marketing_actions', :action => 'new'}, {:class => "icon-plus-sign", :target => '_new', :style => "font-size:20px"} %>
-		</div>
-
-		<table class="table table-striped data-table">
-			<thead>
-			<tr>
-				<th>Nome</th>
-				<th>Tipo</th>
-				<th>Valor</th>
-			</tr>
-			</thead>
-
-			<tbody>
-		<% @marketing_campaign.marketing_actions.each do |marketing_action| %>
-			<tr>
-				<td><%= marketing_action.name %></td>
-				<td><%= marketing_action.action_type %></td>
-				<td><%= number_to_currency(marketing_action.value, :unit => 'R$', :separator => ',') %></td>
-			</tr>
-		<% end %>
-		</table>
+<% if(@status != 0) %>
+	<div class="control-group">
+		  <%= f.label :value, "Preço", :class => "control-label strong" %>
+		<div class="controls">
+			<input id="marketing_campaign_value" type="text" value=<%= @marketing_campaign.value() %> size=30 readonly="true" placeholder="Preço" />
+		  </div>
 	</div>
-<% end %>
 
-<div class="box bordered" style="position:relative;">
-	<div class="box-header" >
-		<i class="icon-th-list"></i> Grupos de Contatos&nbsp;&nbsp;&nbsp;&nbsp;
-		<%= link_to '', {:controller => 'contact_groups', :action => 'new'}, {:class => "icon-plus-sign", :target => '_new', :style => "font-size:20px"} %>
+	<div class="control-group">
+		  <%= f.label :estimated_begin_date, "Data estimada de início da campanha", :class => "control-label strong" %>
+		<div class="controls">
+		    <%= f.date_select :estimated_begin_date, :placeholder => "Data estimada de início da campanha", :disabled => (readonly || readonlyEstimatedBeginDate) %>
+		</div>
+	</div>
+
+	<div class="control-group">
+		  <%= f.label :estimated_end_date, "Data estimada de fim da campanha", :class => "control-label strong" %>
+		<div class="controls">
+		    <%= f.date_select :estimated_end_date, :placeholder => "Data estimada de fim da campanha", :disabled => (readonly || readonlyEstimatedEndDate) %>
+		</div>
+	</div>
+
+	<div class="control-group">
+		  <%= f.label :estimated_revenue, "Retorno estimado", :class => "control-label strong" %>
+		<div class="controls">
+		    <%= f.text_field :estimated_revenue, :placeholder => "Retorno estimado", :readonly => (readonly || readonlyEstimatedRevenue) %>
+		  </div>
 	</div>
 	
-	<table class="table table-striped data-table">
-		<thead>
-			<tr>
-				<th>Presente</th>
-				<th>Nome do Grupo</th>
-			</tr>
-		</thead>
+	<% if(@status == 5 || @status == 6) %>
+		<div class="control-group">
+				<%= f.label :begin_date, "Data de início da campanha", :class => "control-label strong" %>
+			<div class="controls">
+				 <%= f.text_field :begin_date, :placeholder => "Data de início da campanha", :readonly => true %>
+			</div>
+		</div>
 		
-		<% for contact_group in ContactGroup.find(:all) %>
-		<tr>
-			<td>
-				<% if(@marketing_campaign.contact_groups.include? contact_group) %>
-					<%= check_box_tag("contact_groups[" + contact_group.id.to_s + "]", 1, true, {:disabled => readonly, :class => "checkbox"}) %>
-				<% else %>
-					<%= check_box_tag("contact_groups[" + contact_group.id.to_s + "]", 1, false, {:disabled => readonly, :class => "checkbox"}) %>
-				<% end %>
-			</td>
-			<td><%= contact_group.name %></td>
-		</tr>
+		<% if(@status == 6) %>
+			<div class="control-group">
+					<%= f.label :end_date, "Data de fim da campanha", :class => "control-label strong" %>
+				<div class="controls">
+					 <%= f.text_field :end_date, :placeholder => "Data de fim da campanha", :readonly => true %>
+					</div>
+			</div>
 		<% end %>
-	</table>
-</div>
+	<% end %>
+	
+	<% if(@status == 6) %>
+		<div class="control-group">
+				<%= f.label :revenue, "Retorno", :class => "control-label strong" %>
+			<div class="controls">
+				  <%= f.text_field :revenue, :placeholder => "Retorno", :readonly => (readonly || readonlyRevenue) %>
+				</div>
+		</div>
+	<% end %>
+
+	<% if(@marketing_campaign.marketing_actions) %>
+		<div class="box bordered" style="position:relative;">
+			<div class="box-header" >
+				<i class="icon-th-list"></i>Ações de marketing
+			</div>
+
+			<table class="table table-striped data-table">
+				<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Tipo</th>
+					<th>Valor</th>
+				</tr>
+				</thead>
+
+				<tbody>
+			<% @marketing_campaign.marketing_actions.each do |marketing_action| %>
+				<tr>
+					<td><%= marketing_action.name %></td>
+					<td><%= marketing_action.action_type %></td>
+					<td><%= number_to_currency(marketing_action.value, :unit => 'R$', :separator => ',') %></td>
+				</tr>
+			<% end %>
+			</table>
+		</div>
+
+	<% if(@marketing_campaign.id?) %>
+		<%= link_to 'Vizualizar ações de marketing', marketing_campaign_marketing_actions_path(@marketing_campaign.id), {:class => "btn btn-small dark-blue"} %>
+	<% end %>
+	
+	<% end %>
+
+	<div class="box bordered" style="position:relative;">
+		<div class="box-header" >
+			<i class="icon-th-list"></i>Alvos - Grupos de Contatos&nbsp;&nbsp;&nbsp;&nbsp;
+			<%= link_to '', {:controller => 'contact_groups', :action => 'new'}, {:class => "icon-plus-sign", :target => '_new', :style => "font-size:20px"} %>
+		</div>
+	
+		<table class="table table-striped data-table">
+			<thead>
+				<tr>
+					<th>Presente</th>
+					<th>Nome do Grupo</th>
+				</tr>
+			</thead>
+		
+			<% for contact_group in @contact_groups %>
+			<tr>
+				<td>
+					<% if(@marketing_campaign.contact_groups.include? contact_group) %>
+						<%= check_box_tag("contact_groups[" + contact_group.id.to_s + "]", 1, true, {:disabled => (readonly || readonlyContactGroups), :class => "checkbox"}) %>
+					<% else %>
+						<%= check_box_tag("contact_groups[" + contact_group.id.to_s + "]", 1, false, {:disabled => (readonly || readonlyContactGroups), :class => "checkbox"}) %>
+					<% end %>
+				</td>
+				<td><%= contact_group.name %></td>
+			</tr>
+			<% end %>
+		</table>
+	</div>
+	
+	<% if(@status >= 2) %>
+		<div class="control-group">
+			<%= f.label :financial_feedback, "Comentários", :class => "control-label strong" %>
+			<div class="controls">
+				<%= f.text_area :financial_feedback, :placeholder => "Comentários", :readonly => (readonly || readonlyCommentary) %>
+			</div>
+		</div>
+	<% end %>
+<% end %>

@@ -14,6 +14,10 @@ class MarketingCampaignsController < ApplicationController
   # GET /marketing_campaigns/1.json
   def show
     @marketing_campaign = MarketingCampaign.find(params[:id])
+    
+    @contact_groups = @marketing_campaign.contact_groups
+    
+    @status = @marketing_campaign.status
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +29,11 @@ class MarketingCampaignsController < ApplicationController
   # GET /marketing_campaigns/new.json
   def new
     @marketing_campaign = MarketingCampaign.new
+    @marketing_campaign.status = 0
+    
+    @contact_groups = ContactGroup.all
+    
+    @status = @marketing_campaign.status
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,12 +44,43 @@ class MarketingCampaignsController < ApplicationController
   # GET /marketing_campaigns/1/edit
   def edit
     @marketing_campaign = MarketingCampaign.find(params[:id])
+    
+    @contact_groups = ContactGroup.all
+    
+    if(params[:nextStatus])
+      puts 'entrei'
+    	@marketing_campaign.next_status
+    elsif(params[:previousStatus])
+    	@marketing_campaign.previous_status
+    elsif(params[:cancelStatus])
+    	@marketing_campaign.cancel_status
+    end
+    
+    @status = @marketing_campaign.status
+    
+    if(@status == 5)
+    	@marketing_campaign.begin_date = Date.today
+    end
+    
+    if(@status == 6)
+    	@marketing_campaign.end_date = Date.today
+    end
   end
 
   # POST /marketing_campaigns
   # POST /marketing_campaigns.json
   def create
     @marketing_campaign = MarketingCampaign.new(params[:marketing_campaign])
+    
+    @marketing_campaign.contact_groups = Array.new
+    
+    if(params[:contact_groups] != nil)
+		  params[:contact_groups].each do |id|
+		  	@marketing_campaign.contact_groups << ContactGroup.find(id[0])
+			end
+		end
+		
+		@marketing_campaign.next_status
 
     respond_to do |format|
       if @marketing_campaign.save
@@ -57,9 +97,21 @@ class MarketingCampaignsController < ApplicationController
   # PUT /marketing_campaigns/1.json
   def update
     @marketing_campaign = MarketingCampaign.find(params[:id])
+    
+    if(params[:contact_groups] != nil)
+    	@marketing_campaign.contact_groups = Array.new
+    	
+		  params[:contact_groups].each do |id|
+		  	@marketing_campaign.contact_groups << ContactGroup.find(id[0])
+			end
+		end
 
     respond_to do |format|
       if @marketing_campaign.update_attributes(params[:marketing_campaign])
+      	if(@marketing_campaign.status == 4)
+					@marketing_campaign.next_status
+					@marketing_campaign.save
+				end
         format.html { redirect_to @marketing_campaign, notice: 'Marketing campaign was successfully updated.' }
         format.json { head :no_content }
       else
@@ -83,5 +135,9 @@ class MarketingCampaignsController < ApplicationController
   
   def delete
     @marketing_campaign = MarketingCampaign.find(params[:id])
+    
+    @contact_groups = @marketing_campaign.contact_groups
+    
+    @status = @marketing_campaign.status
   end
 end
