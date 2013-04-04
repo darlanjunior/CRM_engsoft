@@ -12,13 +12,28 @@
   <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %>    
   <div class="control-group">
     <div class="controls">
-      <%= link_to 'Editar Campanha de Marketing', {:action => 'edit', :id => @marketing_campaign.id}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
-      <%= link_to 'Terminar criação', {:action => 'edit', :id => @marketing_campaign.id}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
-      <%= link_to 'Pedir Aprovação', {:action => 'edit', :id => @marketing_campaign.id}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
-      <%= link_to 'Aprovar', {:action => 'approve', :id => @marketing_campaign.id}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
-      <%= link_to 'Desaprovar', {:action => 'desapprove', :id => @marketing_campaign.id}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
-      <%= link_to 'Iniciar campanha', {:action => 'edit', :id => @marketing_campaign.id}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
-      <%= link_to 'Terminar campanha', {:action => 'edit', :id => @marketing_campaign.id}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
+    	<% if(@status != 5 && @status != 6 && @status != 8 && @status != 9) %>
+      	<%= link_to 'Editar Campanha de Marketing', {:action => 'edit', :id => @marketing_campaign.id}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
+      <% end %>
+      <% if(@status == 1 || @status == 7) %>
+      	<%= link_to 'Pedir Aprovação', {:action => 'edit', :id => @marketing_campaign.id, :nextStatus => true}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
+      <% elsif(@status == 2) %>
+      	<%= link_to 'Aprovar', {:action => 'edit', :id => @marketing_campaign.id, :nextStatus => true}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
+      	<%= link_to 'Desaprovar', {:action => 'edit', :id => @marketing_campaign.id, :previousStatus => true}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
+      <% elsif(@status == 3) %>
+      	<%= link_to 'Iniciar campanha', {:action => 'edit', :id => @marketing_campaign.id, :nextStatus => true}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
+      <% elsif(@status == 5) %>
+      	<%= link_to 'Terminar campanha', {:action => 'edit', :id => @marketing_campaign.id, :nextStatus => true}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
+      <% elsif(@status == 8) %>
+      	<%= link_to 'Reabrir campanha', {:action => 'edit', :id => @marketing_campaign.id, :previousStatus => true}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
+      <% end %>
+      <% if(@status == 9) %>
+      	<%= link_to 'Corrigir', {:action => 'edit', :id => @marketing_campaign.id, :nextStatus => true}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
+      <% end %>
+      <% if(@status != 5 && @status != 6 && @status != 8) %>
+      	</br>
+      	<%= link_to 'Cancelar Campanha', {:action => 'edit', :id => @marketing_campaign.id, :cancelStatus => true}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
+      <% end %>
   </div>
 <% end %>
 

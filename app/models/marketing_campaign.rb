@@ -18,28 +18,53 @@ class MarketingCampaign < ActiveRecord::Base
   end
   
   def next_status
-  	if(status == 4)
-  		status = 2
-  	else
-  		status += 1
-  	end
+  	self.status = MarketingCampaign.next_marketing_status[self.status]
   end
   
   def previous_status
-  	if(status == 2)
-  		status = 4
-  	else
-  		status -= 1
-  	end
+  	self.status = MarketingCampaign.previous_marketing_status[self.status]
+  end
+  
+  def cancel_status
+  	self.status = 8
   end
   
   def self.marketing_status
-  	return [0 => 'Criada',
-  					1 => 'Pronta',
+  	return {0 => 'Criada',
+  					1 => 'Aberta',
   					2 => 'Em espera',
   					3 => 'Aprovada',
   					4 => 'Desaprovada',
   					5 => 'Iniciada',
-  					6 => 'Finalizada']
+  					6 => 'Finalizada',
+  					7 => 'A ser corrigida',
+  					8 => 'Cancelada',
+  					9 => 'Desaprovada'}
+  end
+  
+  def self.next_marketing_status
+  	return {0 => 1,
+  					1 => 2,
+  					2 => 3,
+  					3 => 5,
+  					4 => 9,
+  					5 => 6,
+  					6 => 6,
+  					7 => 2,
+  					8 => 8,
+  					9 => 7}
+  end
+  
+  def self.previous_marketing_status
+  	return {0 => 0,
+  					1 => 0,
+  					2 => 4,
+  					3 => 2,
+  					4 => 2,
+  					5 => 3,
+  					6 => 5,
+  					7 => 2,
+  					8 => 1,
+  					9 => 2}
   end
 end
