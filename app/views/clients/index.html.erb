@@ -19,12 +19,13 @@
 			  <tr>
   			    <td class="td-actions">
   			        <%= link_to '', {:action => 'show', :id => client._id}, :class => "icon-eye-open", :title => "Visualizar" %>
+					<%= link_to '', {:action => 'show_report', :id => client._id}, :class => "icon-list", :title => "Visualizar relatório do usuário" %>
 					<%= link_to '', {:controller => 'contacts', :action => 'new', :client => client.to_json}, :class => "icon-circle-arrow-down", :title => "Importar cliente para a base de contatos..." %>
   				</td>
 			    <td><%= client.nome %></td>
 			    <td><%= client.email %></td>
 				<td><%= client.telefone %></td>
-				<td><%= Client.client_labels[client.clientType] %></td>
+				<td><%= Client.client_labels[client.client_type] %></td>
 				<td><%= client.instituicao %></td>
 			  </tr>
 			<% end %>

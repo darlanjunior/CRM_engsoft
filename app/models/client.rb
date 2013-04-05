@@ -4,14 +4,14 @@ class Client < Tableless
   column :nome
   column :email
   column :telefone
-  column :clientType
+  column :client_type
   column :instituicao
   column :cpf
   column :login
   column :celular
   column :endereco
   
-  attr_accessible :_id, :nome, :email, :telefone, :clientType, :instituicao, :cpf, :login, :celular, :endereco
+  attr_accessible :_id, :nome, :email, :telefone, :client_type, :instituicao, :cpf, :login, :celular, :endereco
 
   def self.client_types # A ordem das linhas importa, não alterar
     return {
@@ -44,7 +44,7 @@ class Client < Tableless
   #       :length => { :in => 8..20 , :message => "Tem que ter entre 8 e 20 caracteres"}
   # validates :endereco,
   #   :length => { :in => 5..255 , :message => "Tem que ter entre 5 e 255 caracteres"}
-  # validates :clientType,
+  # validates :client_type,
   #     :inclusion => { :in => client_labels, :message => "Tem que ser um desses: #{client_types.keys.join(', ')}"}
   # validates :instituicao,
   #     :presence => {:message => "Favor digitar uma instituição"}

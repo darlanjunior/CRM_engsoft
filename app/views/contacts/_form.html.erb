@@ -27,9 +27,9 @@
     </div>
 </div>
 <div class="control-group">
-	<%= f.label :clientType, "Tipo de cliente", :class => "control-label strong" %>
+	<%= f.label :client_type, "Tipo de cliente", :class => "control-label strong" %>
 	<div class="controls">
-	  <%= f.select :clientType, Contact.contact_types.invert, {}, {:disabled => readonly} %>
+	  <%= f.select :client_type, Contact.contact_types.invert, {}, {:disabled => readonly} %>
     </div>
 </div>
 <div class="control-group">

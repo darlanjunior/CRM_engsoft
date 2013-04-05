@@ -14,10 +14,10 @@ banner3 = Banner.create!(:width => 728, :height => 90, :name => 'New Relic3', :i
 
 # Criando contatos
 Contact.delete_all
-alan = Contact.create!(:name => 'Alan Dabien Barroso', :email => 'alandbarroso@gmail.com', :phone => '1781915295', :address => 'Av. Nossa Senhora', :clientType => 'resp_instituicao', :institution => 'USP')
-victor = Contact.create!(:name => 'Victor Lassance Oliveira e Silva', :email => 'vlassance@gmail.com', :phone => '1781915295', :address => 'Av. Nossa Senhora', :clientType => 'resp_instituicao', :institution => 'USP')
-felipe = Contact.create!(:name => 'Felipe Santana', :email => 'felipe.castrosantana@gmail.com', :phone => '1781915295', :address => 'Av. Nossa Senhora', :clientType => 'resp_empresa', :institution => 'POLI-USP')
-darlan = Contact.create!(:name => 'Darlan Junior', :email => 'darlan.sbjr@gmail.com', :phone => '1781915295', :address => 'Av. Nossa Senhora', :clientType => 'resp_empresa', :institution => 'POLI-USP')
+alan = Contact.create!(:name => 'Alan Dabien Barroso', :email => 'alandbarroso@gmail.com', :phone => '1781915295', :address => 'Av. Nossa Senhora', :client_type => 'resp_instituicao', :institution => 'USP')
+victor = Contact.create!(:name => 'Victor Lassance Oliveira e Silva', :email => 'vlassance@gmail.com', :phone => '1781915295', :address => 'Av. Nossa Senhora', :client_type => 'resp_instituicao', :institution => 'USP')
+felipe = Contact.create!(:name => 'Felipe Santana', :email => 'felipe.castrosantana@gmail.com', :phone => '1781915295', :address => 'Av. Nossa Senhora', :client_type => 'resp_empresa', :institution => 'POLI-USP')
+darlan = Contact.create!(:name => 'Darlan Junior', :email => 'darlan.sbjr@gmail.com', :phone => '1781915295', :address => 'Av. Nossa Senhora', :client_type => 'resp_empresa', :institution => 'POLI-USP')
 
 #Criando ligações
 Call.delete_all

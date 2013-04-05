@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Contact < ActiveRecord::Base
-  attr_accessible :clientId, :name, :email, :phone, :address, :clientType, :institution
+  attr_accessible :clientId, :name, :email, :phone, :address, :client_type, :institution
   has_many :support_cases
   has_and_belongs_to_many :contact_groups
 
@@ -15,7 +15,7 @@ class Contact < ActiveRecord::Base
   end
 
   validates :clientId,
-    :uniqueness => {:message => "Esse cliente já foi importado anteriormente"}
+    :uniqueness => {:message => "Esse cliente já foi importado anteriormente", :allow_blank => true}
   validates :name,
     :presence => {:message => "Favor digitar um nome"},
     :uniqueness => {:message => "Esse nome já existe no sistema"},
@@ -30,7 +30,7 @@ class Contact < ActiveRecord::Base
         :length => { :in => 8..20 , :message => "Tem que ter entre 8 e 20 caracteres"}
   validates :address,
     :length => { :in => 5..255 , :message => "Tem que ter entre 5 e 255 caracteres"}
-  validates :clientType,
+  validates :client_type,
       :inclusion => { :in => contact_types.keys, :message => "Tem que ser um desses: #{contact_types.values.join(', ')}"}
   validates :institution,
       :presence => {:message => "Favor digitar uma instituição"}

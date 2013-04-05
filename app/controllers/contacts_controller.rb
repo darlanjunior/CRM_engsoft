@@ -34,7 +34,7 @@ class ContactsController < ApplicationController
       @contact.email = @client.email
       @contact.phone = @client.telefone
       @contact.address = @client.endereco
-      @contact.clientType = @client.clientType
+      @contact.client_type = @client.client_type
       @contact.institution = @client.instituicao
     end
 

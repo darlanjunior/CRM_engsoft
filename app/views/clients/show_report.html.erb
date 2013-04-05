@@ -1,0 +1,82 @@
+<h2><%= @page_title = "Visualizar Relatório do Cliente" %></h2><hr />
+
+<div class="form-horizontal">
+	<div class="control-group">
+		<label class="control-label strong">Nome:</label>
+		<div class="controls">
+			<label class="control-label-desc"><%= @client.nome %></label>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label strong">Login:</label>
+		<div class="controls">
+			<label class="control-label-desc"><%= @client.login %></label>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label strong">E-mail:</label>
+		<div class="controls">
+			<label class="control-label-desc"><%= @client.email %></label>
+		</div>
+	</div>
+	<hr />
+	<% if not ((not @client.sign_in_count.nil? and @client.sign_in_count > 0) or (not @client.last_sign_in_at.nil?) or (not @client.current_sign_in_at.nil?) or (not @client.reset_password_sent_at.nil?)) %>
+
+		<div class="control-group center">
+			<label class="strong">Não há informações relativas a esse cliente.</label>
+		</div>
+
+	<% else %>
+
+		<% if not @client.sign_in_count.nil? and @client.sign_in_count > 0 %>
+		<div class="control-group">
+			<label class="control-label strong">Quantidade de Logins:</label>
+			<div class="controls">
+				<label class="control-label-desc"><%= pluralize(@client.sign_in_count, "vez", "vezes") %></label>
+			</div>
+		</div>
+		<% end %>
+		<% if not @client.last_sign_in_at.nil? %>
+		<div class="control-group">
+			<label class="control-label strong">Último Login:</label>
+			<div class="controls">
+				<label class="control-label-desc">
+					<%= "Feito em #{@client.last_sign_in_at}" %>
+					<% if not @client.last_sign_in_ip.nil? %>
+						<%= " (IP #{@client.last_sign_in_ip})" %>
+					<% end %>
+				</label>
+			</div>
+		</div>
+		<% end %>
+		<% if not @client.current_sign_in_at.nil? %>
+		<div class="control-group">
+			<label class="control-label strong">Login atual:</label>
+			<div class="controls">
+				<label class="control-label-desc">
+					<%= "Feito em #{@client.current_sign_in_at}" %>
+					<% if not @client.current_sign_in_ip.nil? %>
+						<%= " (IP #{@client.current_sign_in_ip})" %>
+					<% end %>
+				</label>
+			</div>
+		</div>
+		<% end %>
+		<% if not @client.reset_password_sent_at.nil? %>
+		<div class="control-group">
+			<label class="control-label strong">Reenvio de senha:</label>
+			<div class="controls">
+				<label class="control-label-desc">
+					Último reenvio feito em <%= @client.reset_password_sent_at %>
+				</label>
+			</div>
+		</div>
+		<% end %>
+
+	<% end %>
+</div>
+
+
+<%= link_to '  Ir para a lista de clientes', {:action => "index"}, :class => "icon-chevron-left btn btn-small light-blue inverse" %> &nbsp; | &nbsp; 
+<%= link_to '  Visualizar dados do cliente', {:action => 'show', :id => @client._id}, :class => "icon-eye-open btn btn-small light-blue inverse", :title => "Visualizar" %>
+

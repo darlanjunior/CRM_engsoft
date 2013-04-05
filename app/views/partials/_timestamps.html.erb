@@ -1,12 +1,12 @@
 <div class="control-group">
 	<label class="control-label strong">Data de Criação</label>
 	<div class="controls">
-		<label class="control-label-desc"><%= obj.created_at.localtime.to_s(:long) %></label>
+		<label class="control-label-desc"><%= l obj.created_at.localtime, :format => :long %></label>
 	</div>
 </div>
 <div class="control-group">
 	<label class="control-label strong">Última Modificação</label>
 	<div class="controls">
-		<label class="control-label-desc"><%= obj.updated_at.localtime.to_s(:long) %></label>
+		<label class="control-label-desc"><%= l obj.updated_at.localtime, :format => :long %></label>
 	</div>
 </div>

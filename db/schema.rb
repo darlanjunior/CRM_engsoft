@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(:version => 20130403184949) do
     t.string   "email"
     t.string   "phone"
     t.string   "address"
-    t.string   "clientType"
+    t.string   "client_type"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "institution"
