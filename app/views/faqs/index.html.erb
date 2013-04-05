@@ -6,9 +6,10 @@
 	<table class="table table-striped data-table">
 		<thead>
 			<tr>
-				<th>Ações</th>
+				<th style="min-width: 80px;">Ações</th>
 				<th>Tópico</th>
 			    <th>Pergunta</th>
+				<th>Resposta</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -21,6 +22,7 @@
   				</td>
 			    <td><%= link_to faq.subject.subject, {:controller => 'subjects', :action => 'show', :id => faq.subject.id}, :title => faq.subject.description %></td>
 				<td><%= faq.question %></td>
+				<td><%= truncate(faq.answer, :length => 60) %></td>
 			  </tr>
 			<% end %>
 		</tbody>
