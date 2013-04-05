@@ -10,5 +10,5 @@ class Faq < ActiveRecord::Base
   validates :answer, :presence => {:message => "Favor digitar uma resposta"}
   validates :subject_id, :presence => {:message => "Favor digitar um assunto"}
 
-  scope :sorted, order('faqs.question ASC')
+  scope :sorted, order('faqs.subject_id ASC')
 end
