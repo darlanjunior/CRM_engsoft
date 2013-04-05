@@ -48,7 +48,7 @@ class ClientsController < ApplicationController
         \"login\":\"admin\",
         \"nome\":\"Administrador \",
         \"telefone\":\"1932586366\",
-        \"email\":\"admingmail.com\",
+        \"email\":\"admin@gmail.com\",
         \"cpf\":\"38926370836\",
         \"instituicao\":\"POLI-USP\",
         \"grupo\":{\"internal_id\":1},

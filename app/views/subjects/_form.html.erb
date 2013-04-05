@@ -4,20 +4,29 @@
 <div class="control-group">
     <%= f.label :subject, "Tópico", :class => "control-label strong" %>
 	<div class="controls">
-      <%= f.text_field :subject, :placeholder => "Tópico", :readonly => readonly %>
+      <%= f.text_field :subject, :placeholder => "Tópico", :readonly => readonly, :style => "width: 700px;" %>
     </div>
 </div>
 <div class="control-group">
 	<%= f.label :description, "Descrição", :class => "control-label strong" %>
 	<div class="controls">
-	  <%= f.text_field :description, :placeholder => "Descrição", :readonly => readonly %>
+	  <%= f.text_field :description, :placeholder => "Descrição", :readonly => readonly, :style => "width: 700px;" %>
     </div>
 </div>
-<% if not @lista_faqs.nil? %>
+<% if not @subject.faqs.nil? %>
 <div class="control-group">
 	<%= label_tag "faqs", "Lista de FAQs", :class => "control-label strong" %>
 	<div class="controls">
-		<%= label_tag "faqs", @lista_faqs, :class => "control-label-desc" %>
+		<dl style='margin-bottom:0px;' class="control-label-desc">
+		    <% if @subject.faqs.empty? %>
+				<p>Não há FAQs relacionadas a esse tópico.</p>
+			<% else %>
+				<% @subject.faqs.each do |f| %>
+					<dt><%= link_to simple_format(f.question), {:controller => 'faqs', :action =>'show', :id => f.id} %></dt>
+					<dd><%= simple_format(f.answer) %></dd>
+				<% end %>
+			<% end %>
+		</dl>
     </div>
 </div>
 <% end %>

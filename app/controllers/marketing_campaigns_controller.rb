@@ -48,7 +48,6 @@ class MarketingCampaignsController < ApplicationController
     @contact_groups = ContactGroup.all
     
     if(params[:nextStatus])
-      puts 'entrei'
     	@marketing_campaign.next_status
     elsif(params[:previousStatus])
     	@marketing_campaign.previous_status

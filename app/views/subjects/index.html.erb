@@ -23,8 +23,10 @@
 			    <td><%= subject.subject %></td>
 			    <td><%= subject.description %></td>
 				<td>
-					<%= link_to '', {:controller => 'faqs', :action => 'index', :subject_id => subject.id}, :class => "icon-search", :title => "Visualizar FAQs relacionadas" %>
 					<%= subject.faqs.size %>
+					<% if not subject.faqs.empty? %>
+						<%= link_to '', {:controller => 'faqs', :action => 'index', :subject_id => subject.id}, :class => "icon-search", :title => "Visualizar FAQs relacionadas" %>
+					<% end %>
 				</td>
 			  </tr>
 			<% end %>

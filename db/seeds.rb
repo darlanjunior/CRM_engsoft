@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -14,10 +16,17 @@ banner3 = Banner.create!(:width => 728, :height => 90, :name => 'New Relic3', :i
 
 # Criando contatos
 Contact.delete_all
-alan = Contact.create!(:name => 'Alan Dabien Barroso', :email => 'alandbarroso@gmail.com', :phone => '1781915295', :address => 'Av. Nossa Senhora', :client_type => 'resp_instituicao', :institution => 'USP')
-victor = Contact.create!(:name => 'Victor Lassance Oliveira e Silva', :email => 'vlassance@gmail.com', :phone => '1781915295', :address => 'Av. Nossa Senhora', :client_type => 'resp_instituicao', :institution => 'USP')
-felipe = Contact.create!(:name => 'Felipe Santana', :email => 'felipe.castrosantana@gmail.com', :phone => '1781915295', :address => 'Av. Nossa Senhora', :client_type => 'resp_empresa', :institution => 'POLI-USP')
-darlan = Contact.create!(:name => 'Darlan Junior', :email => 'darlan.sbjr@gmail.com', :phone => '1781915295', :address => 'Av. Nossa Senhora', :client_type => 'resp_empresa', :institution => 'POLI-USP')
+alan = Contact.create!(:name => 'Alan Dabien Barroso', :email => 'alandbarroso@gmail.com', :phone => '(17) 8191-5295', :address => 'Av. Nossa Senhora de Assunção, 1100, Jaguaré, CEP 27200-002, São Paulo/SP', :client_type => 'aluno', :institution => 'POLI-USP')
+victor = Contact.create!(:name => 'Victor Lassance', :email => 'vlassance@gmail.com', :phone => '(11) 99601-2456', :address => 'Rua Válson Lopes, 70, Jaguaré, São Paulo', :client_type => 'aluno', :institution => 'POLI-USP')
+felipe = Contact.create!(:name => 'Felipe Santana', :email => 'felipe.castrosantana@gmail.com', :phone => '(11) 94964-0583', :address => 'Av. Bandeirantes, 3520, Zona Norte, São Paulo/SP', :client_type => 'aluno', :institution => 'POLI-USP')
+darlan = Contact.create!(:name => 'Darlan Junior', :email => 'darlan.sbjr@gmail.com', :phone => '(11) 98827-5489', :address => 'Av. Diógenes Lima Ribeiro, 2000, Pinheiros, São Paulo/SP', :client_type => 'aluno', :institution => 'POLI-USP')
+risco = Contact.create!(:name => 'Jorce Risco Becerra', :email => 'jorge.becerra@poli.usp.br', :phone => '(11) 3091-9091', :address => 'Av. Prof. Luciano Gualberto, travessa 3, 380, CEP 05508-010, São Paulo/SP', :client_type => 'admin_instituicao', :institution => 'POLI-USP')
+michelet = Contact.create!(:name => 'Michelet', :email => 'michelet@usp.br', :phone => '(11) 3091-9091', :address => 'Av. Prof. Luciano Gualberto, travessa 3, 380, CEP 05508-010, São Paulo/SP', :client_type => 'resp_instituicao', :institution => 'POLI-USP')
+patricia = Contact.create!(:name => 'Patricia Sandes', :email => 'patricia.sandes@usp.br', :phone => '(11) 3091-5262', :address => 'Av. Prof. Luciano Gualberto, travessa 3, 380, CEP 05508-010, São Paulo/SP', :client_type => 'resp_instituicao', :institution => 'POLI-USP')
+solange = Contact.create!(:name => 'Solange Alves de Souza', :email => 'ssouza@usp.br', :phone => '(11) 3091-5262', :address => 'Av. Prof. Luciano Gualberto, travessa 3, 380, CEP 05508-010, São Paulo/SP', :client_type => 'resp_instituicao', :institution => 'POLI-USP')
+mark = Contact.create!(:name => 'Mark Zuckerberg', :email => 'mark.zuck@fb.com', :phone => '(+1) 670.254.6780', :address => '1601 Willow Road, Menlo Park, California 94025, US', :client_type => 'admin_empresa', :institution => 'Facebook')
+maxi = Contact.create!(:name => 'Maximilian Machedon', :email => 'maxi.machedon@fb.com', :phone => '(+1) 670.254.6787', :address => '1601 Willow Road, Menlo Park, California 94025, US', :client_type => 'resp_empresa', :institution => 'Facebook')
+daisy = Contact.create!(:name => 'Daisy Chu', :email => 'daisy.chu@bbm.com.br', :phone => '(21) 2514-7448', :address => 'Praça Pio X, 98-A, Centro, CEP: 20091-040, Rio de Janeiro/RJ', :client_type => 'resp_empresa', :institution => 'BBM Investimentos')
 
 #Criando ligações
 Call.delete_all
@@ -40,15 +49,95 @@ tcc_afv.save
 
 #Criando empregado
 Employee.delete_all
-Employee.create!(:name => 'Jorge Risco', :dateOfBirth => DateTime.now)
+Employee.create!(:name => 'Jorge Risco', :dateOfBirth => 45.years.ago.localtime)
+Employee.create!(:name => 'Patricia Sandes', :dateOfBirth => 35.years.ago.localtime)
+Employee.create!(:name => 'Michelet', :dateOfBirth => 30.years.ago.localtime)
+Employee.create!(:name => 'Solange Souza', :dateOfBirth => 43.years.ago.localtime)
+Employee.create!(:name => 'Victor Lassance', :dateOfBirth => 23.years.ago.localtime)
 
 #Criando FAQ
 Subject.delete_all
 Faq.delete_all
-s = Subject.create!(:subject => 'Usabilidade', :description => 'Problemas relacionados com a usabilidade do sistema')
-f = Faq.new(question: 'Como posso cadastrar uma duvida no sistema?', answer: 'Basta clicar em cadastrar duvida.')
-f.subject = s
-f.save
+usabilidade = Subject.create!(:subject => 'Usabilidade', :description => 'Problemas relacionados com a usabilidade do sistema')
+pesquisa_vagas = Subject.create!(:subject => 'Pesquisa de vagas', :description => 'Problemas relacionados com a pesquisa de vagas')
+cadastro = Subject.create!(:subject => 'Meu cadastro', :description => 'Problemas relacionados com o cadastro e o acesso aos dados pessoais')
+curriculo = Subject.create!(:subject => 'Meu currículo', :description => 'Problemas relacionados com o envio de currículos e a sua atualização')
+
+tab = "&nbsp; &nbsp; "
+f1 = Faq.create!(
+  question: 'Como posso cadastrar uma duvida no sistema?',
+  answer:
+    """Basta clicar em cadastrar duvida.""",
+  subject: usabilidade
+)
+f2 = Faq.create!(
+  question: 'Como pesquisar uma vaga pelo seu código?',
+  answer:
+    """Todas as vagas divulgadas no portal possuem um código.
+    Esse código pode ser encontrado na parte superior do anúncio ou no link da vaga (URL).\n
+    Para pesquisar vagas pelo código, acesse o portal e siga os passos abaixo:
+    #{tab}1) Na página de “Acesso de candidatos”, selecione a opção “Pesquisa de vagas” no menu superior da página do ambiente de candidatos;
+    #{tab}2) Insira o código da vaga na barra de pesquisa e clique no botão “Pesquisar“.""",
+  subject: pesquisa_vagas
+)
+f3 = Faq.create!(
+  question: 'Como faço para pesquisar vagas?',
+  answer:
+    """Para pesquisar as vagas oferecidas pelas empresas que contratam é muito simples e prático!\n
+    Acesse o portal e siga os passos a seguir:
+    #{tab}1) Na página de “Acesso de candidatos”, selecione a opção ”Pesquisa de vagas”;
+    #{tab}2) Na página de pesquisa, você pode pesquisar por palavras-chave e refinar os resultados por filtros.""",
+  subject: pesquisa_vagas
+)
+f4 = Faq.create!(
+  question: 'Quero cancelar/excluir meu currículo cadastrado, como faço?',
+  answer:
+    """É possível desativar o cadastro. 
+    Porém, não é possível excluí-lo por completo, pois ele já foi compartilhado com algumas empresas.
+    Seria como enviar um currículo impresso pelo correio e depois tentar recolhê-lo de volta, entende?\n
+    Para desativar um cadastro, basta efetuar seu login no portal.
+    Em sua área exclusiva de serviços, vá até a opção “Desativar o uso de nossos serviços”.""",
+  subject: cadastro
+)
+f5 = Faq.create!(
+  question: 'Esqueci minha identificação e/ou minha senha de acesso. O que fazer?',
+  answer:
+    """Acesse a área de candidatos e siga os passos abaixo:
+    #{tab}1) Clique em “Login”, no topo da página;
+    #{tab}2) Na tela de login, clique na opção “Se você esqueceu sua identificação, clique aqui” ou em “Se você esqueceu sua identificação/login, clique aqui“;
+    #{tab}3) Na página seguinte informe o endereço de e-mail cadastrado no site e confirme. Você receberá automaticamente sua identificação e senha no endereço de e-mail cadastrado;
+    #{tab}4) Ou, caso você tenha esquecido sua senha, será apresentado uma mensagem com o lembrete cadastrado por você e algumas outras dicas como as inicias de seu nome e seu provedor de email cadastrado.
+    #{tab}5) Se ainda assim você não recordar sua senha, clique em: “mesmo com o lembrete acima, você não consegue lembrar de sua senha clique aqui” e ela será encaminhada automaticamente para e-mail que você cadastrou no site.""",
+  subject: cadastro
+)
+f6 = Faq.create!(
+  question: 'O meu endereço de e-mail mudou. Como alterá-lo?',
+  answer:
+    """Para alterar o seu endereço de e-mail, acesse a área de candidatos do portal e, se você já estiver logado no site, basta clicar em “Sua página de serviços” no menu superior da página do ambiente de candidatos.""",
+  subject: cadastro
+)
+f7 = Faq.create!(
+  question: 'Como cadastrar o meu currículo?',
+  answer:
+    """Para cadastrar seu currículo, acesse o portal e siga os passos abaixo:
+    #{tab}1) Clique em “Acesso de candidatos”;
+    #{tab}2) No menu superior da página do ambiente de candidatos, clique em “Cadastre seu currículo”;
+    #{tab}3) Na página seguinte clique em “cadastre-o agora”;
+    #{tab}4) Preencha os campos solicitados.""",
+  subject: curriculo
+)
+f8 = Faq.create!(
+  question: 'Quero enviar meu currículo em word, como faço?',
+  answer:
+    """Os processos seletivos são feitos pelo site, por isso para participar é necessário preencher o formulário de cadastro do seu currículo no portal.""",
+  subject: curriculo
+)
+f9 = Faq.create!(
+  question: 'Como faço para atualizar ou corrigir os dados meu currículo?',
+  answer:
+    """Para atualizar ou corrigir os seus dados, basta efetuar seu login no portal, acessar sua página exclusiva de serviços a candidatos, clicar em “Rever ou atualizar seu currículo” e, em seguida, clicar em “Atualizar o seu currículo”.""",
+  subject: curriculo
+)
 
 #Criando newsletter
 Newsletter.delete_all

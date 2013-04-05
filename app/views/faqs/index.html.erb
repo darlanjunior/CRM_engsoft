@@ -20,8 +20,7 @@
   					<%= link_to '', {:action => 'delete', :id => faq.id}, :class => "icon-remove", :title => "Deletar" %>
   				</td>
 			    <td><%= faq.question %></td>
-			    <td><%= faq.subject.subject %>
-				    (Desc: <%= faq.subject.description %>)</td>
+			    <td><%= link_to faq.subject.subject, {:controller => 'subjects', :action => 'show', :id => faq.subject.id}, :title => faq.subject.description %></td>
 			  </tr>
 			<% end %>
 		</tbody>

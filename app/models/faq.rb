@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Faq < ActiveRecord::Base
-  attr_accessible :answer, :question, :subject_id
+  attr_accessible :answer, :question, :subject_id, :subject
   belongs_to :subject
 
   validates :question,

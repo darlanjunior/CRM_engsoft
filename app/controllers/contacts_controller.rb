@@ -69,6 +69,9 @@ class ContactsController < ApplicationController
   # PUT /contacts/1.json
   def update
     @contact = Contact.find(params[:id])
+    if params[:contact][:clientId] == ""
+      params[:contact][:clientId] = nil
+    end 
 
     respond_to do |format|
       if @contact.update_attributes(params[:contact])

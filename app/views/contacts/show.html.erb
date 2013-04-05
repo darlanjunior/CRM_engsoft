@@ -9,7 +9,7 @@
 
 <%= form_for @contact, :html => {:class => "form-horizontal"} do |f| %>
 
-<% if not @contact.clientId.nil? %>
+<% if not @contact.clientId.nil? and @contact.clientId != "" %>
 <div class="control-group">
 	<label class="control-label strong">ID do Cliente vinculado</label>
 	<div class="controls">

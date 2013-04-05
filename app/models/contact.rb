@@ -26,7 +26,6 @@ class Contact < ActiveRecord::Base
       :uniqueness => {:message => "Esse e-mail já consta no sistema"}
   validates :phone,
         :presence => {:message => "Favor digitar um telefone"},
-        :numericality => {:only_integer => true, :message => "Telefone só pode conter digitos de 0 a 9"},
         :length => { :in => 8..20 , :message => "Tem que ter entre 8 e 20 caracteres"}
   validates :address,
     :length => { :in => 5..255 , :message => "Tem que ter entre 5 e 255 caracteres"}

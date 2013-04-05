@@ -97,7 +97,5 @@ class MarketingActionsController < ApplicationController
   
   def find_marketing_campaign
   	@marketing_campaign = MarketingCampaign.find(params[:marketing_campaign_id])
-  	
-  	puts @marketing_campaign
   end
 end

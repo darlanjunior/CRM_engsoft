@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(:version => 20130403184949) do
 
   create_table "faqs", :force => true do |t|
     t.string   "question"
-    t.string   "answer"
+    t.text     "answer"
     t.integer  "subject_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

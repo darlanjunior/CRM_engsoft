@@ -2,21 +2,21 @@
 <%= error_messages_for(@faq) %>
 
 <div class="control-group">
+	<%= f.label :subject_id, "Tópico", :class => "control-label strong" %>
+	<div class="controls">
+      <%= f.select :subject_id, @subjects.collect {|s| [s.subject, s.id]}, {}, :disabled => readonly %>&nbsp;
+	  <%= link_to '', {:controller => 'subjects', :action => 'new'}, {:class => "icon-plus-sign", :target => '_new', :style => "font-size:20px"} %>
+    </div>
+</div>
+<div class="control-group">
     <%= f.label :question, "Dúvida", :class => "control-label strong" %>
 	<div class="controls">
-      <%= f.text_field :question, :placeholder => "Dúvida", :readonly => readonly %>
+      <%= f.text_field :question, :placeholder => "Dúvida", :readonly => readonly, :style => "width: 700px;" %>
     </div>
 </div>
 <div class="control-group">
 	<%= f.label :answer, "Resposta", :class => "control-label strong" %>
 	<div class="controls">
-	  <%= f.text_field :answer, :placeholder => "Resposta", :readonly => readonly %>
-    </div>
-</div>
-<div class="control-group">
-	<%= f.label :subject_id, "Tópico", :class => "control-label strong" %>
-	<div class="controls">
-      <%= f.select :subject_id, @subjects.collect {|s| [s.subject, s.id]}, {}, :disabled => readonly %>&nbsp;
-	  <%= link_to '', {:controller => 'subjects', :action => 'new'}, {:class => "icon-plus-sign", :target => '_new', :style => "font-size:20px"} %>
+	  <%= f.text_area :answer, :placeholder => "Resposta", :readonly => readonly, :style => "height:200px; width: 700px;" %>
     </div>
 </div>
