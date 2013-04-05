@@ -41,9 +41,9 @@
 			<label class="control-label strong">Último Login:</label>
 			<div class="controls">
 				<label class="control-label-desc">
-					<%= "Feito em #{@client.last_sign_in_at}" %>
+					<%= l Time.parse(@client.last_sign_in_at), :format => :long %>
 					<% if not @client.last_sign_in_ip.nil? %>
-						<%= " (IP #{@client.last_sign_in_ip})" %>
+						<%= " <b>(IP</b> #{@client.last_sign_in_ip}<b>)</b>".html_safe %>
 					<% end %>
 				</label>
 			</div>
@@ -54,9 +54,9 @@
 			<label class="control-label strong">Login atual:</label>
 			<div class="controls">
 				<label class="control-label-desc">
-					<%= "Feito em #{@client.current_sign_in_at}" %>
+					<%= l Time.parse(@client.current_sign_in_at), :format => :long %>
 					<% if not @client.current_sign_in_ip.nil? %>
-						<%= " (IP #{@client.current_sign_in_ip})" %>
+						<%= " <b>(IP</b> #{@client.current_sign_in_ip}<b>)</b>".html_safe %>
 					<% end %>
 				</label>
 			</div>
@@ -64,10 +64,10 @@
 		<% end %>
 		<% if not @client.reset_password_sent_at.nil? %>
 		<div class="control-group">
-			<label class="control-label strong">Reenvio de senha:</label>
+			<label class="control-label strong">Último Reenvio de senha:</label>
 			<div class="controls">
 				<label class="control-label-desc">
-					Último reenvio feito em <%= @client.reset_password_sent_at %>
+					<%= l Time.parse(@client.reset_password_sent_at), :format => :long %>
 				</label>
 			</div>
 		</div>

@@ -59,14 +59,14 @@ class ClientsController < ApplicationController
         \"estado\":\"SP\",
         \"pais\":\"Brasil\",
         
-        \"last_sign_in_at\":null,
-        \"last_sign_in_ip\":null,
-        \"remember_created_at\":null,
-        \"reset_password_sent_at\":null,
+        \"last_sign_in_at\":\"2013-03-05T18:43:38-0300\",
+        \"last_sign_in_ip\":\"143.107.104.200\",
+        \"remember_created_at\":\"2013-03-04T18:43:38-0300\",
+        \"reset_password_sent_at\":\"2013-03-03T18:43:38-0300\",
         \"reset_password_token\":null,
-        \"sign_in_count\":0,
-        \"current_sign_in_at\":null,
-        \"current_sign_in_ip\":null
+        \"sign_in_count\":6,
+        \"current_sign_in_at\":\"2013-04-05T18:43:38-0300\",
+        \"current_sign_in_ip\":\"143.107.103.500\"
       },
       { 
         \"_id\":\"515c6789789c8119c600000c\",
