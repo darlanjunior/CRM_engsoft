@@ -43,6 +43,7 @@ gem 'jquery-rails'
 
 gem "better_errors", ">= 0.6.0", :group => :development
 gem 'paperclip'
+gem 'puma'
 
 # Usado para enviar os emails no background
 # gem 'chronic'
