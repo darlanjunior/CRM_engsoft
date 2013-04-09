@@ -38,63 +38,13 @@ class ClientsController < ApplicationController
   
   def clients_web_service id_client="", type_client=Client
     clients = {}
-    path = "http://143.107.102.37:443/webservices/usuarios"
+    # path = "http://143.107.102.37:443/webservices/usuarios"
+    path = "http://localhost:3005/webservices/usuarios"
+    if not id_client.empty?
+      path << "?id=" + id_client
+    end
 
-    # response = RestClient.get path, {:accept => :json}
-    response = """[
-      { 
-        \"_id\":\"515c6789789c8119c600000b\",
-        \"celular\":\"11996012456\",
-        \"login\":\"admin\",
-        \"nome\":\"Administrador \",
-        \"telefone\":\"1932586366\",
-        \"email\":\"admin@gmail.com\",
-        \"cpf\":\"38926370836\",
-        \"instituicao\":\"POLI-USP\",
-        \"grupo\":{\"internal_id\":1},
-        
-        \"endereco\":\"Rua do Ouvidor, 72\",
-        \"cep\":\"13104-138\",
-        \"cidade\":\"Campinas\",
-        \"estado\":\"SP\",
-        \"pais\":\"Brasil\",
-        
-        \"last_sign_in_at\":\"2013-03-05T18:43:38-0300\",
-        \"last_sign_in_ip\":\"143.107.104.200\",
-        \"remember_created_at\":\"2013-03-04T18:43:38-0300\",
-        \"reset_password_sent_at\":\"2013-03-03T18:43:38-0300\",
-        \"reset_password_token\":null,
-        \"sign_in_count\":6,
-        \"current_sign_in_at\":\"2013-04-05T18:43:38-0300\",
-        \"current_sign_in_ip\":\"143.107.103.500\"
-      },
-      { 
-        \"_id\":\"515c6789789c8119c600000c\",
-        \"celular\":null,
-        \"login\":null,
-        \"nome\":null,
-        \"telefone\":null,
-        \"email\":\"admingmail.com\",
-        \"cpf\":null,
-        \"instituicao\":null,
-        \"grupo\":{\"internal_id\":2},
-        
-        \"endereco\":\"Rua Válson Lopes, 70\",
-        \"cep\":null,
-        \"cidade\":null,
-        \"estado\":null,
-        \"pais\":null,
-        
-        \"last_sign_in_at\":null,
-        \"last_sign_in_ip\":null,
-        \"remember_created_at\":null,
-        \"reset_password_sent_at\":null,
-        \"reset_password_token\":null,
-        \"sign_in_count\":0,
-        \"current_sign_in_at\":null,
-        \"current_sign_in_ip\":null
-      }
-    ]"""
+    response = RestClient.get path, {:accept => :json}
     clients_json = JSON.parse response
     
     clients_json.each do |cl_json|
@@ -104,6 +54,9 @@ class ClientsController < ApplicationController
           if client.attributes.include? k
             client[k] = v
           end
+        end
+        if not cl_json["empresa"].nil?
+          client["instituicao"] = cl_json["empresa"]["nome"]
         end
         client["client_type"] = Client.client_types[cl_json["grupo"]["internal_id"]]
         client["endereco"] = build_address cl_json

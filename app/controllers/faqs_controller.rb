@@ -12,7 +12,7 @@ class FaqsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @faqs }
+      format.json { render json: @faqs, include: 'subject' }
     end
   end
 
@@ -23,7 +23,7 @@ class FaqsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @faq }
+      format.json { render json: @faq, include: 'subject' }
     end
   end
 

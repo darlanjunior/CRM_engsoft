@@ -16,17 +16,17 @@ banner3 = Banner.create!(:width => 728, :height => 90, :name => 'New Relic3', :i
 
 # Criando contatos
 Contact.delete_all
-alan = Contact.create!(:name => 'Alan Dabien Barroso', :email => 'alandbarroso@gmail.com', :phone => '(17) 8191-5295', :address => 'Av. Nossa Senhora de Assunção, 1100, Jaguaré, CEP 27200-002, São Paulo/SP', :client_type => 'aluno', :institution => 'POLI-USP')
-victor = Contact.create!(:name => 'Victor Lassance', :email => 'vlassance@gmail.com', :phone => '(11) 99601-2456', :address => 'Rua Válson Lopes, 70, Jaguaré, São Paulo', :client_type => 'aluno', :institution => 'POLI-USP')
-felipe = Contact.create!(:name => 'Felipe Santana', :email => 'felipe.castrosantana@gmail.com', :phone => '(11) 94964-0583', :address => 'Av. Bandeirantes, 3520, Zona Norte, São Paulo/SP', :client_type => 'aluno', :institution => 'POLI-USP')
-darlan = Contact.create!(:name => 'Darlan Junior', :email => 'darlan.sbjr@gmail.com', :phone => '(11) 98827-5489', :address => 'Av. Diógenes Lima Ribeiro, 2000, Pinheiros, São Paulo/SP', :client_type => 'aluno', :institution => 'POLI-USP')
-risco = Contact.create!(:name => 'Jorce Risco Becerra', :email => 'jorge.becerra@poli.usp.br', :phone => '(11) 3091-9091', :address => 'Av. Prof. Luciano Gualberto, travessa 3, 380, CEP 05508-010, São Paulo/SP', :client_type => 'admin_instituicao', :institution => 'POLI-USP')
-michelet = Contact.create!(:name => 'Michelet', :email => 'michelet@usp.br', :phone => '(11) 3091-9091', :address => 'Av. Prof. Luciano Gualberto, travessa 3, 380, CEP 05508-010, São Paulo/SP', :client_type => 'resp_instituicao', :institution => 'POLI-USP')
-patricia = Contact.create!(:name => 'Patricia Sandes', :email => 'patricia.sandes@usp.br', :phone => '(11) 3091-5262', :address => 'Av. Prof. Luciano Gualberto, travessa 3, 380, CEP 05508-010, São Paulo/SP', :client_type => 'resp_instituicao', :institution => 'POLI-USP')
-solange = Contact.create!(:name => 'Solange Alves de Souza', :email => 'ssouza@usp.br', :phone => '(11) 3091-5262', :address => 'Av. Prof. Luciano Gualberto, travessa 3, 380, CEP 05508-010, São Paulo/SP', :client_type => 'resp_instituicao', :institution => 'POLI-USP')
-mark = Contact.create!(:name => 'Mark Zuckerberg', :email => 'mark.zuck@fb.com', :phone => '(+1) 670.254.6780', :address => '1601 Willow Road, Menlo Park, California 94025, US', :client_type => 'admin_empresa', :institution => 'Facebook')
-maxi = Contact.create!(:name => 'Maximilian Machedon', :email => 'maxi.machedon@fb.com', :phone => '(+1) 670.254.6787', :address => '1601 Willow Road, Menlo Park, California 94025, US', :client_type => 'resp_empresa', :institution => 'Facebook')
-daisy = Contact.create!(:name => 'Daisy Chu', :email => 'daisy.chu@bbm.com.br', :phone => '(21) 2514-7448', :address => 'Praça Pio X, 98-A, Centro, CEP: 20091-040, Rio de Janeiro/RJ', :client_type => 'resp_empresa', :institution => 'BBM Investimentos')
+alan = Contact.create!(:name => 'Alan Dabien Barroso', :email => 'alandbarroso@gmail.com', :phone => '1781915295', :address => 'Av. Nossa Senhora de Assunção, 1100, Jaguaré, CEP 27200-002, São Paulo/SP', :client_type => 'aluno', :institution => 'POLI-USP')
+victor = Contact.create!(:name => 'Victor Lassance', :email => 'vlassance@gmail.com', :phone => '1196012456', :address => 'Rua Válson Lopes, 70, Jaguaré, São Paulo', :client_type => 'aluno', :institution => 'POLI-USP')
+felipe = Contact.create!(:name => 'Felipe Santana', :email => 'felipe.castrosantana@gmail.com', :phone => '1149640583', :address => 'Av. Bandeirantes, 3520, Zona Norte, São Paulo/SP', :client_type => 'aluno', :institution => 'POLI-USP')
+darlan = Contact.create!(:name => 'Darlan Junior', :email => 'darlan.sbjr@gmail.com', :phone => '1188275489', :address => 'Av. Diógenes Lima Ribeiro, 2000, Pinheiros, São Paulo/SP', :client_type => 'aluno', :institution => 'POLI-USP')
+risco = Contact.create!(:name => 'Jorce Risco Becerra', :email => 'jorge.becerra@poli.usp.br', :phone => '1130919091', :address => 'Av. Prof. Luciano Gualberto, travessa 3, 380, CEP 05508-010, São Paulo/SP', :client_type => 'admin_instituicao', :institution => 'POLI-USP')
+michelet = Contact.create!(:name => 'Michelet', :email => 'michelet@usp.br', :phone => '1130919091', :address => 'Av. Prof. Luciano Gualberto, travessa 3, 380, CEP 05508-010, São Paulo/SP', :client_type => 'resp_instituicao', :institution => 'POLI-USP')
+patricia = Contact.create!(:name => 'Patricia Sandes', :email => 'patricia.sandes@usp.br', :phone => '1130915262', :address => 'Av. Prof. Luciano Gualberto, travessa 3, 380, CEP 05508-010, São Paulo/SP', :client_type => 'resp_instituicao', :institution => 'POLI-USP')
+solange = Contact.create!(:name => 'Solange Alves de Souza', :email => 'ssouza@usp.br', :phone => '1130915262', :address => 'Av. Prof. Luciano Gualberto, travessa 3, 380, CEP 05508-010, São Paulo/SP', :client_type => 'resp_instituicao', :institution => 'POLI-USP')
+mark = Contact.create!(:name => 'Mark Zuckerberg', :email => 'mark.zuck@fb.com', :phone => '1132546780', :address => '1601 Willow Road, Menlo Park, California 94025, US', :client_type => 'admin_empresa', :institution => 'Facebook')
+maxi = Contact.create!(:name => 'Maximilian Machedon', :email => 'maxi.machedon@fb.com', :phone => '1132546780', :address => '1601 Willow Road, Menlo Park, California 94025, US', :client_type => 'resp_empresa', :institution => 'Facebook')
+daisy = Contact.create!(:name => 'Daisy Chu', :email => 'daisy.chu@bbm.com.br', :phone => '2125147448', :address => 'Praça Pio X, 98-A, Centro, CEP: 20091-040, Rio de Janeiro/RJ', :client_type => 'resp_empresa', :institution => 'BBM Investimentos')
 
 #Criando ligações
 Call.delete_all
