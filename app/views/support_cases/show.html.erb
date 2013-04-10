@@ -26,15 +26,34 @@
     <%= @support_case.created_at%>
   </p>
 
+  <%if @employee!=nil%>
     <p>
       <b>Responsavel:</b>
       <%= link_to @employee_name,{:controller => 'employees',:action =>'show',:id =>@employee.id} %>
     </p>
+  <%else%>
+      <p>
+        <b>Responsavel:</b>
+        <%= Nao alocado %>
+      </p>
+  <% end %>
 
-    <p>
+   <p>
       <%= link_to 'Editar',{:action => 'edit', :id => @support_case.id},:class => "btn btn-small dark-blue" %>
     </p>
 
+</div>
+
+<div id="contact_values" class="box bordered" style="position:relative;">
+  <h4>Dados do Cliente:</h4>
+  <p>
+    <b>Nome:</b>
+    <%= @contact_name%>
+  </p>
+  <p>
+    <b>Email:</b>
+    <%= @contact_email%>
+  </p>
 </div>
 
 <div id="addComment" class="box bordered" style="position:relative;">
@@ -48,6 +67,21 @@
     </tr>
     <tr>
       <% end %>
+    </tr>
+  </table>
+</div>
+
+<div id="sendEmail" class="box bordered" style="position:relative;">
+  <h4> Enviar mensagem ao cliente:</h4>
+  <table>
+    <%= form_tag :controller => 'support_cases', :action => 'sendEmailToClient', :support_case_id=>@support_case.id, :method => 'post' do %>
+        <%hidden_field_tag :support_case_id, @support_case.id%>
+        <tr>
+          <td><%= text_area_tag :content, params[:content], :rows => 30, :cols=> 100,:placeholder => 'Escreva a mensagem aqui...'%></td>
+          <td><%= submit_tag "Enviar" ,:class => "btn btn-small dark-blue"%> </td>
+        </tr>
+        <tr>
+    <% end %>
     </tr>
   </table>
 </div>
@@ -99,7 +133,7 @@
 
 </div>
 
-<%= render "partials/components/charts/charts" %>
+
 
 
 <%= link_to 'Voltar', {:action => 'index'},:class => "btn btn-small dark-blue"%>

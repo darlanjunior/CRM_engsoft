@@ -163,11 +163,6 @@ news_marloca = Newsletter.new(:title => 'Nova vaga de estagio', :message_body =>
 news_marloca.contact_groups << labsoft
 news_marloca.save
 
-#Criando chamado
-SupportCase.delete_all
-s = SupportCase.new(description: 'Bug ao se cadastrar numa nova vaga', status: 'Em andamento')
-s.contact = Contact.last
-s.save
 
 #Criando açao de marketing
 MarketingAction.delete_all

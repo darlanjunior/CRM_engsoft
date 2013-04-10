@@ -39,6 +39,17 @@ ActiveRecord::Schema.define(:version => 20130403184949) do
 
   add_index "calls", ["contact_id"], :name => "index_calls_on_contact_id"
 
+  create_table "comments", :force => true do |t|
+    t.string   "content"
+    t.integer  "support_case_id"
+    t.integer  "employee_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "comments", ["employee_id"], :name => "index_comments_on_employee_id"
+  add_index "comments", ["support_case_id"], :name => "index_comments_on_support_case_id"
+
   create_table "contact_groups", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -137,6 +148,19 @@ ActiveRecord::Schema.define(:version => 20130403184949) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "support_case_events", :force => true do |t|
+    t.string   "eventType"
+    t.string   "description"
+    t.string   "content"
+    t.integer  "support_case_id"
+    t.integer  "employee_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "support_case_events", ["employee_id"], :name => "index_support_case_events_on_employee_id"
+  add_index "support_case_events", ["support_case_id"], :name => "index_support_case_events_on_support_case_id"
 
   create_table "support_cases", :force => true do |t|
     t.string   "description"

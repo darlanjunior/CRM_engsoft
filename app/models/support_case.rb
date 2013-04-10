@@ -1,6 +1,6 @@
 class SupportCase < ActiveRecord::Base
 
-  attr_accessible  :description, :status, :caseType, :employee_id
+  attr_accessible  :description, :status, :caseType, :employee_id , :contact
 
 
 	belongs_to :contact

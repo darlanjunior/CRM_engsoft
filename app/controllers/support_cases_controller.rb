@@ -1,9 +1,6 @@
 class SupportCasesController < ApplicationController
   before_filter :define_case_types,:define_case_status
 
-
-
-
   # GET /support_cases
   # GET /support_cases.json
   def index
@@ -80,8 +77,10 @@ class SupportCasesController < ApplicationController
     @contact = @support_case.contact
     if(@contact == nil)
       @contact_name = nil
+      @contact_email =nil
     else
       @contact_name = @contact.name
+      @contact_email = @contact.email
     end
 
 
@@ -110,6 +109,7 @@ class SupportCasesController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @support_case }
+    end
     end
   end
 
@@ -153,6 +153,16 @@ class SupportCasesController < ApplicationController
         format.html { render action: "new" }
         format.json { render json: @support_case.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def sendEmailToClient
+    @support_case = SupportCase.find(params[:support_case_id])
+    @content = params[:content]
+    @contact = @support_case.contact
+
+    if(@contact != nil)
+       SupportMailer.send_support_email(@support_case,@content,@contact).deliver
     end
   end
 
