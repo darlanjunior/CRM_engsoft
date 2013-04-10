@@ -65,9 +65,11 @@ class NewslettersController < ApplicationController
 		    	end
       	end
       	
-      	contacts.each do |contact|
-      		NewsletterMailer.send_newsletter(@newsletter, contact).deliver
-      	end
+      	Thread.new{
+		    	contacts.each do |contact|
+		    		NewsletterMailer.send_newsletter(@newsletter, contact).deliver
+		  	end
+      	}
       	
         format.html { redirect_to @newsletter, notice: 'Newsletter criada com sucesso.' }
         format.json { render json: @newsletter, status: :created, location: @newsletter }

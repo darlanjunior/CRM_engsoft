@@ -1,8 +1,15 @@
 class MarketingCampaignsController < ApplicationController
+	before_filter :get_role_session	
+	
   # GET /marketing_campaigns
   # GET /marketing_campaigns.json
   def index
-    @marketing_campaigns = MarketingCampaign.all
+  	# Dependendo do perfil do candidato, selecionar todas as  campanhas ou somente as passadas do estado "Em espera"
+  	if(@role == "financial_supervisor")
+  		@marketing_campaigns = MarketingCampaign.where("status > 1 and status != 8")
+  	else
+  		@marketing_campaigns = MarketingCampaign.all
+  	end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -21,7 +28,7 @@ class MarketingCampaignsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @marketing_campaign }
+      format.json { render json: @marketing_campaign.to_json({:methods => :value}) }
     end
   end
 
@@ -138,5 +145,9 @@ class MarketingCampaignsController < ApplicationController
     @contact_groups = @marketing_campaign.contact_groups
     
     @status = @marketing_campaign.status
+  end
+  
+  def get_role_session
+  	@role = :cookies[:role]
   end
 end

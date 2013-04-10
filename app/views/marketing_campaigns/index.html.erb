@@ -1,4 +1,8 @@
-<div class="box bordered" style="position:relative;">
+<script>
+document.cookie = "role=marketing_manager"
+</script>
+
+<div id="marketing_campaign_list" class="box bordered" style="position:relative;">
 	<div class="box-header" >
 		<i class="icon-th-list"></i><%= @page_title = "Campanhas de Marketing" %>
 	</div>
@@ -16,11 +20,13 @@
 		<tr>
 			<td class="td-actions">
 				<%= link_to '', {:action => 'show', :id => marketing_campaign.id}, :class => "icon-eye-open", :title => "Visualizar" %>
-				<% if(marketing_campaign.status != 5 && marketing_campaign.status != 6 && marketing_campaign.status != 8 && marketing_campaign.status != 9) %>
-					<%= link_to '', {:action => 'edit', :id => marketing_campaign.id}, :class => "icon-edit", :title => "Editar" %>
-				<% end %>
-				<% if(marketing_campaign.status != 5 && marketing_campaign.status != 6) %>
-					<%= link_to '', {:action => 'delete', :id => marketing_campaign.id}, :class => "icon-remove", :title => "Deletar"  %>
+				<% if((@role == "marketing_manager" && marketing_campaign.status != 2) || (@role == get_financial_supervisor && marketing_campaign.status == 2)) %>
+					<% if(marketing_campaign.status != 5 && marketing_campaign.status != 6 && marketing_campaign.status != 8 && marketing_campaign.status != 9) %>
+						<%= link_to '', {:action => 'edit', :id => marketing_campaign.id}, :class => "icon-edit", :title => "Editar" %>
+					<% end %>
+					<% if(marketing_campaign.status == 8) %>
+						<%= link_to '', {:action => 'delete', :id => marketing_campaign.id}, :class => "icon-remove", :title => "Deletar"  %>
+					<% end %>
 				<% end %>
 		  </td>
 		  <td><%= marketing_campaign.name %></td>

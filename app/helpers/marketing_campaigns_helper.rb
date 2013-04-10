@@ -1,4 +1,12 @@
 module MarketingCampaignsHelper
+	def get_marketing_manager()
+		return "marketing_manager"
+	end
+	
+	def get_financial_supervisor()
+		return "financial_supervisor"
+	end	
+	
 	def setReadonlyName(status)
 		case status
 			when 0
