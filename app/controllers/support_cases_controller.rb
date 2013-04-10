@@ -99,7 +99,11 @@ class SupportCasesController < ApplicationController
     @support_case = SupportCase.new
     @all_employees = Employee.all
     @employee_name = nil
-    @contacts = Contact.all
+    @clients = clients_web_service
+    if(clients==nil)
+      @contacts = Contact.all
+    else
+      @contacts = @clients
 
     @edit = false
 

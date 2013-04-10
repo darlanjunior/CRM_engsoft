@@ -32,7 +32,7 @@
   			<% end %>
 			];
 
-			$( "#contact" ).autocomplete({
+			$( "#contato" ).autocomplete({
 				source: availableTags,
 				minLength: 3,
 
@@ -41,8 +41,8 @@
 	</script>
 	
 	<div class="control-group">
-		<label for="contact" value="Contato"><%= f.label :contact,:class => "control-label strong"  %></label>
-		<input id="contact" name="contactName" value=<%=@support_contact_name%> />
+		<label for="contato" value="Contato"><%= f.label :contact,:class => "control-label strong"  %></label>
+		<input id="contato" name="contactName" value=<%=@support_contact_name%> />
 	</div>
     <% end %>
 

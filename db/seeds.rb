@@ -47,6 +47,24 @@ tcc_afv.contacts << felipe
 tcc_afv.contacts << victor
 tcc_afv.save
 
+
+#Criando Support Cases
+caseStatusOnGoing = "Em andamento";
+caseStatusClosed = "Fechado";
+caseTypeProblem = "Problema";
+caseTypeDoubt = "Duvida";
+
+SupportCase.delete_all
+SupportCase.create!(:contact => victor,:description => "Meu estagio nao aparece no portal", :status => caseStatusOnGoing, :caseType => caseTypeProblem)
+SupportCase.create!(:contact => felipe,:description => "Como faco para colocar o meu curriculo no portal?", :status => caseStatusOnGoing, :caseType => caseTypeDoubt)
+SupportCase.create!(:contact => alan,:description => "Meu estagio ja terminou, e continua registrado como atual", :status => caseStatusOnGoing, :caseType => caseTypeProblem)
+SupportCase.create!(:contact => darlan,:description => "Como eu deleto o meu registro do portal?", :status => caseStatusOnGoing, :caseType => caseTypeDoubt)
+SupportCase.create!(:contact => michelet,:description => "O portal esta travando quando faco o uploado do CV", :status => caseStatusOnGoing, :caseType => caseTypeProblem)
+SupportCase.create!(:contact => patricia,:description => "O portal nao esta aceitando CV em .pdf", :status => caseStatusOnGoing, :caseType => caseTypeProblem)
+SupportCase.create!(:contact => mark,:description => "Nao consigo alterar os meus dados no portal", :status => caseStatusOnGoing, :caseType => caseTypeProblem)
+SupportCase.create!(:contact => felipe,:description => "Como posso parar de receber as newsletters?", :status => caseStatusOnGoing, :caseType => caseTypeDoubt)
+
+
 #Criando empregado
 Employee.delete_all
 Employee.create!(:name => 'Jorge Risco', :dateOfBirth => 45.years.ago.localtime)
