@@ -1,4 +1,5 @@
 class MarketingActionsController < ApplicationController
+	before_filter :get_role_session
 	before_filter :find_marketing_campaign
 	
   # GET /marketing_actions
@@ -97,5 +98,13 @@ class MarketingActionsController < ApplicationController
   
   def find_marketing_campaign
   	@marketing_campaign = MarketingCampaign.find(params[:marketing_campaign_id])
+  end
+  
+  def get_role_session
+  	@role = cookies[:role]
+  	
+  	puts "XXXXXXXXXXXXXXXXXXXXXXXXXX"
+  	puts @role
+  	puts "XXXXXXXXXXXXXXXXXXXXXXXXXX"
   end
 end

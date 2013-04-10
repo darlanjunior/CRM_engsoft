@@ -13,24 +13,26 @@
   <div class="control-group">
     <div class="controls">
     	<% if(@status != 5 && @status != 6 && @status != 8 && @status != 9) %>
-      	<%= link_to 'Editar Campanha de Marketing', {:action => 'edit', :id => @marketing_campaign.id}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
+    		<% if((@status == 2 && @role == get_financial_supervisor) || (@status != 2 && @role == get_marketing_manager)) %>
+      		<%= link_to 'Editar Campanha de Marketing', {:action => 'edit', :id => @marketing_campaign.id}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
+      	<% end %>
       <% end %>
-      <% if(@status == 1 || @status == 7) %>
+      <% if(@status == 1 || @status == 7 && @role != get_financial_supervisor) %>
       	<%= link_to 'Pedir Aprovação', {:action => 'edit', :id => @marketing_campaign.id, :nextStatus => true}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
-      <% elsif(@status == 2) %>
+      <% elsif(@status == 2 && @role == get_financial_supervisor) %>
       	<%= link_to 'Aprovar', {:action => 'edit', :id => @marketing_campaign.id, :nextStatus => true}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
       	<%= link_to 'Desaprovar', {:action => 'edit', :id => @marketing_campaign.id, :previousStatus => true}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
-      <% elsif(@status == 3) %>
+      <% elsif(@status == 3 && @role != get_financial_supervisor) %>
       	<%= link_to 'Iniciar campanha', {:action => 'edit', :id => @marketing_campaign.id, :nextStatus => true}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
-      <% elsif(@status == 5) %>
+      <% elsif(@status == 5 && @role != get_financial_supervisor) %>
       	<%= link_to 'Terminar campanha', {:action => 'edit', :id => @marketing_campaign.id, :nextStatus => true}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
-      <% elsif(@status == 8) %>
+      <% elsif(@status == 8 && @role != get_financial_supervisor) %>
       	<%= link_to 'Reabrir campanha', {:action => 'edit', :id => @marketing_campaign.id, :previousStatus => true}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
       <% end %>
-      <% if(@status == 9) %>
+      <% if(@status == 9 && @role != get_financial_supervisor) %>
       	<%= link_to 'Corrigir', {:action => 'edit', :id => @marketing_campaign.id, :nextStatus => true}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
       <% end %>
-      <% if(@status != 5 && @status != 6 && @status != 8) %>
+      <% if(@status != 5 && @status != 6 && @status != 8 && @role != get_financial_supervisor) %>
       	</br>
       	<%= link_to 'Cancelar Campanha', {:action => 'edit', :id => @marketing_campaign.id, :cancelStatus => true}, :class => "btn btn-small dark-blue" %>&nbsp; &nbsp;&nbsp;
       <% end %>
@@ -39,4 +41,7 @@
 
 <br />
 <%= link_to 'Ir para a lista de campanhas de marketing', marketing_campaigns_path, :class => "btn btn-small light-blue inverse" %>&nbsp; &nbsp;&nbsp;
-<%= link_to 'Nova Campanha de Marketing', new_marketing_campaign_path, :class => "btn btn-small light-blue inverse" %>
+
+<% if(@role != get_financial_supervisor) %>
+	<%= link_to 'Nova Campanha de Marketing', new_marketing_campaign_path, :class => "btn btn-small light-blue inverse" %>
+<% end %>

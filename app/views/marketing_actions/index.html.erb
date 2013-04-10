@@ -19,7 +19,7 @@
 			<tr>
 				<td class="td-actions">
 					<%= link_to '', {:action => 'show', :id => marketing_action.id}, :class => "icon-eye-open", :title => "Visualizar" %>
-					<% if(@marketing_campaign.status == 1 || @marketing_campaign.status == 7) %>
+					<% if((@marketing_campaign.status == 1 || @marketing_campaign.status == 7) && @role != "financial_supervisor") %>
 						<%= link_to '', {:action => 'edit', :id => marketing_action.id}, :class => "icon-edit", :title => "Editar" %>
 						<%= link_to '', {:action => 'delete', :id => marketing_action.id}, :class => "icon-remove", :title => "Deletar"  %>
 					<% end %>
@@ -35,7 +35,7 @@
 
 <br />
 
-<% if(@marketing_campaign.status == 1 || @marketing_campaign.status == 7) %>
+<% if((@marketing_campaign.status == 1 || @marketing_campaign.status == 7) && @role != "financial_supervisor") %>
 	<%= link_to 'Nova ação de marketing', {:action => 'new'}, :class => "btn btn-small light-blue inverse"  %> </br>
 <% end %>
 <%= link_to 'Voltar a campanha de marketing', {:controller => 'marketing_campaigns',:action => 'show', :id => @marketing_campaign.id}, :class => "btn btn-small dark-blue"  %>
