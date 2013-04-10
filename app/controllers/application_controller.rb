@@ -25,10 +25,10 @@
 
   def clients_web_service id_client="", type_client=Client
     clients = {}
-    # path = "http://143.107.102.37:443/webservices/usuarios"
-    path = "http://localhost:3005/webservices/usuarios"
+    path = "http://143.107.102.37:443/webservices/usuarios"
+    # path = "http://localhost:3005/webservices/usuarios"
     if not id_client.empty?
-      path << "?id=" + id_client
+      path << "/" + id_client
     end
 
     response = RestClient.get path, {:accept => :json}
