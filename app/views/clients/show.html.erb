@@ -51,7 +51,11 @@
 	</div>   
 </div>
 
-<%= link_to ' Importar cliente para a base de contatos...', {:controller => 'contacts', :action => 'new', :client => @client.to_json}, :class => "icon-circle-arrow-down btn btn-small light-blue inverse", :title => "Importar cliente para a base de contatos..." %>
+<% if @contact.nil? %>
+	<%= link_to ' Importar cliente para a base de contatos...', {:controller => 'contacts', :action => 'new', :client => @client.to_json}, :class => "icon-circle-arrow-down btn btn-small light-blue inverse", :title => "Importar cliente para a base de contatos..." %>
+<% else %>
+	<%= link_to ' Ir para o contato vinculado', {:controller => 'contacts', :action => 'show', :id => @contact.id}, :class => "icon-user btn btn-small light-blue inverse", :title => "Ir para o contato vinculado" %>
+<% end%>
 <br />
 
 <br />

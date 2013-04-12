@@ -13,7 +13,7 @@
 <div class="control-group">
 	<label class="control-label strong">ID do Cliente vinculado</label>
 	<div class="controls">
-		<label class="control-label-desc"><%= @contact.clientId %></label>
+		<label class="control-label-desc"><%= link_to @contact.clientId, :controller => 'clients', :action => 'show', :id => @contact.clientId %></label>
 	</div>
 </div>
 <% end %>

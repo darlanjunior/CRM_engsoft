@@ -25,7 +25,7 @@
 
   def clients_web_service id_client="", type_client=Client
     clients = {}
-    path = "http://143.107.102.37:443/webservices/usuarios"
+    path = "http://estagiofacil.no-ip.org:443/webservices/usuarios"
     # path = "http://localhost:3005/webservices/usuarios"
     if not id_client.empty?
       path << "/" + id_client
@@ -47,6 +47,7 @@
         end
         client["client_type"] = Client.client_types[cl_json["grupo"]["internal_id"]]
         client["endereco"] = build_address cl_json
+        client["login"] ||= client["email"]
         clients[client["_id"]] = client
       end
     end

@@ -79,4 +79,9 @@
 
 <%= link_to '  Ir para a lista de clientes', {:action => "index"}, :class => "icon-chevron-left btn btn-small light-blue inverse" %> &nbsp; | &nbsp; 
 <%= link_to '  Visualizar dados do cliente', {:action => 'show', :id => @client._id}, :class => "icon-eye-open btn btn-small light-blue inverse", :title => "Visualizar" %>
+<% if not @contact.nil? %>
+	 &nbsp; | &nbsp; 
+	<%= link_to ' Ir para o contato vinculado', {:controller => 'contacts', :action => 'show', :id => @contact.id}, :class => "icon-user btn btn-small light-blue inverse", :title => "Ir para o contato vinculado" %>
+<% end %>
+<br />
 

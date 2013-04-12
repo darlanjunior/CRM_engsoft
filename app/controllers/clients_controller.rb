@@ -18,6 +18,7 @@ class ClientsController < ApplicationController
   # GET /clients/1.json
   def show
     @client = clients_web_service params[:id]
+    @contact = Contact.where(clientId: @client._id).first
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,6 +28,7 @@ class ClientsController < ApplicationController
   
   def show_report
     @client = clients_web_service params[:id], ClientReportInfo
+    @contact = Contact.where(clientId: @client._id).first
 
     respond_to do |format|
       format.html # show_report.html.erb
