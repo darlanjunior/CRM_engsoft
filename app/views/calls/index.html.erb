@@ -18,8 +18,10 @@
         <tr>
             <td class="td-actions">
                 <%= link_to '', {:action => 'show', :id => call.id}, :class => "icon-eye-open", :title => "Visualizar" %>&nbsp;
+            <% if cookies[:access_level] == 'CMRGAR' %>
             <%= link_to '', {:action => 'edit', :id => call.id}, :class => "icon-edit", :title => "Editar" %>&nbsp;
             <%= link_to '', {:action => 'delete', :id => call.id}, :class => "icon-remove", :title => "Deletar" %>
+            <% end %>
           </td>
           <td><%= call.reason %></td>
           <td><%= call.comments %></td>
@@ -33,4 +35,6 @@
 
 <br />
 
+<% if cookies[:access_level] == 'CMRGAR' %>
 <%= link_to 'Agendar ligação', new_call_path, :class => "btn btn-small light-blue inverse" %>&nbsp; &nbsp;&nbsp;
+<% end %>

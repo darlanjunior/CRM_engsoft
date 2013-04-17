@@ -1,21 +1,11 @@
+<% telemarketing ||= false %>
 <% readonly ||= false %>
 <%= error_messages_for(@call) %>
+<% if !telemarketing %>
 <div class="control-group">
     <%= f.label :reason, "Motivo", :class => "control-label strong" %>
   <div class="controls">
       <%= f.text_field :reason, :placeholder => "Motivo", :readonly => readonly %>
-    </div>
-</div>
-<div class="control-group">
-  <%= f.label :comments, "Comentários", :class => "control-label strong" %>
-  <div class="controls">
-    <%= f.text_field :comments, :placeholder => "Comentários", :readonly => readonly %>
-    </div>
-</div>
-<div class="control-group">
-  <%= f.label :status, "Status", :class => "control-label strong" %>
-  <div class="controls">
-    <%= f.text_field :status, :placeholder => "Status", :readonly => readonly %>
     </div>
 </div>
 <div class="control-group">
@@ -35,4 +25,18 @@
         <input type="text" readonly="true" placeholder="<%= @call.contact.name %>" />
       <% end %>
   </div>
+</div>
+<% end %>
+
+<div class="control-group">
+  <%= f.label :comments, "Comentários", :class => "control-label strong" %>
+  <div class="controls">
+    <%= f.text_field :comments, :placeholder => "Comentários", :readonly => readonly %>
+    </div>
+</div>
+<div class="control-group">
+  <%= f.label :status, "Status", :class => "control-label strong" %>
+  <div class="controls">
+    <%= f.text_field :status, :placeholder => "Status", :readonly => readonly%>
+    </div>
 </div>

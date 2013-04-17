@@ -1,8 +1,9 @@
 <h2><%= @page_title = "Alterar Ligação" %></h2><hr />
 
+<% telemarketing = (cookies[:access_level] == 'CMRTelemarketing') %>
 <%= form_for @call, :validate => true, :html => {:class => "form-horizontal"} do |f| %>
   
-  <%= render(:partial => 'form', :locals => {:f => f}) %>    
+  <%= render(:partial => 'form', :locals => {:f => f, :telemarketing => telemarketing}) %>    
   <div class="control-group">
     <div class="controls">
       <%= f.submit("Atualizar", :class => "btn btn-small dark-blue") %>

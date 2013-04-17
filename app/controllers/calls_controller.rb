@@ -61,9 +61,12 @@ class CallsController < ApplicationController
   # PUT /calls/1.json
   def update
     @call = Call.find(params[:id])
+    if params[:contact]
+      contact_id = params[:contact][:contact_id]
+    end
 
     respond_to do |format|
-      if @call.update_attributes(params[:call]) && (@call.contact = Contact.find(params[:contact][:contact_id])) && @call.save
+      if @call.update_attributes(params[:call]) && (@call.contact = Contact.find(contact_id) unless !contact_id) && @call.save
         format.html { redirect_to @call, notice: 'Ligacao alterada com sucesso.' }
         format.json { head :no_content }
       else

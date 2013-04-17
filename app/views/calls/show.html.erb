@@ -9,13 +9,23 @@
 
 <%= form_for @call, :html => {:class => "form-horizontal"} do |f| -%>
 
-  <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %>    
+  <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %>   
+  
   <div class="control-group">
     <div class="controls">
-      <%= link_to 'Editar Ligação', {:action => 'edit', :id => @call.id}, :class => "btn btn-small dark-blue" %>
+      <% link = ''
+       if cookies[:access_level] == 'CMRGAR' 
+      		link = 'Editar Ligação' 
+      	else 
+      		link = 'Alterar Status' 
+      	end%> 
+      	<%= link_to link, {:action => 'edit', :id => @call.id}, :class => "btn btn-small dark-blue" %>
   </div>
+  
 <% end %>
 
 <br />
 <%= link_to 'Ir para a lista de Ligações', calls_path, :class => "btn btn-small light-blue inverse" %>&nbsp; &nbsp;&nbsp;
-<%= link_to 'Agendar Ligação', new_call_path, :class => "btn btn-small light-blue inverse" %>
+<% if cookies[:access_level] == 'CMRGAR' %> 
+	<%= link_to 'Agendar Ligação', new_call_path, :class => "btn btn-small light-blue inverse" %>
+<%end%>
