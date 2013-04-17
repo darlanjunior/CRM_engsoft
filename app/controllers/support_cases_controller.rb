@@ -1,5 +1,5 @@
 class SupportCasesController < ApplicationController
-  before_filter :define_case_types,:define_case_status, :get_role_session
+  before_filter :define_case_types,:define_case_status
 
   # GET /support_cases
   # GET /support_cases.json
@@ -90,29 +90,6 @@ class SupportCasesController < ApplicationController
     end
   end
 
-
-
-  # GET /support_cases/new
-  # GET /support_cases/new.json
-  def new
-    @support_case = SupportCase.new
-    @all_employees = Employee.all
-    @employee_name = nil
-    @clients = clients_web_service
-    if(clients==nil)
-      @contacts = Contact.all
-    else
-      @contacts = @clients
-
-    @edit = false
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @support_case }
-    end
-    end
-  end
-
   # GET /support_cases/1/edit
   def edit
     @support_case = SupportCase.find(params[:id])
@@ -136,26 +113,6 @@ class SupportCasesController < ApplicationController
     @contacts = Contact.all
   end
 
-  # POST /support_cases
-  # POST /support_cases.json
-  def create
-    @support_case = SupportCase.new(params[:support_case])
-
-    @support_case.employee = Employee.find(params[:support_case][:employee_id])
-
-    @support_case.contact = Contact.select{|c| c["name"] == params[:contactName]}.first
-
-    respond_to do |format|
-      if @support_case.save
-        format.html { redirect_to @support_case, notice: 'Support case was successfully created.' }
-        format.json { render json: @support_case, status: :created, location: @support_case }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @support_case.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   def sendEmailToClient
     @support_case = SupportCase.find(params[:support_case_id])
     @content = params[:content]
@@ -170,7 +127,7 @@ class SupportCasesController < ApplicationController
 
   # PUT /support_cases/1
   # PUT /support_cases/1.json
-  def update
+  def updated
     @support_case = SupportCase.find(params[:id])
     support_case_changed = @support_case
 
@@ -192,18 +149,6 @@ class SupportCasesController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @support_case.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /support_cases/1
-  # DELETE /support_cases/1.json
-  def destroy
-    @support_case = SupportCase.find(params[:id])
-    @support_case.destroy
-
-    respond_to do |format|
-      format.html { redirect_to support_cases_url }
-      format.json { head :no_content }
     end
   end
 
@@ -236,13 +181,7 @@ class SupportCasesController < ApplicationController
     end
   end
 
-
-
   private
-
-  def get_role_session
-    @role = cookies[:username]
-  end
 
   def define_case_types
     @case_types = ['Problema','Duvida']

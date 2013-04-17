@@ -7,6 +7,7 @@
       <thead>
           <tr>
             <th>Descricao</th>
+            <th>Cliente</th>
             <th>Tipo</th>
             <th>Status</th>
             <th>Acoes</th>
@@ -16,12 +17,13 @@
 <% @support_cases.each do |support_case| %>
           <tr>
             <td><%= support_case.description %></td>
+            <td><%= support_case.contact.name %></td>
             <td><%= support_case.caseType %></td>
             <td><%= support_case.status %></td>
             <td class="td-actions">
               <%= link_to 'Visualizar',{:action => 'show', :id => support_case.id},:class => "btn btn-small dark-blue" %>
               <%= link_to 'Editar',{:action => 'edit', :id => support_case.id},:class => "btn btn-small dark-blue" %>
-              <%= link_to 'Remover',support_case, method: :delete, :class => "btn btn-small dark-blue" %>
+              
             </td>
           </tr>
 <% end %>
@@ -31,6 +33,3 @@
 
 <br />
 
-
-
-<%= link_to 'Criar novo Chamado', new_support_case_path %>

@@ -1,0 +1,2 @@
+module SupportCaseEventsHelper
+end

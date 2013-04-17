@@ -66,8 +66,9 @@ class ApplicationController < ActionController::Base
 
   def employees_web_service id_employee = ""
 
-    #path = "http://estagiofacil.no-ip.org:3003/employees"
-    path = "http://127.0.0.1t:3000/employees"
+    path = "http://estagiofacil.no-ip.org:3003/employees"
+
+    #path = "http://localhost:3000/employees.json"
 
     employees = {};
     if(id_employee!=nil)
