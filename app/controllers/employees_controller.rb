@@ -1,3 +1,5 @@
+require 'prawn'
+
 class EmployeesController < ApplicationController
   # GET /employees
   # GET /employees.json
@@ -18,7 +20,49 @@ class EmployeesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @employee }
+      format.pdf do
+        pdf = EmployeeReport.new(@employee,view_context)
+        send_data pdf.render, filename:
+            "employeeInvoice.pdf",
+            type: "application/pdf"
+      end
     end
+  end
+
+
+  def import
+    @wsemployee = employees_web_service params[:id]
+    @employee = Employee.where("remote_id = ?", params[:id])
+    if(@employee!=nil)
+      @employee_id = @employee.id
+    else
+      @employee_id = nil;
+    end
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @wsemployee }
+    end
+
+  end
+
+  def saveImport
+    @wsemployee = WsEmployee.new(params[:wsemployee])
+    @employee_id = params[:employee_id];
+
+    if(@employee_id!=nil)
+      @employee = Employee.find(@employee_id)
+      @employee.update_attributes(params[:wsemployee])
+    else
+      @employee = Employee.new
+      @employee.name = @wsemployee.name
+      @employee.cpf = @wsemployee.cpf
+      @employee.address = @wsemployee.address
+      @employee.remote_id = @wsemployee._id
+      @employee.save
+    end
+    redirect_to(@employee)
+
   end
 
   # GET /employees/new

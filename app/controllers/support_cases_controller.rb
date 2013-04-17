@@ -1,5 +1,5 @@
 class SupportCasesController < ApplicationController
-  before_filter :define_case_types,:define_case_status
+  before_filter :define_case_types,:define_case_status, :get_role_session
 
   # GET /support_cases
   # GET /support_cases.json
@@ -55,7 +55,7 @@ class SupportCasesController < ApplicationController
     end
 
 
-    render :show
+    redirect_to(@support_case)
 
   end
 
@@ -164,6 +164,8 @@ class SupportCasesController < ApplicationController
     if(@contact != nil)
        SupportMailer.send_support_email(@support_case,@content,@contact).deliver
     end
+
+    redirect_to(@support_case)
   end
 
   # PUT /support_cases/1
@@ -234,7 +236,13 @@ class SupportCasesController < ApplicationController
     end
   end
 
+
+
   private
+
+  def get_role_session
+    @role = cookies[:username]
+  end
 
   def define_case_types
     @case_types = ['Problema','Duvida']

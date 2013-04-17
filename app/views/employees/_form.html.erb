@@ -1,25 +1,17 @@
-<%= form_for(@employee) do |f| %>
-  <% if @employee.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
-
-      <ul>
-      <% @employee.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<div class="control-group">
+  <%= f.label :name ,"Descricao", :class => "control-label strong" %>
+  <%= f.text_field :name%>
+</div>
+<% if !@edit %>
+    <div class="control-group">
+      <%= f.label :cpf ,"Tipo", :class => "control-label strong"%>
+      <%= f.select :cpf,@case_types,{} %>
     </div>
-  <% end %>
+<%end%>
+<%if @edit%>
+    <div class="control-group">
+      <%= f.label :address,"Status", :class => "control-label strong" %>
+      <%= f.select :address,@case_status,{} %>
+    </div>
+<%end%>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :dateOfBirth %><br />
-    <%= f.text_field :dateOfBirth %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

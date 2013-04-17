@@ -4,7 +4,7 @@ class SupportMailer < ActionMailer::Base
 
     @supportCase =supportCase
     @clientName = contact.name
-    @title = "Feedback referente ao chamado #{supportCase.description}"
+    @title = "Feedback referente ao chamado '#{supportCase.description}'"
     @content = content
     mail(:from => "suporte@estagiofacil.com" ,:to => contact.email, :subject => @title)
 

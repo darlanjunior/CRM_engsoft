@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  # To change this template use File | Settings | File Templates.
+
 
   def new
     @today = Time.now.to_date
@@ -68,6 +68,37 @@ class ReportsController < ApplicationController
       @perctDoubtCases = @doubtCases.size.to_f/@createdCases.size.to_f
     end
 
+    @report = Report.new
+
+    @report.numCases = @createdCases.size
+    @report.perctOpenCases = (@perctOpenCases*100).round(2)
+    @report.perctClosedCases = (@perctClosedCases*100).round(2)
+    @report.perctDoubtCases = (@perctDoubtCases*100).round(2)
+    @report.perctProblemCases = (@perctProblemCases*100).round(2)
+    @report.beginRangeDate = startDate
+    @report.endRangeDate = endDate
+    @report.creationDate = Date.today
+    @report.avgCompletionTime = @averageCompletionTime
+    @report.idleCases = @idleCases
+
 
   end
+
+  def supportCasesReportPdf
+    supportCasesReport
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = SupportCaseReport.new(@report,view_context)
+        send_data pdf.render, filename:
+            "RelatorioDeChamados#{Date.today.to_s}.pdf",
+            type: "application/pdf"
+      end
+    end
+
+
+  end
+
+
 end

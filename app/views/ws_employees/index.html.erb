@@ -1,0 +1,33 @@
+<div class="box bordered" style="position:relative;">
+  <div class="box-header" >
+    <i class="icon-th-list"></i><%= @page_title = "Lista de Funcionarios (Remoto)" %>
+  </div>
+
+<table class="table table-striped data-table">
+  <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Endereco</th>
+        <th>CPF</th>
+      </tr>
+  </thead>
+
+  <tbody>
+  <% @employees.each do |employee| %>
+      <tr>
+        <td><%= employee.name %></td>
+        <td><%= employee.address%></td>
+        <td><%= employee.cpf%></td>
+        <td class="td-actions">
+            <%= link_to 'Visualizar', employee %>
+            <%= link_to 'Importar', {:controller => 'employees', :action=>'import', :id=>employee._id} %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>
+
+<br />
+
+
