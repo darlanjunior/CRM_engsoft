@@ -1,6 +1,13 @@
-<h1>Editing employee</h1>
+<h1>Edicao de funcionario:</h1>
+<%= form_for @employee, :html => {:class => "form-horizontal"} do |f|%>
+    <%= render(:partial => 'form',:locals => {:f => f}) %>
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit "Salvar", :class => "btn btn-small dark-blue"%>
+      </div>
+    </div>
+<%end%>
 
-<%= render 'form' %>
+<%= link_to 'Voltar', support_cases_path ,:class => "btn btn-small dark-blue" %>
 
-<%= link_to 'Show', @employee %> |
-<%= link_to 'Back', employees_path %>
+

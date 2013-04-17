@@ -1,26 +1,30 @@
-<h1>Listing employees</h1>
+<div class="box bordered" style="position:relative;">
+  <div class="box-header" >
+    <i class="icon-th-list"></i><%= @page_title = "Lista de Funcionarios (Remoto)" %>
+  </div>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Employeecode</th>
-    <th>Dateofbirth</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <table class="table table-striped data-table">
+    <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Endereco</th>
+      <th>CPF</th>
+    </tr>
+    </thead>
 
-<% @employees.each do |employee| %>
-  <tr>
-    <td><%= employee.name %></td>
-    <td><%= employee.dateOfBirth %></td>
-    <td><%= link_to 'Show', employee %></td>
-    <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-    <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+    <tbody>
+    <% @employees.each do |employee| %>
+        <tr>
+          <td><%= employee.name %></td>
+          <td><%= employee.address%></td>
+          <td><%= employee.cpf%></td>
+          <td class="td-actions">
+            <%= link_to 'Visualizar', employee ,:class => "btn btn-small dark-blue"%>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br />
-
-<%= link_to 'New Employee', new_employee_path %>

@@ -6,6 +6,8 @@ gem 'client_side_validations'
 gem 'lograge'
 gem 'rest-client'
 
+gem 'prawn'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

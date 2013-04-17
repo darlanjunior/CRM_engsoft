@@ -47,6 +47,15 @@ tcc_afv.contacts << felipe
 tcc_afv.contacts << victor
 tcc_afv.save
 
+#Criando empregado
+Employee.delete_all
+empRisco = Employee.create!(:name => 'Jorge Risco', :address => "Av. Prof. Luciano Gualberto - 189",:cpf =>"36727386273" )
+empPatricia  = Employee.create!(:name => 'Patricia Sandes', :address => "Av. Passo Fundo - 123", :cpf => "367847826722")
+empMichelet = Employee.create!(:name => 'Michelet', :address => "Av. Flores verdes - 34", :cpf => "38739273923")
+empSolange = Employee.create!(:name => 'Solange Souza', :address => "Av. Conceicao - 232", :cpf => "34783497349")
+empLasanha = Employee.create!(:name => 'Victor Lassance', :address => "Av. Guarildo Ferreira", :cpf=>"37438894394")
+
+
 
 #Criando Support Cases
 caseStatusOnGoing = "Em andamento";
@@ -55,23 +64,32 @@ caseTypeProblem = "Problema";
 caseTypeDoubt = "Duvida";
 
 SupportCase.delete_all
-SupportCase.create!(:contact => victor,:description => "Meu estagio nao aparece no portal", :status => caseStatusOnGoing, :caseType => caseTypeProblem)
-SupportCase.create!(:contact => felipe,:description => "Como faco para colocar o meu curriculo no portal?", :status => caseStatusOnGoing, :caseType => caseTypeDoubt)
-SupportCase.create!(:contact => alan,:description => "Meu estagio ja terminou, e continua registrado como atual", :status => caseStatusOnGoing, :caseType => caseTypeProblem)
-SupportCase.create!(:contact => darlan,:description => "Como eu deleto o meu registro do portal?", :status => caseStatusOnGoing, :caseType => caseTypeDoubt)
-SupportCase.create!(:contact => michelet,:description => "O portal esta travando quando faco o uploado do CV", :status => caseStatusOnGoing, :caseType => caseTypeProblem)
-SupportCase.create!(:contact => patricia,:description => "O portal nao esta aceitando CV em .pdf", :status => caseStatusOnGoing, :caseType => caseTypeProblem)
-SupportCase.create!(:contact => mark,:description => "Nao consigo alterar os meus dados no portal", :status => caseStatusOnGoing, :caseType => caseTypeProblem)
-SupportCase.create!(:contact => felipe,:description => "Como posso parar de receber as newsletters?", :status => caseStatusOnGoing, :caseType => caseTypeDoubt)
+SupportCase.create!(:contact => victor,:description => "Meu estagio nao aparece no portal",:employee => empLasanha,
+                    :status => caseStatusClosed, :caseType => caseTypeProblem,
+                    :created_at=>10.months.ago.localtime, :updated_at=>2.days.ago.localtime)
+SupportCase.create!(:contact => felipe,:description => "Como faco para colocar o meu curriculo no portal?",:employee => empPatricia,
+                    :status => caseStatusOnGoing, :caseType => caseTypeDoubt,
+                    :created_at=>5.months.ago.localtime, :updated_at=>3.months.ago.localtime)
+SupportCase.create!(:contact => alan,:description => "Meu estagio ja terminou, e continua registrado como atual",:employee => empSolange,
+                    :status => caseStatusOnGoing, :caseType => caseTypeProblem,
+                    :created_at=>2.years.ago.localtime, :updated_at=>2.months.ago.localtime)
+SupportCase.create!(:contact => darlan,:description => "Como eu deleto o meu registro do portal?",:employee => empRisco,
+                    :status => caseStatusOnGoing, :caseType => caseTypeDoubt,
+                    :created_at=>10.days.ago.localtime, :updated_at=>2.minutes.ago.localtime)
+SupportCase.create!(:contact => michelet,:description => "O portal esta travando quando faco o uploado do CV",:employee => empLasanha,
+                    :status => caseStatusClosed, :caseType => caseTypeProblem,
+                    :created_at=>2.months.ago.localtime, :updated_at=>1.month.ago.localtime)
+SupportCase.create!(:contact => patricia,:description => "O portal nao esta aceitando CV em .pdf",:employee => empMichelet,
+                    :status => caseStatusOnGoing, :caseType => caseTypeProblem,
+                    :created_at=>10.weeks.ago.localtime, :updated_at=>2.days.ago.localtime)
+SupportCase.create!(:contact => mark,:description => "Nao consigo alterar os meus dados no portal",:employee => empRisco,
+                    :status => caseStatusClosed, :caseType => caseTypeProblem,
+                    :created_at=>4.years.ago.localtime, :updated_at=>2.years.ago.localtime)
+SupportCase.create!(:contact => felipe,:description => "Como posso parar de receber as newsletters?",:employee => empPatricia,
+                    :status => caseStatusOnGoing, :caseType => caseTypeDoubt,
+                    :created_at=>10.hours.ago.localtime, :updated_at=>20.minutes.ago.localtime)
 
 
-#Criando empregado
-Employee.delete_all
-Employee.create!(:name => 'Jorge Risco', :dateOfBirth => 45.years.ago.localtime)
-Employee.create!(:name => 'Patricia Sandes', :dateOfBirth => 35.years.ago.localtime)
-Employee.create!(:name => 'Michelet', :dateOfBirth => 30.years.ago.localtime)
-Employee.create!(:name => 'Solange Souza', :dateOfBirth => 43.years.ago.localtime)
-Employee.create!(:name => 'Victor Lassance', :dateOfBirth => 23.years.ago.localtime)
 
 #Criando FAQ
 Subject.delete_all

@@ -1,14 +1,20 @@
-<p id="notice"><%= notice %></p>
+<div id="employee_values" class="box bordered" style="position:relative;">
+  <h4>Dodos do Funcionario:</h4>
+  <p>
+    <b>Nome:</b>
+    <%= @employee.name%>
+  </p>
 
-<p>
-  <b>Name:</b>
-  <%= @employee.name %>
-</p>
-<p>
-  <b>Dateofbirth:</b>
-  <%= @employee.dateOfBirth %>
-</p>
+  <p>
+    <b>Endereco</b>
+    <%= @employee.address%>
+  </p>
+
+  <p>
+    <b>CPF:</b>
+    <%= @employee.cpf%>
+  </p>
+
+<%= link_to 'Back', employees_path, :class => "btn btn-small dark-blue"%>
 
 
-<%= link_to 'Edit', edit_employee_path(@employee) %> |
-<%= link_to 'Back', employees_path %>

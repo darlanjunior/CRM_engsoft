@@ -1,4 +1,8 @@
-  class ApplicationController < ActionController::Base
+require 'rest_client'
+require 'json'
+
+
+class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def build_address obj
@@ -26,7 +30,7 @@
   def clients_web_service id_client="", type_client=Client
     clients = {}
     path = "http://estagiofacil.no-ip.org:443/webservices/usuarios"
-    # path = "http://localhost:3005/webservices/usuarios"
+     #path = "http://localhost:3005/webservices/usuarios"
     if not id_client.empty?
       path << "/" + id_client
     end
@@ -56,6 +60,36 @@
       return clients[id_client]
     end
     return clients
+  end
+
+
+
+  def employees_web_service id_employee = ""
+
+    #path = "http://estagiofacil.no-ip.org:3003/employees"
+    path = "http://127.0.0.1t:3000/employees"
+
+    employees = {};
+    if(id_employee!=nil)
+      path << "/" + id_employee
+    end
+
+
+    response = RestClient.get path
+    employees_json = JSON.parse response
+
+    employees_json.each do |employee_json|
+      employee = WsEmployee.new
+      employee_json.each_pair do |attr,val|
+        if employee.attributes.include? attr
+          employee[attr] = val
+        end
+      end
+      result_employees << employee;
+    end
+
+    return result_employees
+
   end
 
 end

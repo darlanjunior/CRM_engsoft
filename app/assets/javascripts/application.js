@@ -98,6 +98,8 @@ function drawChartLine(dados, colunas, id_div) {
 
 function drawChartPie(slice_name_label, slice_value_label, dados, chart_div,title) {
 
+
+
     console.log("Pie");
     // Create the data table.
     var data = new google.visualization.DataTable();

@@ -1,5 +1,5 @@
 class Employee < ActiveRecord::Base
-  attr_accessible :dateOfBirth, :name
+  attr_accessible :address, :name, :cpf, :remote_id
   has_many :support_cases
   has_many :comments
   has_many :support_case_events
