@@ -1,0 +1,27 @@
+<h1>Listing support_case_events</h1>
+
+<table>
+  <tr>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Content</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @support_case_events.each do |support_case_event| %>
+  <tr>
+    <td><%= support_case_event.type %></td>
+    <td><%= support_case_event.description %></td>
+    <td><%= support_case_event.content %></td>
+    <td><%= link_to 'Show', support_case_event %></td>
+    <td><%= link_to 'Edit', edit_support_case_event_path(support_case_event) %></td>
+    <td><%= link_to 'Destroy', support_case_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Support case event', new_support_case_event_path %>

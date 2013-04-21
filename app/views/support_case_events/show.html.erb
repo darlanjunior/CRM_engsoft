@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Type:</b>
+  <%= @support_case_event.type %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @support_case_event.description %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @support_case_event.content %>
+</p>
+
+
+<%= link_to 'Edit', edit_support_case_event_path(@support_case_event) %> |
+<%= link_to 'Back', support_case_events_path %>

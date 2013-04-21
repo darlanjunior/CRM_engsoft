@@ -1,5 +1,5 @@
 class SupportCasesController < ApplicationController
-  before_filter :define_case_types,:define_case_status, :get_role_session
+  before_filter :define_case_types,:define_case_status
 
   # GET /support_cases
   # GET /support_cases.json
@@ -240,9 +240,6 @@ class SupportCasesController < ApplicationController
 
   private
 
-  def get_role_session
-    @role = :cookies[:access_level]
-  end
 
   def define_case_types
     @case_types = ['Problema','Duvida']
