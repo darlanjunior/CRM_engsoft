@@ -241,7 +241,7 @@ class SupportCasesController < ApplicationController
   private
 
   def get_role_session
-    @role = cookies[:username]
+    @role = :cookies[:access_level]
   end
 
   def define_case_types
