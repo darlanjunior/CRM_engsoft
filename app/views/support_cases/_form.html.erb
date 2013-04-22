@@ -17,7 +17,7 @@
 		height: 100px;
 	}
 	</style>
-  
+  	<% if @contacts != nil %>
 	<script>
 		$(function() {
 			var availableTags = [
@@ -39,6 +39,7 @@
 			});
 		});
 	</script>
+	<% end %>
 	
 	<div class="control-group">
 		<label for="contato" value="Contato"><%= f.label :contact,:class => "control-label strong"  %></label>
@@ -64,7 +65,9 @@
     <%= f.select :status,@case_status,{} %>
   </div>
   <%end%>
+  <%if @all_employees !=nil%>
   <div class="control-group">
     <%=f.label :employee ,"Responsavel", :class => "control-label strong"%>
     <%=collection_select(:support_case,:employee_id,@all_employees,:id,:name,{:selected=>@support_employee_index,:prompt => true})%><br/>
   </div>
+  <%end%>

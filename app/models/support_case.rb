@@ -27,7 +27,6 @@ class SupportCase < ActiveRecord::Base
             :inclusion => {:in => CASE_TYPES}
 
 
-
   def addComment(comment)
     comments << Comment.new(comment)
   end

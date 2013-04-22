@@ -1,17 +1,17 @@
 <div class="control-group">
-  <%= f.label :name ,"Descricao", :class => "control-label strong" %>
+  <%= f.label :name ,"Nome", :class => "control-label strong" %>
   <%= f.text_field :name%>
 </div>
-<% if !@edit %>
-    <div class="control-group">
-      <%= f.label :cpf ,"Tipo", :class => "control-label strong"%>
-      <%= f.select :cpf,@case_types,{} %>
-    </div>
-<%end%>
-<%if @edit%>
-    <div class="control-group">
-      <%= f.label :address,"Status", :class => "control-label strong" %>
-      <%= f.select :address,@case_status,{} %>
-    </div>
-<%end%>
+
+<div class="control-group">
+  <%= f.label :cpf ,"Cpf", :class => "control-label strong"%>
+  <%= f.text_field :cpf %>
+</div>
+
+
+<div class="control-group">
+  <%= f.label :address,"Endereco", :class => "control-label strong" %>
+  <%= f.text_field :address %>
+</div>
+
 
