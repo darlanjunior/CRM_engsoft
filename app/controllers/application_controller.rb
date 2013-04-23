@@ -29,8 +29,8 @@ class ApplicationController < ActionController::Base
 
   def clients_web_service id_client="", type_client=Client
     clients = {}
-    #path = "http://estagiofacil.no-ip.org:443/webservices/usuarios"
-     path = "http://localhost:8080/employees.json"
+    path = "http://estagiofacil.no-ip.org:443/webservices/usuarios"
+    #path = "http://localhost:3005/webservices/usuarios"
     if not id_client.empty?
       path << "/" + id_client
     end
