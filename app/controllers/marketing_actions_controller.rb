@@ -101,10 +101,6 @@ class MarketingActionsController < ApplicationController
   end
   
   def get_role_session
-  	@role = cookies[:role]
-  	
-  	puts "XXXXXXXXXXXXXXXXXXXXXXXXXX"
-  	puts @role
-  	puts "XXXXXXXXXXXXXXXXXXXXXXXXXX"
+  	@role = cookies[:acess_level]
   end
 end
