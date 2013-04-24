@@ -17,14 +17,14 @@ class SupportCase < ActiveRecord::Base
   CASE_TYPES = ['Problema','Duvida']
   CASE_STATUS = ['Em andamento','Fechado']
 
-  validates :description,
-            :presence => {:message => "Favor digitar a descricao"}
-  validates :status,
-            :presence => {:message => "Favor selecionar um status"},
-            :inclusion => {:in => CASE_STATUS}
-  validates :caseType,
-            :presence => {:message => "Favor selecionar um Tipo"},
-            :inclusion => {:in => CASE_TYPES}
+  # validates :description,
+  #           :presence => {:message => "Favor digitar a descricao"}
+  # validates :status,
+  #           :presence => {:message => "Favor selecionar um status"},
+  #           :inclusion => {:in => CASE_STATUS}
+  # validates :caseType,
+  #           :presence => {:message => "Favor selecionar um Tipo"},
+  #           :inclusion => {:in => CASE_TYPES}
 
 
   def addComment(comment)
