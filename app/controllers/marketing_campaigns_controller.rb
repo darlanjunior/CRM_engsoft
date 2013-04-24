@@ -5,7 +5,7 @@ class MarketingCampaignsController < ApplicationController
   # GET /marketing_campaigns.json
   def index
   	# Dependendo do perfil do candidato, selecionar todas as  campanhas ou somente as passadas do estado "Em espera"
-  	if(@role == "financial_supervisor")
+  	if(@role == "FIN")
   		@marketing_campaigns = MarketingCampaign.where("status > 1 and status != 8")
   	else
   		@marketing_campaigns = MarketingCampaign.all
@@ -148,6 +148,6 @@ class MarketingCampaignsController < ApplicationController
   end
   
   def get_role_session
-  	@role = :cookies[:role]
+  	@role = cookies[:access_level]
   end
 end

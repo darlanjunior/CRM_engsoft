@@ -13,7 +13,7 @@
   <%= render(:partial => 'form', :locals => {:f => f, :readonly => true}) %>    
   <div class="control-group">
     <div class="controls">
-    	<% if((@marketing_campaign.status == 1 || @marketing_campaign.status == 7) && @role != "financial_supervisor") %>
+    	<% if((@marketing_campaign.status == 1 || @marketing_campaign.status == 7) && @role != "FIN") %>
       	<%= link_to 'Editar Ação de Marketing', {:action => 'edit', :id => @marketing_action.id}, :class => "btn btn-small dark-blue" %>
       <% end %>
   </div>
@@ -21,6 +21,6 @@
 
 <br />
 <%= link_to 'Ir para a lista de ações de marketing', {:action => 'index'}, :class => "btn btn-small light-blue inverse" %>&nbsp; &nbsp;&nbsp;
-<% if((@marketing_campaign.status == 1 || @marketing_campaign.status == 7) && @role != "financial_supervisor") %>
+<% if((@marketing_campaign.status == 1 || @marketing_campaign.status == 7) && @role != "FIN") %>
 	<%= link_to 'Nova Ação de Marketing', {:action => 'new', :id => @marketing_action.id}, :class => "btn btn-small light-blue inverse" %>
 <% end %>

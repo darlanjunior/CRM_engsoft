@@ -1,10 +1,10 @@
 module MarketingCampaignsHelper
 	def get_marketing_manager()
-		return "marketing_manager"
+		return "CMRGM"
 	end
 	
 	def get_financial_supervisor()
-		return "financial_supervisor"
+		return "FIN"
 	end	
 	
 	def setReadonlyName(status)
